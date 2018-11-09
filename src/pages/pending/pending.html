@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Pending Sync</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <div>
+        <ngx-datatable
+        [sortType]="'multi'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="50"
+        [rows]="assetgroupList"
+        [columns]="columns"
+        [columnMode]="'force'"
+        [limit]="10">
+      </ngx-datatable>
+    </div>
+</ion-content>

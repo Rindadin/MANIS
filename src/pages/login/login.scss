@@ -1,0 +1,112 @@
+page-login {
+  .card-ios,
+  .card-md {
+    position: relative;
+    margin-top: -5em;
+    //width: calc(100% - 24px);
+    height: 400px;
+    width: 380px;
+    background-color: white;
+    text-align: center;
+    margin: 20px;
+    box-shadow: none;
+    border-radius: 10px;
+    left: 100px;
+  
+  
+  }
+  .background {
+    position: absolute;
+    background-image: url("../assets/imgs/login.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .vertical-align-content>* {
+    display: flex !important;
+    align-content: center !important;
+    align-items: center !important;
+  }
+  .item-ios,
+  .item-md {
+    position: relative;
+    background-color: transparent !important;
+    color: white;
+    margin: 1vh;
+    
+
+  }
+  .text-input::-moz-placeholder {
+    color: white;
+  }
+  .text-input:-ms-input-placeholder {
+    color: black;
+    
+  }
+  .text-input::-webkit-input-placeholder {
+    text-indent: 0;
+    color: black;
+    
+  }
+  .nav{
+    width: 320px;
+    height: auto;
+    margin: 4vh;
+    margin-left: 3.5vh;
+  }
+
+  .btnwidth{
+    width: 100%;
+    margin-left: 0vh;
+
+  }
+
+  .ing{
+    position: relative;
+    width: 15%;
+    top: -25px;
+    left: 0px;
+    float: left;
+
+  }
+
+  .footer{
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: black;
+   color: white;
+   text-align: center;
+   
+  }
+
+  .idaman{
+    position: relative;
+    height: 30px;
+    width: 26px;
+    
+  }
+
+  // .ipg{
+  //   position: relative;
+  //   width: 150%;
+  //   top: 7px;
+  //   right: 20px;
+  // }
+
+  // .ilg{
+  //   position: relative;
+  //   width: 55%;
+  //   top: 5px;
+  //   left: 50px;
+
+  // }
+
+  // .pass{
+  //   text-align: 20px;
+  //   left: 10%;
+  // }
+
+
+
+  }

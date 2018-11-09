@@ -1,0 +1,121 @@
+.wrapper {
+  display: grid; // Define a 10 pixel gap between each grid track
+  grid-gap: 5px; // Define a rule, that will be repeated for each grid column, where
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); // Specify the height of the row - minimum value of 50 pixels and a maximum
+  grid-auto-rows: minmax(50px, auto);
+  color: white;
+}
+
+.btnside {
+  background-color: transparent;
+}
+
+.bg {
+  background-color: color($colors, light);
+
+}
+
+.bg-sidebar {
+  background-image: url('../assets/imgs/side.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+.h1 {
+  font-family: 'Roboto';
+  font-weight: bold
+}
+
+header,
+footer {
+  padding: 2em;
+  margin-left: 5px;
+  margin-right: 5px; // Add a flex rule for browsers not supporting the
+  flex: 0 1 100%; // Define the start and end values for the grid column
+  grid-column: 1 / -1; //text-align: center;
+  // background-color: rgb(82, 113, 116);
+  // color: #fff;
+
+}
+
+.img-side {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+
+}
+
+.img-sidebar {
+  border-radius: 50%;
+  max-width: 100px;
+  border: 1px solid transparent; //-webkit-border-radius: 500px;
+  top: 50px;
+}
+
+.sidemenu-header {
+  padding: 0.3vh !important;
+  padding-left: 1.5vh !important;
+}
+
+.button-menu {
+  font-size: 1.3em;
+  font-weight: light;
+  color: white;
+}
+
+.label-md,
+.label-ios {
+  margin-top: 0.5em;
+  padding-top: 0.2em;
+}
+
+.p {
+  line-height: 0em;
+}
+
+.wrapper>* {
+  margin-bottom: 10px;
+  color: white;
+}
+
+@include media-breakpoint-down(sm) {
+  .camera-modal {
+    ion-backdrop {
+      visibility: visible !important;
+    }
+
+    .modal-wrapper {
+      border-radius: 10px 10px 0px 0px;
+      overflow: hidden;
+      top: 0%;
+      left: 0;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+@supports (display: grid) {
+  .wrapper>* {
+    margin: 0;
+  }
+
+  modal-wrapper {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+  @media only screen and (min-height: 0px) and (min-width: 0px) {
+    .modal-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+    }
+  }
+}

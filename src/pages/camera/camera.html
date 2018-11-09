@@ -1,0 +1,66 @@
+<ion-content class="main-view">
+
+  <div class="overlay" (click)="dismiss()"></div>
+
+  <ion-grid class="modal_content">
+        <!-- <ion-scroll > -->
+
+    <ion-row>
+
+      <ion-col col-6>
+        <ion-card class>
+          <img [src]="myphoto || 'assets/imgs/white.png'" />
+          <div class="card-icon">
+            <ion-icon name="cloud-upload"></ion-icon>
+          </div>
+          <div class="card-btn"> 
+            <!-- <div align="center"> -->
+            <button class="btnwidth" ion-button (click)="takePhoto()" block color="primary">Upload
+            </button>
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked color="dark">Image Attachment ID</ion-label>
+          <ion-input type="text" [(ngModel)]="imageData.id"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked color="dark">Title</ion-label>
+          <ion-input type="text" [(ngModel)]="imageData.title"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked color="dark">Description</ion-label>
+          <ion-input type="text" [(ngModel)]="imageData.description"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked color="dark">Date of image being captured</ion-label>
+          <ion-input type="text" [(ngModel)]="imageData.dateCaptured"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked color="dark">Date uploaded</ion-label>
+          <ion-input type="text" [(ngModel)]="imageData.dateUploaded"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-4 offset-8 class="save">
+        <ion-buttons end>
+          <button ion-button full (click)="closeModal()">
+            Save
+          </button>
+        </ion-buttons>
+      </ion-col>
+      <!-- <ion-col col-2>
+          <button ion-button full>Save</button>
+       </ion-col> -->
+
+    </ion-row>
+    <!-- </ion-scroll> -->
+
+  </ion-grid>
+
+</ion-content>

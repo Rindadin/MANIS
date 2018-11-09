@@ -1,0 +1,908 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Asset Registration</ion-title>
+    <ion-buttons end>
+      <button icon-end color="orange" solid ion-button (click)="saveAsset()">Save Asset
+        <ion-icon name="download"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div padding>
+
+    
+    <!-- <div>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-8>
+            <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+          </ion-col>
+
+          <ion-col col-2>
+            <button ion-button icon-end color="orange" outline>Edit Asset
+              <ion-icon ios="ios-create" md="md-create"></ion-icon>
+            </button>
+          </ion-col>
+
+          <ion-col col-2>
+            <button icon-end class="button-color" ion-button (click)="saveAsset()">Save Asset
+              <ion-icon name="download"></ion-icon>
+            </button>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+
+    </div> -->
+
+
+    <ion-segment color="light" [(ngModel)]="asset">
+      <ion-segment-button value="general-info">
+        General Info
+      </ion-segment-button>
+      <ion-segment-button value="technical-spect">
+        Technical Specifications
+      </ion-segment-button>
+      <ion-segment-button value="media">
+        Images
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="asset">
+    <div *ngSwitchCase="'general-info'">
+      <ion-grid>
+        <ion-row>
+          <!-- <ion-col col-12>
+            <ion-list> -->
+
+              <!-- <ion-list-header color="list-grey">ASSET GROUPING</ion-list-header>
+
+            </ion-list>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked color="dark">Asset ID/SoftTag Asset ID</ion-label>
+              <ion-input type="text" [(ngModel)]="assetgroup.id"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Asset Primary Category(Asset Type)</ion-label>
+              <ion-input type="text" [(ngModel)]="assetgroup.primary"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Sub Category-1</ion-label>
+              <ion-input type="text" [(ngModel)]="assetgroup.sub1"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked color="dark">RFID ID</ion-label>
+              <ion-input type="text" [(ngModel)]="assetgroup.rfid"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Air Selangor Internal Asset Identity</ion-label>
+              <ion-input type="text" [(ngModel)]="assetgroup.aisid"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Sub Category-2</ion-label>
+              <ion-input type="text" [(ngModel)]="assetgroup.sub2"></ion-input>
+            </ion-item>
+          </ion-col> -->
+
+          <!-- <ion-col col-12>
+            <ion-list>
+
+              <ion-list-header color="light">ASSET PHYSICAL LOCATION</ion-list-header>
+
+            </ion-list>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked color="dark">Location Description</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.description"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Room</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.room"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked color="dark">Building</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.build"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Position</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.position"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-12>
+            <ion-item>
+              <ion-label stacked color="dark">Address Line 1</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.address1"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Address Line 2</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.address2"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Address Line 3</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.address3"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked color="dark">City</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.city"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Postal Code</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.postcode"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Tag Number</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.tag"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Service Area</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.service"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Location Main Contact</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.contact"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Maintainance Planner</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.plan"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Enviroment Rating</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.rate"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Ran To Failure</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.failure"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Direction</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.direction"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Breaker</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.breaker"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked color="dark">State</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.state"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Country</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.country"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Point ID</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.pid"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Parent Location/Organization</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.org"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Location/Asset Maintenance Manager</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.manager"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">RCM System</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.rcm"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Backlog Group</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.backlog"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Connected To</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.connectedto"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Off Set </ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.offset"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Runtime Source</ion-label>
+              <ion-input type="text" [(ngModel)]="assetloc.source"></ion-input>
+            </ion-item>
+          </ion-col> -->
+
+          <ion-col col-12>
+            <ion-list>
+
+              <ion-list-header color="list-grey">ASSET OWNING</ion-list-header>
+
+            </ion-list>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked color="dark">Owning Organization</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Main Operation</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Region</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+
+            <ion-item>
+              <ion-label stacked color="dark">Process Location Category</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Sub Process/System</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Sub Category 1</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked color="dark">Asset Owning Department</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Operation</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Treatment Water Plant</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Process/Function</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Sub Process/Function </ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Sub Category 2</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+            
+          </ion-col>
+       
+
+    <ion-col col-12>
+      <ion-list>
+
+        <ion-list-header stacked color="list-grey">GIS DETAILS FOR ASSET PHYSICAL LOCATION</ion-list-header>
+
+      </ion-list>
+    </ion-col>
+
+    <ion-col col-12>
+      <ion-item>
+        <ion-label stacked color="dark">GIS/ESRI ID</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+    </ion-col>
+
+    <ion-col col-6>
+      <ion-item>
+        <ion-label stacked color="dark">Latitude</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+    </ion-col>
+
+    <ion-col col-6>
+      <ion-item>
+        <ion-label stacked color="dark">Longitude</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+    </ion-col>
+
+    <ion-col col-12>
+      <ion-list>
+
+        <ion-list-header stacked color="list-grey">ASSET CATEGORIZATION</ion-list-header>
+
+      </ion-list>
+    </ion-col>
+
+    <ion-col col-6>
+      <ion-item>
+        <ion-label stacked color="dark">Asset Or Component Type</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+    </ion-col>
+
+    <ion-col col-6>
+      <ion-item>
+        <ion-label stacked color="dark">Asset Class</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+    </ion-col>
+
+    <ion-col col-12>
+      <ion-item>
+        <ion-label stacked color="dark">Handed Over Asset Or Procured</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+    </ion-col>
+
+    <ion-col col-12>
+      <ion-list>
+
+        <ion-list-header color="list-grey">ASSET DETAIL DESCRIPTION</ion-list-header>
+
+      </ion-list>
+    </ion-col>
+
+    <ion-col col-6>
+      <ion-item>
+        <ion-label stacked color="dark">Brand</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked color="dark">Size/Capacity 1</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label stacked color="dark">Size/Capacity 2</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked color="dark">Size/Capacity 3</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked color="dark">Parent Asset/Plate Number</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+    </ion-col>
+
+    <ion-col col-6>
+
+      <ion-item>
+        <ion-label stacked color="dark">Model Number</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label stacked color="dark">Size/Capacity 1-Unit measurement</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked color="dark">Size/Capacity 2-Unit measurement</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked color="dark">Size/Capacity 3-Unit measurement</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked color="dark">Asset/Plate Number</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+    </ion-col>
+
+    <ion-col col-12>
+      <ion-item>
+        <ion-label stacked color="dark">Detailed Description(Formulated)</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+    </ion-col>
+
+    <ion-col col-6>
+      <ion-item>
+        <ion-label stacked color="dark">Serial Number</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked color="dark">SCADA ID</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked color="dark">Asset Tag Number</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+    </ion-col>
+
+    <ion-col col-6>
+      <ion-item>
+        <ion-label stacked color="dark">Vendor Part Number</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked color="dark">External ID</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked color="dark">Pailet Number</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+    </ion-col>
+
+    <ion-col col-6>
+
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</div>
+
+    <div *ngSwitchCase="'technical-spect'">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            <ion-list>
+              <ion-list-header color="list-grey">PUMP</ion-list-header>
+            </ion-list>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked color="dark">Manufacture Part No</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Model</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Pump Tyre</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">HP</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Speed</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Flow</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked color="dark">Head</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">No Of Staging</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Manufacruring Year</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Weight</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Medium</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Pressure</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-12>
+            <ion-list>
+              <ion-list-header color="list-grey">MOTOR</ion-list-header>
+            </ion-list>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked color="dark">Serial No.</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Manufacture Part No.</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Quantity</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">RPM</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Kw/Hp</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Voltage(V)</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+
+            <ion-item>
+              <ion-label stacked color="dark">Insulation Class</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked color="dark">Frequency</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Current(A)</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Capacity</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Manufacturing Year</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Weight</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">No Of Phases</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Model</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-12>
+            <ion-list>
+              <ion-list-header color="list-grey">VALVE</ion-list-header>
+            </ion-list>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked color="dark">Serial No.</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Model</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Manufacturing Year</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Manufacturing Part No</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Type</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+
+          </ion-col>
+
+          <ion-col col-6>
+
+            <ion-item>
+              <ion-label stacked color="dark">Pressure Rating</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Diameter</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Weight</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Material</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Make/Brand</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+          </ion-col>
+
+          <ion-col col-12>
+            <ion-list>
+              <ion-list-header color="list-grey">CIVIL STRUCTURE</ion-list-header>
+            </ion-list>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked color="dark">Shape</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Diameter</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Material</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Capacity</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-6>
+
+            <ion-item>
+              <ion-label stacked color="dark">Type</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Area</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Material</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-12>
+            <ion-list>
+              <ion-list-header color="list-grey">TANK</ion-list-header>
+            </ion-list>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked color="dark">Construction Year</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Type</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Capacity</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Size</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Shape</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Dimension</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-6>
+
+            <ion-item>
+              <ion-label stacked color="dark">Inlet Pipe Dia</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Outlet Pipe Dia</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Staging Height</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Staging Height</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Lsl</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Fsl</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Material</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+
+      </ion-grid>
+    </div>
+
+    <div *ngSwitchCase="'media'">
+      <div>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-3 offset-9>
+              <div align="right">
+                <button icon-end class="btn" ion-button (click)="openModal()">Add Image
+                  <ion-icon name="add"></ion-icon>
+                </button>
+              </div>
+            </ion-col>
+
+            <ion-col col-3 *ngFor="let image of imageList">
+              <ion-card>
+                <img [src]="showImage(image.photo)||'assets/imgs/dashboard.png'" />
+                <ion-card-content>
+                  <p>{{image.title}}</p>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+
+            <!-- <ion-col col-3>
+              <ion-card>
+                <img src="assets/imgs/dashboard.png" />
+                <ion-card-content>
+                  <p>
+                    My Image Figure 2:
+                  </p>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+
+            <ion-col col-3>
+              <ion-card>
+                <img src="assets/imgs/dashboard.png" />
+                <ion-card-content>
+                  <p>
+                    My Image Figure 3:
+                  </p>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+
+            <ion-col col-3>
+              <ion-card>
+                <img src="assets/imgs/dashboard.png" />
+                <ion-card-content>
+                  <p>
+                    My Image Figure 4:
+                  </p>
+                </ion-card-content>
+              </ion-card>
+            </ion-col> -->
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+  </div>
+</ion-content>

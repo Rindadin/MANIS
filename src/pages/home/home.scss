@@ -1,0 +1,51 @@
+page-home {
+
+  .bg {
+
+      ion-card {
+        position: relative;
+        text-align: center;
+        
+       
+      }
+    
+      .card-title {
+        position: absolute;
+        top: 36%;
+        font-size: 2.5em;
+        width: 100%;
+        font-weight: bold;
+        color: #ebebeb;
+        
+      }
+    
+      .card-subtitle {
+        position: absolute;
+        font-size: 1.0em;
+        top: 50%;
+        width: 40%;
+        color: #fff;
+        text-align: center;
+        left: 40%;
+        
+        
+      }
+
+      .btnwidth{
+         text-align: center;
+         width: 50%;
+        position: absolute;
+        
+
+  
+      }
+      img{
+        filter: brightness(50%);
+        height: 450px;
+      }
+
+      
+    
+    }
+
+}
