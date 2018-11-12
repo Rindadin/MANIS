@@ -15,14 +15,13 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'pending.html',
 })
 export class PendingPage {
-  // assetgroup: {id: string, primary: string, sub1: string, rfid: string, aisid: string, sub2: string};
-  imageData:{id: null, photo: null, title: null, description: null, dateCaptured: null, dateUploaded: null};
-  assetowning: {
-     owning_org: string, asset_own: string, main_op: string, op: string, region: string, wtp: string,
-    process_loc: string, 
-  function: string, sub_system: string, sub_function: string, sub_cat1: string, sub_cat2: string};
+  assetowning: {owning_org: string, asset_own: string, main_op: string, op: string, region: string, wtp: string,
+   process_loc: string, function: string, sub_system: string, sub_function: string, sub_cat1: string, sub_cat2: string};
   gis:{ gis_id:string, lat:string, long:string };
 
+  // assetgroup: {id: string, primary: string, sub1: string, rfid: string, aisid: string, sub2: string};
+  imageData:{id: null, photo: null, title: null, description: null, dateCaptured: null, dateUploaded: null};
+  
   
   // assetlocList: Array<any>
   assetowningList: Array<any>
@@ -41,7 +40,6 @@ export class PendingPage {
     // this.assetgroupList = [];
     this.gisList =[];
     this.columns= [
-      
       { prop:'process_loc', name: 'Process Location' },
       { prop:'function', name:'Process Function ' },
       { prop:'sub_system', name:'Sub System Category' },
@@ -51,11 +49,16 @@ export class PendingPage {
     ];
   }
 
+  onUserEvent(e){
+    alert(e.row.process_loc);
+    console.log(e.row);
+  }
+
   ionViewDidLoad() {
         this.storage.get('ASSETOWNING_LIST').then((val) =>{
 
       if(val) {
-        this.assetowning = JSON.parse(val);
+        this.assetowningList = JSON.parse(val);
         console.log(this.assetowningList);
       }else{
         this.assetowningList = [];
@@ -85,6 +88,8 @@ export class PendingPage {
         console.log(this.imageList);
       }
     })
+
+    
 
 
   }
