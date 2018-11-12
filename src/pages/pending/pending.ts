@@ -15,10 +15,19 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'pending.html',
 })
 export class PendingPage {
-  assetgroup: {id: string, primary: string, sub1: string, rfid: string, aisid: string, sub2: string};
+  // assetgroup: {id: string, primary: string, sub1: string, rfid: string, aisid: string, sub2: string};
   imageData:{id: null, photo: null, title: null, description: null, dateCaptured: null, dateUploaded: null};
-  assetlocList: Array<any>
-  assetgroupList: Array<any>
+  assetowning: {
+     owning_org: string, asset_own: string, main_op: string, op: string, region: string, wtp: string,
+    process_loc: string, 
+  function: string, sub_system: string, sub_function: string, sub_cat1: string, sub_cat2: string};
+  gis:{ gis_id:string, lat:string, long:string };
+
+  
+  // assetlocList: Array<any>
+  assetowningList: Array<any>
+  // assetgroupList: Array<any>
+  gisList: Array<any>
   imageList: Array<any>
   tablestyle = 'bootstrap';
   public config : Config;
@@ -27,38 +36,42 @@ export class PendingPage {
   users: any;
 
   constructor( public storage:Storage, public navCtrl: NavController, public navParams: NavParams) {
-    this.assetlocList = [];
-    this.assetgroupList = [];
+    this.assetowningList = [];
+    // this.assetlocList = [];
+    // this.assetgroupList = [];
+    this.gisList =[];
     this.columns= [
-      { prop:'photo', name: 'photo' },
-      { prop:'id', name: 'Asset ID' },
-      { prop:'primary', name:'Asset Primary Category' },
-      { prop:'sub1', name:'Sub Category 1' }
+      
+      { prop:'process_loc', name: 'Process Location' },
+      { prop:'function', name:'Process Function ' },
+      { prop:'sub_system', name:'Sub System Category' },
+      { prop:'sub_function', name:'Sub System Function' }
+
      
     ];
   }
 
   ionViewDidLoad() {
-        this.storage.get('ASSETLOC_LIST').then((val) =>{
+        this.storage.get('ASSETOWNING_LIST').then((val) =>{
 
       if(val) {
-        this.assetlocList = JSON.parse(val);
-        console.log(this.assetlocList);
+        this.assetowning = JSON.parse(val);
+        console.log(this.assetowningList);
       }else{
-        this.assetlocList = [];
-      console.log(this.assetlocList);
+        this.assetowningList = [];
+      console.log(this.assetowningList);
       }
       
     })
 
-    this.storage.get('ASSETGROUP_LIST').then((val) =>{
+    this.storage.get('GIS_LIST').then((val) =>{
 
       if(val) {
-        this.assetgroupList = JSON.parse(val);
-        console.log(this.assetgroupList);
+        this.gisList = JSON.parse(val);
+        console.log(this.gisList);
       }else {
-        this.assetgroupList = [];
-        console.log(this.assetgroupList);
+        this.gisList = [];
+        console.log(this.gisList);
       }
     })
 
