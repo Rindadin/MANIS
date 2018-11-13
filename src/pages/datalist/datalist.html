@@ -1,0 +1,98 @@
+<ion-content class="main-view">
+
+    <div class="overlay" (click)="dismiss()"></div>
+  
+    <ion-grid class="modal_content">
+          <!-- <ion-scroll > -->
+  
+      <ion-row>
+  
+          <ion-col col-6>
+              <ion-item>
+                  <ion-label stacked color="dark">Asset ID</ion-label>
+                  <ion-input type="text" [(ngModel)]="assetowning.id"></ion-input>
+                </ion-item>
+
+              <ion-item>
+                <ion-label stacked color="dark">Owning Organization</ion-label>
+                <ion-input type="text" [(ngModel)]="assetowning.owning_org"></ion-input>
+              </ion-item>
+  
+              <ion-item>
+                <ion-label stacked color="dark">Main Operation</ion-label>
+                <ion-input type="text" [(ngModel)]="assetowning.main"></ion-input>
+              </ion-item>
+  
+              <ion-item>
+                <ion-label stacked color="dark">Region</ion-label>
+                <ion-input type="text" [(ngModel)]="assetowning.region"></ion-input>           
+              </ion-item>
+  
+  
+              <ion-item>
+                <ion-label stacked color="dark">Process Location Category</ion-label>
+                <ion-input type="text" [(ngModel)]="assetowning.process_loc"></ion-input>
+              </ion-item>
+  
+              <ion-item>
+                <ion-label stacked color="dark">Sub Process/System</ion-label>
+                <ion-input type="text" [(ngModel)]="assetowning.sub_system"></ion-input>
+              </ion-item>
+  
+              <ion-item>
+                <ion-label stacked color="dark">Sub Category 1</ion-label>
+                <ion-input type="text" [(ngModel)]="assetowning.sub_cat1"></ion-input>
+              </ion-item>
+            </ion-col>
+  
+            <ion-col col-6>
+              <ion-item>
+                <ion-label stacked color="dark">Asset Owning Department</ion-label>
+                <ion-input type="text" [(ngModel)]="assetowning.asset_own"></ion-input>
+              </ion-item>
+  
+              <ion-item>
+                <ion-label stacked color="dark">Operation</ion-label>
+                <ion-input type="text" [(ngModel)]="assetowning.op"></ion-input>
+              </ion-item>
+  
+              <ion-item>
+                <ion-label stacked color="dark">Treatment Water Plant</ion-label>
+                <ion-input type="text" [(ngModel)]="assetowning.wtp"></ion-input>
+              </ion-item>
+  
+              <ion-item>
+                <ion-label stacked color="dark">Process/Function</ion-label>
+                <ion-input type="text" [(ngModel)]="assetowning.function"></ion-input>
+              </ion-item>
+  
+              <ion-item>
+                <ion-label stacked color="dark">Sub Process/Function </ion-label>
+                <ion-input type="text" [(ngModel)]="assetowning.sub_function"></ion-input>
+              </ion-item>
+  
+              <ion-item>
+                <ion-label stacked color="dark">Sub Category 2</ion-label>
+                <ion-input type="text" [(ngModel)]="assetowning.sub_cat2"></ion-input>
+              </ion-item>
+              
+            </ion-col>
+  
+        <ion-col col-4 offset-8 class="save">
+          <ion-buttons end>
+            <button ion-button full (click)="closeModal()">
+              close
+            </button>
+          </ion-buttons>
+        </ion-col>
+        <!-- <ion-col col-2>
+            <button ion-button full>Save</button>
+         </ion-col> -->
+  
+      </ion-row>
+      <!-- </ion-scroll> -->
+  
+    </ion-grid>
+  
+  </ion-content>
+  

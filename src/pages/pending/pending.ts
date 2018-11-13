@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Config } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Config, ModalController,  } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+
 
 /**
  * Generated class for the PendingPage page.
@@ -15,7 +16,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'pending.html',
 })
 export class PendingPage {
-  assetowning: {owning_org: string, asset_own: string, main_op: string, op: string, region: string, wtp: string,
+  assetowning: { id:number, owning_org: string, asset_own: string, main_op: string, op: string, region: string, wtp: string,
    process_loc: string, function: string, sub_system: string, sub_function: string, sub_cat1: string, sub_cat2: string};
   gis:{ gis_id:string, lat:string, long:string };
 
@@ -34,12 +35,13 @@ export class PendingPage {
   public rows : any;
   users: any;
 
-  constructor( public storage:Storage, public navCtrl: NavController, public navParams: NavParams) {
+  constructor( public modalCtrl: ModalController, public modal: ModalController, public storage:Storage, public navCtrl: NavController, public navParams: NavParams) {
     this.assetowningList = [];
     // this.assetlocList = [];
     // this.assetgroupList = [];
     this.gisList =[];
     this.columns= [
+      { prop:'id', name: 'id' },
       { prop:'process_loc', name: 'Process Location' },
       { prop:'function', name:'Process Function ' },
       { prop:'sub_system', name:'Sub System Category' },
@@ -49,9 +51,19 @@ export class PendingPage {
     ];
   }
 
-  onUserEvent(e){
-    alert(e.row.process_loc);
+ openModal(e){
+  
+
+  let params = {
+    
+    id: e.row
+  }
+
+
+    const modal = this.modal.create('DatalistPage',{params: params},  {cssClass: 'camera-modal' })
+    
     console.log(e.row);
+    modal.present();
   }
 
   ionViewDidLoad() {

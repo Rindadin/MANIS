@@ -12,6 +12,7 @@ import { AssetPage } from '../pages/asset/asset';
 import { InspectionPage } from '../pages/inspection/inspection';
 import { OneSignal } from '@ionic-native/onesignal';
 import { ListPage } from '../pages/list/list';
+import { Storage } from '@ionic/storage';
 
 
 
@@ -28,9 +29,9 @@ export class MyApp {
   isLoggedIn: boolean = false;
   pages: Array<{title: string, component: any, icon: string}>;
 
-  constructor( private oneSignal: OneSignal, public user: UserProvider, public events: Events, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor( private storage: Storage, private oneSignal: OneSignal, public user: UserProvider, public events: Events, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
-
+    // this.storage.clear();
     // used for an example of ngFor and navigation
     this.pages = [
       {title: 'Home', component: HomePage, icon: 'home'},

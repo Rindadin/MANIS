@@ -16,11 +16,8 @@ export class RegisterPage {
   // rate: string, failure: string, direction: string, breaker: string, state: string, country: string, pid: string, org: string, 
   // manager: string, rcm: string, backlog: string, connectedto: string, offset: string, source: string};
 
-  assetowning: 
-  {
-    owning_org: string, asset_own: string, main_op: string, op: string, region: string, wtp:string,
-    process_loc: string, 
-  function: string, sub_system: string, sub_function: string, sub_cat1: string, sub_cat2: string};
+  assetowning:{ id: number, owning_org: string, asset_own: string, main_op: string, op: string, region: string, wtp:string,
+  process_loc: string, function: string, sub_system: string, sub_function: string, sub_cat1: string, sub_cat2: string};
 
   gis:{ gis_id:string, lat:string, long:string };
 
@@ -30,6 +27,7 @@ export class RegisterPage {
   // assetlocList: Array<any>;
   assetowningList: Array<any>;
   gisList: Array<any>;
+  id: any;
 
   imageList: Array<any>;
 
@@ -37,7 +35,16 @@ export class RegisterPage {
     this.info = 'general-info';
 
     this.imageList = [];
-
+    this.storage.get("id").then(id => {
+      if (id) {
+        this.id=parseInt(id)+1;
+      }
+      else {
+        this.id=1; 
+      }
+      console.log(this.id);
+    })
+    
     // this.assetgroup = {
     //   id:null,
     //   primary:null,
@@ -79,7 +86,7 @@ export class RegisterPage {
   //  };
 
    this.assetowning = {
-    
+     id: this.id,
      owning_org: null, 
      asset_own: null, 
      main_op: null, 
@@ -124,6 +131,9 @@ export class RegisterPage {
   }
 
   saveAsset(){
+
+    console.log(this.assetowning);
+    this.storage.set("id", this.id)
     this.assetowningList.push(this.assetowning);
     console.log(this.assetowningList);
     this.storage.set('ASSETOWNING_LIST',JSON.stringify(this.assetowningList));
@@ -166,6 +176,7 @@ export class RegisterPage {
 
   ionViewDidLoad(){
     this.asset="general-info";
+    console.log(this.id)
   }
 
   
