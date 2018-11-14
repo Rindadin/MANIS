@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the DatalistPage page.
@@ -16,12 +17,16 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 export class DatalistPage {
   asset:string;
   info: string;
-  assetowning: { id:string, owning_org: string, asset_own: string, main_op: string, op: string, region: string, wtp:string,
+  assetowning: { id:number, owning_org: string, asset_own: string, main_op: string, op: string, region: string, wtp:string,
   process_loc: string, function: string, sub_system: string, sub_function: string, sub_cat1: string, sub_cat2: string};
   assetowningList: Array<any>
 
-  constructor( public viewController: ViewController, public navCtrl: NavController, public navParams: NavParams) {
+  constructor( public storage: Storage, public viewController: ViewController, public navCtrl: NavController, public navParams: NavParams) {
  let data = this.navParams.get('params');
+
+ this.assetowning = this.navParams.get('params');
+ 
+ 
  this.assetowning = {
 
   id:null,  

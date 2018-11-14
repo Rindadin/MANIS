@@ -16,7 +16,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'pending.html',
 })
 export class PendingPage {
-  assetowning: { id:number, owning_org: string, asset_own: string, main_op: string, op: string, region: string, wtp: string,
+  assetowning: { id: number, owning_org: string, asset_own: string, main_op: string, op: string, region: string, wtp: string,
    process_loc: string, function: string, sub_system: string, sub_function: string, sub_cat1: string, sub_cat2: string};
   gis:{ gis_id:string, lat:string, long:string };
 

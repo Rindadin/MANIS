@@ -9,6 +9,8 @@ import { Storage } from '@ionic/storage';
 export class RegisterPage {
   asset:string;
   info: string;
+
+  
   // assetgroup: {id: string, primary: string, sub1: string, rfid: string, aisid: string, sub2: string};
 
   // assetloc:{description: string, room: string, build: string, position: string, address1: string, address2: string, 
