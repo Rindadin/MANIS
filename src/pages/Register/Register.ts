@@ -45,7 +45,24 @@ export class RegisterPage {
         this.id=1; 
       }
       console.log(this.id);
-    })
+      this.assetowning = {
+        id: this.id,
+        owning_org: null, 
+        asset_own: null, 
+        main_op: null, 
+        op: null, 
+        region: null, 
+        wtp: null,
+        process_loc: null, 
+        function: null, 
+        sub_system: null, 
+        sub_function: null, 
+        sub_cat1: null, 
+        sub_cat2: null
+       };
+   
+    }
+  )
     
     // this.assetgroup = {
     //   id:null,
@@ -178,7 +195,7 @@ export class RegisterPage {
 
   ionViewDidLoad(){
     this.asset="general-info";
-    console.log(this.id)
+   
   }
 
   

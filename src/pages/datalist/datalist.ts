@@ -22,12 +22,11 @@ export class DatalistPage {
   assetowningList: Array<any>
 
   constructor( public storage: Storage, public viewController: ViewController, public navCtrl: NavController, public navParams: NavParams) {
- let data = this.navParams.get('params');
+ let assetowningList = this.navParams.get('params');
 
- this.assetowning = this.navParams.get('params');
+//  this.assetowning = this.navParams.get('params');
  
- 
- this.assetowning = {
+this.assetowning = {
 
   id:null,  
   owning_org: null, 
@@ -43,10 +42,12 @@ export class DatalistPage {
   sub_cat1: null, 
   sub_cat2: null
  }
- if(data.type == 'new'){
-  let id = data.id;
+
+ if(assetowningList.type == 'new'){
+  let id = assetowningList.id;
   this.assetowning.id = id;
 }
+
 }
 
  closeModal() {

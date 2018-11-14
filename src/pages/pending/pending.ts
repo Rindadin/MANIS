@@ -36,7 +36,7 @@ export class PendingPage {
   users: any;
 
   constructor( public modalCtrl: ModalController, public modal: ModalController, public storage:Storage, public navCtrl: NavController, public navParams: NavParams) {
-    this.assetowningList = [];
+    // this.assetowningList = this.navParams.get('params');
     // this.assetlocList = [];
     // this.assetgroupList = [];
     this.gisList =[];
