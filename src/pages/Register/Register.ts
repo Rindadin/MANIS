@@ -10,7 +10,9 @@ export class RegisterPage {
   asset:string;
   info: string;
 
-  
+  function: string ="aic"; "cl";"fil"; "trps"; "ggp";
+  process_loc: string = "a"; "rw"; "tp"; "st"; "ps";
+  sub_system: string = "pldc"; "pot"; "ht";
   // assetgroup: {id: string, primary: string, sub1: string, rfid: string, aisid: string, sub2: string};
 
   // assetloc:{description: string, room: string, build: string, position: string, address1: string, address2: string, 
@@ -18,8 +20,8 @@ export class RegisterPage {
   // rate: string, failure: string, direction: string, breaker: string, state: string, country: string, pid: string, org: string, 
   // manager: string, rcm: string, backlog: string, connectedto: string, offset: string, source: string};
 
-  assetowning:{ id: number, owning_org: string, asset_own: string, main_op: string, op: string, region: string, wtp:string,
-  process_loc: string, function: string, sub_system: string, sub_function: string, sub_cat1: string, sub_cat2: string};
+  assetowning:{ id: number, owning_org: string,  main_op: string, op: string, region: string, wtp:string,
+  process_loc: string, function: string, sub_system: string, sub_function: string, class: string, asset_type: string, sub_cat1: string, sub_cat2: string};
 
   gis:{ gis_id:string, lat:string, long:string };
 
@@ -44,19 +46,21 @@ export class RegisterPage {
       else {
         this.id=1; 
       }
+
       console.log(this.id);
       this.assetowning = {
         id: this.id,
-        owning_org: null, 
-        asset_own: null, 
-        main_op: null, 
-        op: null, 
-        region: null, 
-        wtp: null,
+        owning_org: 'PENGURUSAN AIR SELANGOR SDN BHD', 
+        main_op: 'OPERATION', 
+        op: 'WATER TREATMENT', 
+        region: 'EAST', 
+        wtp: 'LANGAT2',
         process_loc: null, 
         function: null, 
         sub_system: null, 
-        sub_function: null, 
+        sub_function: null,
+        class: null, 
+        asset_type: null,
         sub_cat1: null, 
         sub_cat2: null
        };
@@ -107,7 +111,6 @@ export class RegisterPage {
    this.assetowning = {
      id: this.id,
      owning_org: null, 
-     asset_own: null, 
      main_op: null, 
      op: null, 
      region: null, 
@@ -116,6 +119,8 @@ export class RegisterPage {
      function: null, 
      sub_system: null, 
      sub_function: null, 
+     class: null, 
+     asset_type: null,
      sub_cat1: null, 
      sub_cat2: null
     };

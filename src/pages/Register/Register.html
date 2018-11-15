@@ -267,39 +267,6 @@
             </ion-item>
 
             <ion-item>
-              <ion-label stacked color="dark">Main Operation</ion-label>
-              <ion-input type="text" [(ngModel)]="assetowning.main_op"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Region</ion-label>
-              <ion-input type="text" [(ngModel)]="assetowning.region"></ion-input>           
-            </ion-item>
-
-
-            <ion-item>
-              <ion-label stacked color="dark">Process Location Category</ion-label>
-              <ion-input type="text" [(ngModel)]="assetowning.process_loc"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Sub Process/System</ion-label>
-              <ion-input type="text" [(ngModel)]="assetowning.sub_system"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Sub Category 1</ion-label>
-              <ion-input type="text" [(ngModel)]="assetowning.sub_cat1"></ion-input>
-            </ion-item>
-          </ion-col>
-
-          <ion-col col-6>
-            <ion-item>
-              <ion-label stacked color="dark">Asset Owning Department</ion-label>
-              <ion-input type="text" [(ngModel)]="assetowning.asset_own"></ion-input>
-            </ion-item>
-
-            <ion-item>
               <ion-label stacked color="dark">Operation</ion-label>
               <ion-input type="text" [(ngModel)]="assetowning.op"></ion-input>
             </ion-item>
@@ -309,9 +276,16 @@
               <ion-input type="text" [(ngModel)]="assetowning.wtp"></ion-input>
             </ion-item>
 
+
             <ion-item>
               <ion-label stacked color="dark">Process/Function</ion-label>
-              <ion-input type="text" [(ngModel)]="assetowning.function"></ion-input>
+              <ion-select [(ngModel)]="assetowning.function" >
+                <ion-option value="aic">AERATOR/INLET CHAMBER</ion-option>
+                <ion-option value="cl">CLARIFIER</ion-option>
+                <ion-option value="fil">FILTER</ion-option>
+                <ion-option value="trps">THICKENED RESIDUAL PUMPING STATION</ion-option>
+                <ion-option value="ggp">GENSET GENERATOR PLANT</ion-option>
+              </ion-select>
             </ion-item>
 
             <ion-item>
@@ -320,9 +294,60 @@
             </ion-item>
 
             <ion-item>
+              <ion-label stacked color="dark">Primary (asset type) </ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.asset_type"></ion-input>
+            </ion-item>
+
+            <ion-item>
               <ion-label stacked color="dark">Sub Category 2</ion-label>
               <ion-input type="text" [(ngModel)]="assetowning.sub_cat2"></ion-input>
             </ion-item>
+
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked color="dark">Main Operation</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.main_op"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Region</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.region"></ion-input>           
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Process Location Category</ion-label>
+              <ion-select [(ngModel)]="assetowning.process_loc" >
+                <ion-option value="a">ADMIN</ion-option>
+                <ion-option value="rw">RAW WATER</ion-option>
+                <ion-option value="tp">TREATMENT PROCESS</ion-option>
+                <ion-option value="st">SLUDGE TREATMENT</ion-option>
+                <ion-option value="ps">POWER SUPPLY</ion-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Sub Process/System</ion-label>
+              <ion-select [(ngModel)]="assetowning.sub_system" >
+                <ion-option value="pldc">PRE LIME DOSING CHAMBER</ion-option>
+                <ion-option value="pot">PRE OXIDATION TANK</ion-option>
+                <ion-option value="ht">HOLDING TANK</ion-option>
+                <ion-option value="trps">THICKENED RESIDUAL PUMPING STATION</ion-option>
+                <ion-option value="ggp">GENSET GENERATOR PLANT</ion-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Asset Class</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.class"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Sub Category 1</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.sub_cat1"></ion-input>
+            </ion-item>
+          
             
           </ion-col>
        
