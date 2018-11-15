@@ -53,16 +53,17 @@ export class PendingPage {
 
  openModal(e){
   
-
+ 
   let params = {
     
     id: e.row
   }
-
+  
 
     const modal = this.modal.create('DatalistPage',{params: params},  {cssClass: 'camera-modal' })
     
     console.log(e.row);
+    
     modal.present();
   }
 
@@ -71,10 +72,10 @@ export class PendingPage {
 
       if(val) {
         this.assetowningList = JSON.parse(val);
-        console.log(this.assetowningList);
+        console.log(JSON.stringify(this.assetowning))
       }else{
         this.assetowningList = [];
-      console.log(this.assetowningList);
+        console.log(JSON.stringify(this.assetowning))
       }
       
     })

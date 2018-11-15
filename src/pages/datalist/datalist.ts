@@ -22,13 +22,13 @@ export class DatalistPage {
   assetowningList: Array<any>
 
   constructor( public storage: Storage, public viewController: ViewController, public navCtrl: NavController, public navParams: NavParams) {
- let assetowningList = this.navParams.get('params');
+ let e = this.navParams.get('params');
 
-//  this.assetowning = this.navParams.get('params');
+ this.assetowning = this.navParams.get('params');
  
 this.assetowning = {
 
-  id:null,  
+  id: null,  
   owning_org: null, 
   asset_own: null, 
   main_op: null, 
@@ -43,10 +43,12 @@ this.assetowning = {
   sub_cat2: null
  }
 
- if(assetowningList.type == 'new'){
-  let id = assetowningList.id;
-  this.assetowning.id = id;
+ if(e.row == 'new'){
+  let id = e.row.id;
+  e.row.id = id;
 }
+
+
 
 }
 
@@ -60,7 +62,19 @@ this.assetowning = {
   
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DatalistPage');
+    this.storage.get('ASSETOWNING_LIST').then((val) =>{
+
+      if(val) {
+        this.assetowningList = JSON.parse(val);
+        console.log(JSON.stringify(this.assetowning))
+      }else{
+        this.assetowningList = [];
+        console.log(JSON.stringify(this.assetowning))
+      }
+      
+    })
+    console.log(this.assetowning);
+    
   }
 
 }
