@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Config, ModalController, } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { RegisterPage } from '../register/register';
 
 
 /**
@@ -44,10 +45,11 @@ export class PendingPage {
     this.gisList = [];
     this.columns = [
       { prop: 'id', name: 'id' },
-      { prop: 'process_loc', name: 'Process Location' },
-      { prop: 'function', name: 'Process Function ' },
-      { prop: 'sub_system', name: 'Sub System Category' },
-      { prop: 'sub_function', name: 'Sub System Function' }
+      { prop: 'owning_org', name: 'Owning Organisation' },
+      { prop: 'main_op', name: 'Main Operation' },
+      { prop: 'op', name: 'Operation' },
+      { prop: 'region', name: 'Region' }
+      
     ];
   }
 
@@ -58,6 +60,13 @@ export class PendingPage {
     }
 
     const modal = this.modal.create('DatalistPage', { params: params }, { cssClass: 'camera-modal' })
+    modal.onDidDismiss(response => {
+      if(response){
+        if(response.type == 'edit'){
+          this.navCtrl.setRoot(RegisterPage, {params: response.data});
+        }
+      }
+    })
     modal.present();
   }
 

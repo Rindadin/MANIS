@@ -47,12 +47,22 @@ export class DatalistPage {
   }
 
   closeModal() {
-    this.navCtrl.pop();
-  }
-
-  dismiss() {
     this.viewController.dismiss(null)
   }
+
+  goToEditPage(){
+    this.viewController.dismiss({data: this.assetowning, type: 'edit'})
+  }
+
+  goToInspectionPage(){
+    this.viewController.dismiss({data: this.assetowning, type: 'inspection'})
+  }
+
+
+
+  // dismiss() {
+  //   this.viewController.dismiss(null)
+  // }
 
 
   ionViewDidLoad() {

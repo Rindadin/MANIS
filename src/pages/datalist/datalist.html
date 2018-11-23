@@ -14,13 +14,8 @@
                 </ion-item>
 
               <ion-item>
-                <ion-label stacked color="dark">Owning Organization</ion-label>
-                <ion-input type="text" [(ngModel)]="assetowning.owning_org"></ion-input>
-              </ion-item>
-  
-              <ion-item>
                 <ion-label stacked color="dark">Main Operation</ion-label>
-                <ion-input type="text" [(ngModel)]="assetowning.main"></ion-input>
+                <ion-input type="text" [(ngModel)]="assetowning.main_op"></ion-input>
               </ion-item>
   
               <ion-item>
@@ -47,8 +42,8 @@
   
             <ion-col col-6>
               <ion-item>
-                <ion-label stacked color="dark">Asset Owning Department</ion-label>
-                <ion-input type="text" [(ngModel)]="assetowning.asset_own"></ion-input>
+                <ion-label stacked color="dark">Owning Organization</ion-label>
+                <ion-input type="text" [(ngModel)]="assetowning.owning_org"></ion-input>
               </ion-item>
   
               <ion-item>
@@ -77,14 +72,32 @@
               </ion-item>
               
             </ion-col>
+
+            <ion-col col-4 class="save">
+              <ion-buttons>
+                <button ion-button full (click)=" goToInspectionPage()">
+                  Inspection
+                </button>
+              </ion-buttons>
+            </ion-col>
+
+            <ion-col col-4 class="save">
+              <ion-buttons >
+                <button ion-button full (click)="goToEditPage()">
+                  Edit
+                </button>
+              </ion-buttons>
+            </ion-col>
   
-        <ion-col col-4 offset-8 class="save">
-          <ion-buttons end>
+        <ion-col col-4 class="save">
+          <ion-buttons >
             <button ion-button full (click)="closeModal()">
               close
             </button>
           </ion-buttons>
         </ion-col>
+
+      
         <!-- <ion-col col-2>
             <button ion-button full>Save</button>
          </ion-col> -->

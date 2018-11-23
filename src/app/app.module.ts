@@ -23,6 +23,8 @@ import { Camera } from '@ionic-native/camera';
 import { InspectionPageModule } from '../pages/inspection/inspection.module';
 import { OneSignal } from '@ionic-native/onesignal';
 import { ListPageModule } from '../pages/list/list.module';
+import { Geolocation } from '@ionic-native/geolocation';
+
 
 
 
@@ -47,7 +49,8 @@ import { ListPageModule } from '../pages/list/list.module';
     AssetPageModule,
     PendingPageModule,
     HomePageModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    
 
   ],
   bootstrap: [IonicApp],
@@ -64,7 +67,8 @@ import { ListPageModule } from '../pages/list/list.module';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserProvider,
     ApiProvider,
-    OneSignal
+    OneSignal,
+    Geolocation
   ]
 })
 export class AppModule {}

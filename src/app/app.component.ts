@@ -36,12 +36,13 @@ export class MyApp {
     this.pages = [
       {title: 'Home', component: HomePage, icon: 'home'},
       { title: 'Dashboard', component: DashboardPage, icon: 'aperture' },
+      { title: 'Profile', component: 'ProfilePage', icon: 'person' },
+      { title: 'Asset Status', component: AssetPage, icon: 'done-all'},
       { title: 'Asset List', component: ListPage, icon: 'list' },
       { title: 'Asset Registration', component: RegisterPage, icon: 'clipboard' },
       { title: 'Asset Inspection', component: InspectionPage, icon: 'md-create' },
-      { title: 'Profile', component: 'ProfilePage', icon: 'person' },
-      {title: 'Pending Sync', component: PendingPage, icon: 'refresh'},
-      { title: 'Asset Status', component: AssetPage, icon: 'done-all'}
+      {title: 'Pending Sync', component: PendingPage, icon: 'refresh'}
+      
      
     ];
     this.listenToLoginEvents();
