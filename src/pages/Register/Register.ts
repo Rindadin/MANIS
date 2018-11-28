@@ -63,6 +63,8 @@ export class RegisterPage {
       sub_cat2: null
     };
     this.imageList = [];
+
+    
     let data = this.navParams.get('params');
     console.log('data');
     console.log(data);
@@ -365,7 +367,7 @@ export class RegisterPage {
 
     this.gisList.push(this.gis);
     console.log(this.gisList);
-    this.storage.set('ASSETLOC_LIST', JSON.stringify(this.gisList));
+    this.storage.set('GIS_LIST', JSON.stringify(this.gisList));
   }
 
   goToPendingPage() {

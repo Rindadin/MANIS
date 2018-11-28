@@ -9,7 +9,20 @@
 
 <ion-content padding>
 
-    <div>
+    <div padding>
+        <ion-segment [(ngModel)]="pending">
+          <ion-segment-button value="register">
+            Asset Registration
+          </ion-segment-button>
+          <ion-segment-button value="inspect">
+            Asset Inspection
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+
+      <div [ngSwitch]="pending">
+
+    <div *ngSwitchCase="'register'">
         <ngx-datatable (activate)='openModal($event)'
         [sortType]="'multi'"
         [headerHeight]="50"
@@ -21,4 +34,21 @@
         [limit]="10">
       </ngx-datatable>
     </div>
+      </div>
+
+      <div [ngSwitch]="pending">
+
+          <div *ngSwitchCase="'inspect'">
+              <ngx-datatable (activate)='openModal($event)'
+              [sortType]="'multi'"
+              [headerHeight]="50"
+              [footerHeight]="50"
+              [rowHeight]="50"
+              [rows]="assetowningList"
+              [columns]="columns"
+              [columnMode]="'force'"
+              [limit]="10">
+            </ngx-datatable>
+          </div>
+            </div>
 </ion-content>

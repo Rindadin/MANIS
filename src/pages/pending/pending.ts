@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Config, ModalController, } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { RegisterPage } from '../register/register';
+import { InspectionPage } from '../inspection/inspection';
 
 
 /**
@@ -17,6 +18,8 @@ import { RegisterPage } from '../register/register';
   templateUrl: 'pending.html',
 })
 export class PendingPage {
+  
+  pending: string;
   assetowning: {
     id: number, owning_org: string,  main_op: string, op: string, region: string, wtp: string,
     process_loc: string, function: string, sub_system: string, sub_function: string, class: string, asset_type: string, sub_cat1: string, sub_cat2: string
@@ -62,8 +65,17 @@ export class PendingPage {
     const modal = this.modal.create('DatalistPage', { params: params }, { cssClass: 'camera-modal' })
     modal.onDidDismiss(response => {
       if(response){
+        if(response.type == 'inspection'){
+          this.navCtrl.setRoot(InspectionPage, {params: response.data});
+          // this.navCtrl.setRoot(RegisterPage, {params: response.data});
+        }
+      }
+    })
+    modal.onDidDismiss(response => {
+      if(response){
         if(response.type == 'edit'){
           this.navCtrl.setRoot(RegisterPage, {params: response.data});
+          // this.navCtrl.setRoot(RegisterPage, {params: response.data});
         }
       }
     })
@@ -71,6 +83,7 @@ export class PendingPage {
   }
 
   ionViewDidLoad() {
+    this.pending = "register";
     this.storage.get('ASSETOWNING_LIST').then((val) => {
 
       if (val) {
