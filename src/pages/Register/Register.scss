@@ -3,6 +3,18 @@ ion-segment {
     background-color: #7764D7;
     // border-radius: 20px;
 }
+.item-content{
+    color: #505050;
+}
+
+.bg{
+    background-color: color($colors, light);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+ion-list-header {
+    background-color: color($colors, list-grey);
+}
 
 .button-color{
 background-color: orange;

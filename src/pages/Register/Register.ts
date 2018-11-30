@@ -41,6 +41,8 @@ export class RegisterPage {
   assetowningSub_cat1: Array<any>;
   assetowningSub_cat2: Array<any>;
   id: any = 0;
+  type: any;
+  index: number;
 
   imageList: Array<any>;
 
@@ -64,17 +66,20 @@ export class RegisterPage {
     };
     this.imageList = [];
 
-    
+
     let data = this.navParams.get('params');
+    this.index = this.navParams.get('index');
     console.log('data');
     console.log(data);
     if (data) {
       // for edit case
       this.assetowning = data;
+      this.type = 'edit';
 
       this.title = 'Edit Asset';
     } else {
       // new registration
+      this.type = 'register';
       this.title = 'Asset Registration'
       this.storage.get("id").then(id => {
         if (id) {
@@ -102,8 +107,7 @@ export class RegisterPage {
           sub_cat2: null
         };
 
-      }
-      )
+      })
     }
 
 
@@ -147,7 +151,7 @@ export class RegisterPage {
 
     //  };
 
-   
+
 
     this.assetowningProcess_loc = [
       { id: "01", name: "ADMIN" },
@@ -349,7 +353,7 @@ export class RegisterPage {
     })
 
     console.log
-    this.assetowningList = [];
+    this.gisList = [];
 
 
 
@@ -359,15 +363,24 @@ export class RegisterPage {
 
   saveAsset() {
 
-    console.log(this.assetowning);
-    this.storage.set("id", this.id)
-    this.assetowningList.push(this.assetowning);
-    console.log(this.assetowningList);
+    if (this.type == 'register') {
+      console.log(this.assetowning);
+      this.storage.set("id", this.id)
+      this.assetowningList.push(this.assetowning);
+      console.log(this.assetowningList);
+      this.gisList.push(this.gis);
+      console.log(this.gisList);
+      this.storage.set('GIS_LIST', JSON.stringify(this.gisList));
+
+    } else  {
+
+      this.assetowningList[this.index] = this.assetowning;
+      
+    }
+
     this.storage.set('ASSETOWNING_LIST', JSON.stringify(this.assetowningList));
 
-    this.gisList.push(this.gis);
-    console.log(this.gisList);
-    this.storage.set('GIS_LIST', JSON.stringify(this.gisList));
+
   }
 
   goToPendingPage() {

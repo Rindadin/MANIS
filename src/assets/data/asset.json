@@ -1,88 +1,259 @@
 {
    "asset" : [
       {
-         "Owning Organization" : "Ionic Framework",
-         "Main Operation" : "Hybrid application development framework",
-         "Operation" : "Drifty",
-         "Region" : "",
-         "Treatment Water Plant" : "",
-         "Process Location Category" : "",
-         "Process/Function" : "",
-         "Sub Process/System" : "",
-         "Sub Process/Function" : "",
-         "Asset Class" : "",
-         "Primary (asset type)"
+         "id" : "1",
+         "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
+         "main_op" : "OPERATION",
+         "op" : "WATER TREATMENT",
+         "region" : "EAST",
+         "wtp" : "LANGAT 2",
+         "process_loc" : "ADMIN",
+         "function" : "FILTER",
+         "sub_system" : "HOLDING TANK",
+         "sub_function" : "PRE LIME",
+         "class" : "MECHANICAL",
+         "asset_type" : "PUMP",
+         "sub_cat1" : "PUMP MOTOR",
+         "sub_cat2" : "PUMP MOTOR"
 
       },
       {
-         "name" : "Angular",
-         "summary" : "Front-end development framework",
-         "company" : "Google"
+         "id" : "2",
+         "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
+         "main_op" : "OPERATION",
+         "op" : "WATER TREATMENT",
+         "region" : "EAST",
+         "wtp" : "LANGAT 2",
+         "process_loc" : "RAW WATER",
+         "function" : "AERATOR/INLET CHAMBER",
+         "sub_system" : "PRE LIME DOSING CHAMBER",
+         "sub_function" : "PRE LIME",
+         "class" : "MECHANICAL",
+         "asset_type" : "PUMP",
+         "sub_cat1" : "PUMP MOTOR",
+         "sub_cat2" : "ACTUATOR"
+
       },
       {
-         "name" : "TypeScript",
-         "summary" : "Superset of JavaScript",
-         "company" : "Microsoft"
+         "id" : "3",
+         "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
+         "main_op" : "OPERATION",
+         "op" : "WATER TREATMENT",
+         "region" : "EAST",
+         "wtp" : "LANGAT 2",
+         "process_loc" : "ADMIN",
+         "function" : "FILTER",
+         "sub_system" : "HOLDING TANK",
+         "sub_function" : "PRE LIME",
+         "class" : "MECHANICAL",
+         "asset_type" : "PUMP",
+         "sub_cat1" : "VALVE",
+         "sub_cat2" : "BUTTERFLY VALVE"
+
       },
       {
-         "name" : "Apache Cordova",
-         "summary" : "Native application development framework",
-         "company" : "Apache"
+         "id" : "4",
+         "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
+         "main_op" : "OPERATION",
+         "op" : "WATER TREATMENT",
+         "region" : "EAST",
+         "wtp" : "LANGAT 2",
+         "process_loc" : "TREATMENT PROCESS",
+         "function" : "FILTER",
+         "sub_system" : "HOLDING TANK",
+         "sub_function" : "PRE LIME",
+         "class" : "MECHANICAL",
+         "asset_type" : "PUMP",
+         "sub_cat1" : "PUMP MOTOR",
+         "sub_cat2" : "PUMP MOTOR"
+
       },
       {
-         "name" : "Ionic Native",
-         "summary" : "Apache Cordova compatible plugins",
-         "company" : "Drifty"
+         "id" : "5",
+         "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
+         "main_op" : "OPERATION",
+         "op" : "WATER TREATMENT",
+         "region" : "EAST",
+         "wtp" : "LANGAT 2",
+         "process_loc" : "ADMIN",
+         "function" : "FILTER",
+         "sub_system" : "HOLDING TANK",
+         "sub_function" : "PRE LIME",
+         "class" : "MECHANICAL",
+         "asset_type" : "PUMP",
+         "sub_cat1" : "PUMP MOTOR",
+         "sub_cat2" : "PUMP MOTOR"
+
       },
       {
-         "name" : "HTML5",
-         "summary" : "Mark-up language and API's",
-         "company" : "W3C"
+         "id" : "6",
+         "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
+         "main_op" : "OPERATION",
+         "op" : "WATER TREATMENT",
+         "region" : "EAST",
+         "wtp" : "LANGAT 2",
+         "process_loc" : "ADMIN",
+         "function" : "FILTER",
+         "sub_system" : "HOLDING TANK",
+         "sub_function" : "PRE LIME",
+         "class" : "MECHANICAL",
+         "asset_type" : "PUMP",
+         "sub_cat1" : "PUMP MOTOR",
+         "sub_cat2" : "PUMP MOTOR"
+
       },
       {
-         "name" : "Sass",
-         "summary" : "CSS pre-processor",
-         "company" : "W3C"
+         "id" : "7",
+         "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
+         "main_op" : "OPERATION",
+         "op" : "WATER TREATMENT",
+         "region" : "EAST",
+         "wtp" : "LANGAT 2",
+         "process_loc" : "ADMIN",
+         "function" : "FILTER",
+         "sub_system" : "HOLDING TANK",
+         "sub_function" : "PRE LIME",
+         "class" : "MECHANICAL",
+         "asset_type" : "PUMP",
+         "sub_cat1" : "PUMP MOTOR",
+         "sub_cat2" : "PUMP MOTOR"
+
       },
       {
-         "name" : "Ionic CLI",
-         "summary" : "The engine behind the framework",
-         "company" : "Drifty"
+         "id" : "8",
+         "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
+         "main_op" : "OPERATION",
+         "op" : "WATER TREATMENT",
+         "region" : "EAST",
+         "wtp" : "LANGAT 2",
+         "process_loc" : "ADMIN",
+         "function" : "FILTER",
+         "sub_system" : "HOLDING TANK",
+         "sub_function" : "PRE LIME",
+         "class" : "MECHANICAL",
+         "asset_type" : "PUMP",
+         "sub_cat1" : "PUMP MOTOR",
+         "sub_cat2" : "PUMP MOTOR"
+
       },
       {
-         "name" : "Stencil",
-         "summary" : "Web component generator",
-         "company" : "Drifty"
+         "id" : "9",
+         "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
+         "main_op" : "OPERATION",
+         "op" : "WATER TREATMENT",
+         "region" : "EAST",
+         "wtp" : "LANGAT 2",
+         "process_loc" : "ADMIN",
+         "function" : "FILTER",
+         "sub_system" : "HOLDING TANK",
+         "sub_function" : "PRE LIME",
+         "class" : "MECHANICAL",
+         "asset_type" : "PUMP",
+         "sub_cat1" : "PUMP MOTOR",
+         "sub_cat2" : "PUMP MOTOR"
+
       },
       {
-         "name" : "Firebase",
-         "summary" : "Backend as a Service (BaaS)",
-         "company" : "Firebase/Google"
+         "id" : "10",
+         "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
+         "main_op" : "OPERATION",
+         "op" : "WATER TREATMENT",
+         "region" : "EAST",
+         "wtp" : "LANGAT 2",
+         "process_loc" : "ADMIN",
+         "function" : "FILTER",
+         "sub_system" : "HOLDING TANK",
+         "sub_function" : "PRE LIME",
+         "class" : "MECHANICAL",
+         "asset_type" : "PUMP",
+         "sub_cat1" : "PUMP MOTOR",
+         "sub_cat2" : "PUMP MOTOR"
+
       },
       {
-         "name" : "MongoDB",
-         "summary" : "NoSQL database solution",
-         "company" : "Mongo"
+         "id" : "11",
+         "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
+         "main_op" : "OPERATION",
+         "op" : "WATER TREATMENT",
+         "region" : "EAST",
+         "wtp" : "LANGAT 2",
+         "process_loc" : "ADMIN",
+         "function" : "FILTER",
+         "sub_system" : "HOLDING TANK",
+         "sub_function" : "PRE LIME",
+         "class" : "MECHANICAL",
+         "asset_type" : "PUMP",
+         "sub_cat1" : "PUMP MOTOR",
+         "sub_cat2" : "PUMP MOTOR"
+
       },
       {
-         "name" : "PHP",
-         "summary" : "Server-side scripting language",
-         "company" : "Zend"
+         "id" : "12",
+         "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
+         "main_op" : "OPERATION",
+         "op" : "WATER TREATMENT",
+         "region" : "EAST",
+         "wtp" : "LANGAT 2",
+         "process_loc" : "ADMIN",
+         "function" : "FILTER",
+         "sub_system" : "HOLDING TANK",
+         "sub_function" : "PRE LIME",
+         "class" : "MECHANICAL",
+         "asset_type" : "PUMP",
+         "sub_cat1" : "PUMP MOTOR",
+         "sub_cat2" : "PUMP MOTOR"
+
       },
       {
-         "name" : "MySQL",
-         "summary" : "Popular open-source database",
-         "company" : "Oracle"
+         "id" : "13",
+         "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
+         "main_op" : "OPERATION",
+         "op" : "WATER TREATMENT",
+         "region" : "EAST",
+         "wtp" : "LANGAT 2",
+         "process_loc" : "ADMIN",
+         "function" : "FILTER",
+         "sub_system" : "HOLDING TANK",
+         "sub_function" : "PRE LIME",
+         "class" : "MECHANICAL",
+         "asset_type" : "PUMP",
+         "sub_cat1" : "PUMP MOTOR",
+         "sub_cat2" : "PUMP MOTOR"
+
       },
       {
-         "name" : "PouchDB",
-         "summary" : "Client-side NoSQL database abstraction solution",
-         "company" : "PouchDB"
+         "id" : "14",
+         "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
+         "main_op" : "OPERATION",
+         "op" : "WATER TREATMENT",
+         "region" : "EAST",
+         "wtp" : "LANGAT 2",
+         "process_loc" : "ADMIN",
+         "function" : "FILTER",
+         "sub_system" : "HOLDING TANK",
+         "sub_function" : "PRE LIME",
+         "class" : "MECHANICAL",
+         "asset_type" : "PUMP",
+         "sub_cat1" : "PUMP MOTOR",
+         "sub_cat2" : "PUMP MOTOR"
+
       },
       {
-         "name" : "CouchDB",
-         "summary" : "Server-side NoSQL database solution",
-         "company" : "CouchDB"
+         "id" : "15",
+         "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
+         "main_op" : "OPERATION",
+         "op" : "WATER TREATMENT",
+         "region" : "EAST",
+         "wtp" : "LANGAT 2",
+         "process_loc" : "ADMIN",
+         "function" : "FILTER",
+         "sub_system" : "HOLDING TANK",
+         "sub_function" : "PRE LIME",
+         "class" : "MECHANICAL",
+         "asset_type" : "PUMP",
+         "sub_cat1" : "PUMP MOTOR",
+         "sub_cat2" : "PUMP MOTOR"
+
       }
    ]
 }

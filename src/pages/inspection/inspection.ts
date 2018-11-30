@@ -11,44 +11,75 @@ export class InspectionPage {
   inspect:string;
   info:string;
   
-  assetowning: { id: number, process_loc: string, class: string, asset_type: string};
-  assetinspect: { inspect_id: number, rfid: number, ins_type: string, start_date: string, last_date: string };
+ 
+  assetinspect: { asset_id:number, id: number, rfid: number, ins_type: string, start_date: string, last_date: string, process_loc: string, class: string, asset_type: string  };
   
 
 
   imageList: Array<any>;
   assetowningList: Array<any>;
   assetinspectList: Array<any>;
+  ins_id: any = 0;
   id: any = 0;
+  type: any;
+  index: number;
   
   
 
   constructor( public storage: Storage, public modal: ModalController, public navCtrl: NavController, public navParams: NavParams) {
+   
+
     this.assetinspect = {
-      inspect_id: null, 
+      asset_id: null,
+      id: this.ins_id, 
       rfid: null, 
       ins_type: null, 
       start_date: null, 
-      last_date: null 
+      last_date: null,
+      process_loc: null,
+      class: null,
+      asset_type: null 
     };
     this.imageList = [];
 
+    
     let data = this.navParams.get('params');
+    // this.index = this.navParams.get('index');
     console.log('data');
     console.log(data);
     if (data) {
-      this.assetowning = data;
+      //this.assetinspect = data;
+      
     } else {
-      this.storage.get("id").then(id => {
-        if(id) {
-          this.id = parseInt(id) + 1;
-        } else {
-          this.id = 1;
-        }
 
+      this.storage.get("ins_id").then(id => {
+        if (id) {
+          this.ins_id = parseInt(id) + 1;
+        }
+        else {
+          this.ins_id = 1;
+        }
         
-      })
+      console.log(this.id);
+      this.assetinspect = {
+        asset_id: data.id,
+        id: this.ins_id,
+        rfid: null, 
+        ins_type: null, 
+        start_date: null, 
+        last_date: null,
+        process_loc: null,
+        class: null,
+        asset_type: null
+        
+      };
+
+    })
+
     }
+   
+
+    
 
     this.storage.get('ASSETINSPECT_LIST').then((val) => {
 

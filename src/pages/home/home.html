@@ -15,6 +15,18 @@
   </ion-card>
 
   <ion-card>
+    <img src="assets/imgs/sync.png"/>
+    <div class="card-title">PROFILE</div>
+    <div class="card-subtitle"> <button class="btnwidth" ion-button block color="light" outline (click)="goToProfile()">SEE MORE</button></div>
+  </ion-card>
+
+  <ion-card class>
+    <img src="assets/imgs/dashboard.png"/>
+    <div class="card-title">ASSET STATUS</div>
+    <div class="card-subtitle"> <button class="btnwidth" ion-button block color="light" outline (click)="goToAsset()" >SEE MORE</button></div>
+  </ion-card>
+
+  <ion-card>
     <img src="assets/imgs/register.png"/>
     <div class="card-title">ASSET LIST</div>
     <div class="card-subtitle"> <button class="btnwidth" ion-button block color="light" outline (click)="goToList()">SEE MORE</button></div>
@@ -34,22 +46,12 @@
     <div class="card-subtitle"> <button class="btnwidth" ion-button block color="light" outline (click)="goToInspection()">SEE MORE</button></div>
   </ion-card>
 
-  <ion-card>
-    <img src="assets/imgs/sync.png"/>
-    <div class="card-title">PROFILE</div>
-    <div class="card-subtitle"> <button class="btnwidth" ion-button block color="light" outline (click)="goToProfile()">SEE MORE</button></div>
-  </ion-card>
+  
 
   <ion-card>
     <img src="assets/imgs/asset.png"/>
     <div class="card-title">PENDING SYNC</div>
     <div class="card-subtitle"> <button class="btnwidth" ion-button block color="light" outline (click)="goToPending()">SEE MORE</button></div>
-  </ion-card>
-  
-  <ion-card class>
-    <img src="assets/imgs/dashboard.png"/>
-    <div class="card-title">ASSET APPROVAL</div>
-    <div class="card-subtitle"> <button class="btnwidth" ion-button block color="light" outline (click)="ggoToAsset()" >SEE MORE</button></div>
   </ion-card>
 
 </ion-content>

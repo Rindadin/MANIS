@@ -40,6 +40,7 @@ export class PendingPage {
   public columns: any;
   public rows: any;
   users: any;
+  id;
 
   constructor(public modalCtrl: ModalController, public modal: ModalController, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
     // this.assetowningList = this.navParams.get('params');
@@ -63,19 +64,12 @@ export class PendingPage {
     }
 
     const modal = this.modal.create('DatalistPage', { params: params }, { cssClass: 'camera-modal' })
-    modal.onDidDismiss(response => {
-      if(response){
-        if(response.type == 'inspection'){
-          this.navCtrl.setRoot(InspectionPage, {params: response.data});
-          // this.navCtrl.setRoot(RegisterPage, {params: response.data});
-        }
-      }
-    })
+
     modal.onDidDismiss(response => {
       if(response){
         if(response.type == 'edit'){
-          this.navCtrl.setRoot(RegisterPage, {params: response.data});
-          // this.navCtrl.setRoot(RegisterPage, {params: response.data});
+          this.navCtrl.setRoot(RegisterPage, {params: response.data, index: response.index });
+          
         }
       }
     })
@@ -102,7 +96,7 @@ export class PendingPage {
         console.log(this.gisList);
       } else {
         this.gisList = [];
-        console.log(this.gisList);
+        console.log(this.gisList); 
       }
     })
 
