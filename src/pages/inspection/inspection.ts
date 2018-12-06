@@ -8,13 +8,11 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'inspection.html',
 })
 export class InspectionPage {
-  inspect:string;
-  info:string;
-  
- 
-  assetinspect: { asset_id:number, id: number, rfid: number, ins_type: string, start_date: string, last_date: string, process_loc: string, class: string, asset_type: string  };
-  
+  inspect: string;
+  info: string;
 
+
+  assetinspect: { asset_id: number, id: number, rfid: number, ins_type: string, start_date: string, last_date: string, process_loc: string, class: string, asset_type: string };
 
   imageList: Array<any>;
   assetowningList: Array<any>;
@@ -25,33 +23,33 @@ export class InspectionPage {
   index: number;
   
   
+ 
 
-  constructor( public storage: Storage, public modal: ModalController, public navCtrl: NavController, public navParams: NavParams) {
-   
+
+
+  constructor(public storage: Storage, public modal: ModalController, public navCtrl: NavController, public navParams: NavParams) {
 
     this.assetinspect = {
       asset_id: null,
-      id: this.ins_id, 
-      rfid: null, 
-      ins_type: null, 
-      start_date: null, 
+      id: null,
+      rfid: null,
+      ins_type: null,
+      start_date: null,
       last_date: null,
       process_loc: null,
       class: null,
-      asset_type: null 
+      asset_type: null
     };
     this.imageList = [];
 
-    
+   
     let data = this.navParams.get('params');
     // this.index = this.navParams.get('index');
     console.log('data');
     console.log(data);
+
     if (data) {
       //this.assetinspect = data;
-      
-    } else {
-
       this.storage.get("ins_id").then(id => {
         if (id) {
           this.ins_id = parseInt(id) + 1;
@@ -59,27 +57,29 @@ export class InspectionPage {
         else {
           this.ins_id = 1;
         }
-        
-      console.log(this.id);
+
+        //console.log(this.id);
+
+      })
       this.assetinspect = {
         asset_id: data.id,
         id: this.ins_id,
-        rfid: null, 
-        ins_type: null, 
-        start_date: null, 
+        rfid: null,
+        ins_type: null,
+        start_date: null,
         last_date: null,
-        process_loc: null,
-        class: null,
-        asset_type: null
-        
+        process_loc: data.process_loc,
+        class: data.class,
+        asset_type: data.asset_type
       };
 
-    })
+
+
+    } else {
+
+
 
     }
-   
-
-    
 
     this.storage.get('ASSETINSPECT_LIST').then((val) => {
 
@@ -89,7 +89,7 @@ export class InspectionPage {
         this.assetinspectList = [];
       }
     })
- 
+
   }
 
   saveAsset() {
@@ -115,7 +115,7 @@ export class InspectionPage {
 
   openModal() {
     let id: any = Number(this.imageList.length) + 1;
-    
+
     let params = {
       type: 'new',
       id: id
@@ -129,10 +129,10 @@ export class InspectionPage {
     myModal.present();
   }
 
- 
+
   ionViewDidLoad() {
-    
-    this.inspect="general-info";
+
+    this.inspect = "general-info";
 
     console.log('ionViewDidLoad InspectionPage');
   }

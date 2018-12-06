@@ -13,6 +13,8 @@ import { InspectionPage } from '../pages/inspection/inspection';
 import { OneSignal } from '@ionic-native/onesignal';
 import { ListPage } from '../pages/list/list';
 import { Storage } from '@ionic/storage';
+import { NotificationPage } from '../pages/notification/notification';
+
 
 
 
@@ -31,7 +33,7 @@ export class MyApp {
 
   constructor( private storage: Storage, private oneSignal: OneSignal, public user: UserProvider, public events: Events, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
-    // this.storage.clear();
+    //this.storage.clear();
     // used for an example of ngFor and navigation
     this.pages = [
       {title: 'Home', component: HomePage, icon: 'home'},
@@ -41,6 +43,7 @@ export class MyApp {
       { title: 'Asset List', component: ListPage, icon: 'list' },
       { title: 'Asset Registration', component: RegisterPage, icon: 'clipboard' },
       { title: 'Asset Inspection', component: InspectionPage, icon: 'md-create' },
+      {title: 'Notification', component: NotificationPage, icon: 'notifications'},
       {title: 'Pending Sync', component: PendingPage, icon: 'refresh'}
       
      

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation';
 
@@ -46,7 +46,7 @@ export class RegisterPage {
 
   imageList: Array<any>;
 
-  constructor(private geolocation: Geolocation, public modal: ModalController, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
+  constructor( public alertCtrl: AlertController, private geolocation: Geolocation, public modal: ModalController, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
     this.info = 'general-info';
     this.assetowning = {
       id: this.id,
@@ -359,6 +359,30 @@ export class RegisterPage {
 
   }
 
+  showAlert(){
+    
+    if (this.type == 'register') {
+      
+      const alert = this.alertCtrl.create({
+        title:'Registration is saved!',
+        buttons: ['ok']
+
+        
+      });
+      alert.present();
+    }else {
+      const alert = this.alertCtrl.create({
+        title:'Asset has been edited!',
+        buttons: ['ok']
+      });
+      alert.present();
+
+    }
+
+
+  }
+
+
 
 
   saveAsset() {
@@ -371,10 +395,17 @@ export class RegisterPage {
       this.gisList.push(this.gis);
       console.log(this.gisList);
       this.storage.set('GIS_LIST', JSON.stringify(this.gisList));
+      this.showAlert();{
+        this.goToPendingPage()
+      }
 
     } else  {
 
       this.assetowningList[this.index] = this.assetowning;
+      this.showAlert();{
+        this.goToPendingPage()
+      }
+
       
     }
 

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Config, ModalController, } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { RegisterPage } from '../register/register';
-import { InspectionPage } from '../inspection/inspection';
+
 
 
 /**
@@ -18,7 +18,7 @@ import { InspectionPage } from '../inspection/inspection';
   templateUrl: 'pending.html',
 })
 export class PendingPage {
-  
+  modalOpen: boolean;
   pending: string;
   assetowning: {
     id: number, owning_org: string,  main_op: string, op: string, region: string, wtp: string,
@@ -46,6 +46,7 @@ export class PendingPage {
     // this.assetowningList = this.navParams.get('params');
     // this.assetlocList = [];
     // this.assetgroupList = [];
+    this.modalOpen = true;
     this.gisList = [];
     this.columns = [
       { prop: 'id', name: 'id' },
@@ -57,7 +58,8 @@ export class PendingPage {
     ];
   }
 
-  openModal(e) {
+   async openModal(e) {
+    console.log('trigger',e);
 
     let params = {
       id: e.row.id
@@ -66,14 +68,21 @@ export class PendingPage {
     const modal = this.modal.create('DatalistPage', { params: params }, { cssClass: 'camera-modal' })
 
     modal.onDidDismiss(response => {
+      this.modalOpen = true;
       if(response){
+        console.log(response)
         if(response.type == 'edit'){
           this.navCtrl.setRoot(RegisterPage, {params: response.data, index: response.index });
           
         }
       }
     })
-    modal.present();
+    if(this.modalOpen){
+      this.modalOpen = false;
+      return await  modal.present();
+
+    }
+   
   }
 
   ionViewDidLoad() {
