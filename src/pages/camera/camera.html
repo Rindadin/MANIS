@@ -38,13 +38,13 @@
 
         <ion-item>
           <ion-label stacked color="dark">Date of image being captured</ion-label>
-          <ion-input type="text" [(ngModel)]="imageData.dateCaptured"></ion-input>
+          <ion-input  readonly = "{{isReadonly}}" type="text" [(ngModel)]="imageData.dateCaptured"></ion-input>
         </ion-item>
 
-        <ion-item>
+        <!-- <ion-item>
           <ion-label stacked color="dark">Date uploaded</ion-label>
-          <ion-input type="text" [(ngModel)]="imageData.dateUploaded"></ion-input>
-        </ion-item>
+          <ion-input  readonly = "{{isReadonly}}" type="text" [(ngModel)]="imageData.dateUploaded"></ion-input>
+        </ion-item> -->
       </ion-col>
 
       <ion-col col-4 offset-8 class="save">

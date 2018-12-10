@@ -185,46 +185,16 @@
     <ion-col col-6>
       <ion-item>
         <ion-label stacked color="dark">Latitude</ion-label>
-        <ion-input type="text" [(ngModel)]="gis.lat"></ion-input>
+        <ion-input readonly = "{{isReadonly}}" read type="text" [(ngModel)]="gis.lat"></ion-input>
       </ion-item>
     </ion-col>
 
     <ion-col col-6>
       <ion-item>
         <ion-label stacked color="dark">Longitude</ion-label>
-        <ion-input type="text" [(ngModel)]="gis.long"></ion-input>
+        <ion-input readonly = "{{isReadonly}}" type="text" [(ngModel)]="gis.long"></ion-input>
       </ion-item>
     </ion-col>
-
-    <!-- <ion-col col-12>
-      <ion-list>
-
-        <ion-list-header stacked color="list-grey">ASSET CATEGORIZATION</ion-list-header>
-
-      </ion-list>
-    </ion-col>
-
-    <ion-col col-6>
-      <ion-item>
-        <ion-label stacked color="dark">Asset Or Component Type</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-    </ion-col>
-
-    <ion-col col-6>
-      <ion-item>
-        <ion-label stacked color="dark">Asset Class</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-    </ion-col>
-
-    <ion-col col-12>
-      <ion-item>
-        <ion-label stacked color="dark">Handed Over Asset Or Procured</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-
-    </ion-col> --> 
 
     <ion-col col-12>
       <ion-list>
@@ -235,59 +205,70 @@
     </ion-col>
 
     <ion-col col-6>
+
+        <ion-item>
+            <ion-label stacked color="dark">Preventive Maintainance</ion-label>
+            <ion-input type="text"  [(ngModel)]="assetowning.pm"></ion-input>
+          </ion-item>
+
       <ion-item>
         <ion-label stacked color="dark">Brand</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text"  [(ngModel)]="assetowning.brand"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked color="dark">Size/Capacity 1</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text"  [(ngModel)]="assetowning.size1"></ion-input>
       </ion-item>
 
 
       <ion-item>
         <ion-label stacked color="dark">Size/Capacity 2</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text"  [(ngModel)]="assetowning.size2"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked color="dark">Size/Capacity 3</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text"  [(ngModel)]="assetowning.size3"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked color="dark">Parent Asset/Plate Number</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text"  [(ngModel)]="assetowning.parentplate_no"></ion-input>
       </ion-item>
     </ion-col>
 
     <ion-col col-6>
 
+        <ion-item>
+            <ion-label stacked color="dark">Corrective Maintainance</ion-label>
+            <ion-input type="text"  [(ngModel)]="assetowning.cm"></ion-input>
+          </ion-item>
+
       <ion-item>
         <ion-label stacked color="dark">Model Number</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text"  [(ngModel)]="assetowning.model_no"></ion-input>
       </ion-item>
 
 
       <ion-item>
         <ion-label stacked color="dark">Size/Capacity 1-Unit measurement</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text"  [(ngModel)]="assetowning.unit_size1"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked color="dark">Size/Capacity 2-Unit measurement</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text"  [(ngModel)]="assetowning.unit_size2"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked color="dark">Size/Capacity 3-Unit measurement</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text"  [(ngModel)]="assetowning.unit_size3"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked color="dark">Asset/Plate Number</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text"  [(ngModel)]="assetowning.plate_no"></ion-input>
       </ion-item>
 
     </ion-col>
@@ -295,41 +276,41 @@
     <ion-col col-12>
       <ion-item>
         <ion-label stacked color="dark">Detailed Description(Formulated)</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)]="assetowning.formulated"></ion-input>
       </ion-item>
     </ion-col>
 
     <ion-col col-6>
       <ion-item>
         <ion-label stacked color="dark">Serial Number</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)]="assetowning.serial_no"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked color="dark">SCADA ID</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)]="assetowning.scada"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked color="dark">Asset Tag Number</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)]="assetowning.asset_tag"></ion-input>
       </ion-item>
     </ion-col>
 
     <ion-col col-6>
       <ion-item>
         <ion-label stacked color="dark">Vendor Part Number</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)]="assetowning.vendor_part"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked color="dark">External ID</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)]="assetowning.external_id"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked color="dark">Pailet Number</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)]="assetowning.pailet_no"></ion-input>
       </ion-item>
 
     </ion-col>
@@ -743,6 +724,7 @@
                 <img [src]="showImage(image.photo)||'assets/imgs/dashboard.png'" />
                 <ion-card-content>
                   <p>{{image.title}}</p>
+                  <p>{{image.dateUploaded}}</p>
                 </ion-card-content>
               </ion-card>
             </ion-col>
@@ -755,196 +737,4 @@
   </div>
 </ion-content>
 
-  <!-- <ion-col col-12>
-            <ion-list> -->
-
-              <!-- <ion-list-header color="list-grey">ASSET GROUPING</ion-list-header>
-
-            </ion-list>
-          </ion-col>
-
-          <ion-col col-6>
-            <ion-item>
-              <ion-label stacked color="dark">Asset ID/SoftTag Asset ID</ion-label>
-              <ion-input type="text" [(ngModel)]="assetgroup.id"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Asset Primary Category(Asset Type)</ion-label>
-              <ion-input type="text" [(ngModel)]="assetgroup.primary"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Sub Category-1</ion-label>
-              <ion-input type="text" [(ngModel)]="assetgroup.sub1"></ion-input>
-            </ion-item>
-          </ion-col>
-
-          <ion-col col-6>
-            <ion-item>
-              <ion-label stacked color="dark">RFID ID</ion-label>
-              <ion-input type="text" [(ngModel)]="assetgroup.rfid"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Air Selangor Internal Asset Identity</ion-label>
-              <ion-input type="text" [(ngModel)]="assetgroup.aisid"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Sub Category-2</ion-label>
-              <ion-input type="text" [(ngModel)]="assetgroup.sub2"></ion-input>
-            </ion-item>
-          </ion-col> -->
-
-          <!-- <ion-col col-12>
-            <ion-list>
-
-              <ion-list-header color="light">ASSET PHYSICAL LOCATION</ion-list-header>
-
-            </ion-list>
-          </ion-col>
-          <ion-col col-6>
-            <ion-item>
-              <ion-label stacked color="dark">Location Description</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.description"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Room</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.room"></ion-input>
-            </ion-item>
-          </ion-col>
-
-          <ion-col col-6>
-            <ion-item>
-              <ion-label stacked color="dark">Building</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.build"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Position</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.position"></ion-input>
-            </ion-item>
-          </ion-col>
-
-          <ion-col col-12>
-            <ion-item>
-              <ion-label stacked color="dark">Address Line 1</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.address1"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Address Line 2</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.address2"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Address Line 3</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.address3"></ion-input>
-            </ion-item>
-          </ion-col>
-
-          <ion-col col-6>
-            <ion-item>
-              <ion-label stacked color="dark">City</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.city"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Postal Code</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.postcode"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Tag Number</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.tag"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Service Area</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.service"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Location Main Contact</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.contact"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Maintainance Planner</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.plan"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Enviroment Rating</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.rate"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Ran To Failure</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.failure"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Direction</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.direction"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Breaker</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.breaker"></ion-input>
-            </ion-item>
-          </ion-col>
-
-          <ion-col col-6>
-            <ion-item>
-              <ion-label stacked color="dark">State</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.state"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Country</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.country"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Point ID</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.pid"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Parent Location/Organization</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.org"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Location/Asset Maintenance Manager</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.manager"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">RCM System</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.rcm"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Backlog Group</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.backlog"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Connected To</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.connectedto"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Off Set </ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.offset"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Runtime Source</ion-label>
-              <ion-input type="text" [(ngModel)]="assetloc.source"></ion-input>
-            </ion-item>
-          </ion-col> -->
+  

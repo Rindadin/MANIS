@@ -12,24 +12,24 @@ export class RegisterPage {
   info: string;
   title: string;
 
-  // assetgroup: {id: string, primary: string, sub1: string, rfid: string, aisid: string, sub2: string};
-
-  // assetloc:{description: string, room: string, build: string, position: string, address1: string, address2: string, 
-  // address3: string, city: string, postcode: string, tag: string, service: string, contact: string, plan: string, 
-  // rate: string, failure: string, direction: string, breaker: string, state: string, country: string, pid: string, org: string, 
-  // manager: string, rcm: string, backlog: string, connectedto: string, offset: string, source: string};
 
   assetowning: {
-    id: number, owning_org: string, main_op: string, op: string, region: string, wtp: string,
-    process_loc: string, function: string, sub_system: string, sub_function: string, class: string, asset_type: string, sub_cat1: string, sub_cat2: string
+    id: number, owning_org: string, main_op: string, 
+    op: string, region: string, wtp: string,
+    process_loc: string, function: string, sub_system: string, 
+    sub_function: string, class: string, asset_type: string, 
+    sub_cat1: string, sub_cat2: string,
+    pm: string, brand: string, size1:string, 
+    size2: string, size3:string, parentplate_no: string, 
+    cm: string, model_no: string, unit_size1: string,
+    unit_size2: string, unit_size3: string, plate_no: string,
+    formulated: string, serial_no: string, scada: string, asset_tag: string,
+    vendor_part: string, external_id: string, pailet_no: string,
   };
 
   gis: { gis_id: string, lat: number, long: number };
 
 
-
-  // assetgroupList: Array<any>;
-  // assetlocList: Array<any>;
   assetowningList: Array<any>;
   gisList: Array<any>;
   assetowningFunction: Array<any>;
@@ -62,7 +62,26 @@ export class RegisterPage {
       class: null,
       asset_type: null,
       sub_cat1: null,
-      sub_cat2: null
+      sub_cat2: null,
+      pm: null, 
+      brand: null, 
+      size1:null, 
+      size2: null, 
+      size3:null, 
+      parentplate_no: null, 
+      cm: null, 
+      model_no: null, 
+      unit_size1: null,
+      unit_size2: null, 
+      unit_size3: null, 
+      plate_no: null,
+      formulated: null, 
+      serial_no: null, 
+      scada: null, 
+      asset_tag: null,
+      vendor_part: null, 
+      external_id: null, 
+      pailet_no: null
     };
     this.imageList = [];
 
@@ -104,53 +123,30 @@ export class RegisterPage {
           class: null,
           asset_type: null,
           sub_cat1: null,
-          sub_cat2: null
+          sub_cat2: null,
+          pm: null, 
+          brand: null, 
+          size1:null, 
+          size2: null, 
+          size3:null, 
+          parentplate_no: null, 
+          cm: null, 
+          model_no: null, 
+          unit_size1: null,
+          unit_size2: null, 
+          unit_size3: null, 
+          plate_no: null,
+          formulated: null, 
+          serial_no: null, 
+          scada: null, 
+          asset_tag: null,
+          vendor_part: null, 
+          external_id: null, 
+          pailet_no: null
         };
 
       })
     }
-
-
-    // this.assetgroup = {
-    //   id:null,
-    //   primary:null,
-    //   sub1:null,
-    //   rfid:null,
-    //   aisid:null,
-    //   sub2:null
-    // };
-
-    //  this.assetloc = {
-    //   description: null, 
-    //   room: null, 
-    //   build: null, 
-    //   position: null, 
-    //   address1: null, 
-    //   address2: null, 
-    //   address3: null, 
-    //   city: null, 
-    //   postcode: null, 
-    //   tag: null, 
-    //   service: null, 
-    //   contact: null, 
-    //   plan: null, 
-    //   rate: null, 
-    //   failure: null, 
-    //   direction: null, 
-    //   breaker: null, 
-    //   state: null, 
-    //   country: null, 
-    //   pid: null, 
-    //   org: null, 
-    //   manager: null, 
-    //   rcm: null, 
-    //   backlog: null, 
-    //   connectedto: null, 
-    //   offset: null, 
-    //   source: null
-
-    //  };
-
 
 
     this.assetowningProcess_loc = [
