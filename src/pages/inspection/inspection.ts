@@ -10,24 +10,23 @@ import { Storage } from '@ionic/storage';
 export class InspectionPage {
   inspect: string;
   info: string;
+  routine: { good: boolean, repair: boolean, replace: boolean, plan: boolean, measurement: boolean };
 
-
-  assetinspect: { asset_id: number, id: number, rfid: number, ins_type: string, start_date: string, last_date: string, process_loc: string, class: string, asset_type: string };
-
+  assetinspect: { asset_id: number, id: number, rfid: number, ins_type: string, start_date: string, last_date: Date, process_loc: string, class: string, asset_type: string };
+  public date: string = new Date().toISOString();
+  
   imageList: Array<any>;
   assetowningList: Array<any>;
   assetinspectList: Array<any>;
-  ins_id: any = 0;
+  // ins_id: any = 0;
   id: any = 0;
   type: any;
   index: number;
   
-  
- 
-
-
-
   constructor(public storage: Storage, public modal: ModalController, public navCtrl: NavController, public navParams: NavParams) {
+    this.routine = { good: false, repair: false, replace: false, plan: false, measurement: false}
+
+    // this.assetinspect.start_date = this.date;
 
     this.assetinspect = {
       asset_id: null,
@@ -50,12 +49,12 @@ export class InspectionPage {
 
     if (data) {
       //this.assetinspect = data;
-      this.storage.get("ins_id").then(id => {
+      this.storage.get("id").then(id => {
         if (id) {
-          this.ins_id = parseInt(id) + 1;
+          this.id = parseInt(id) + 1;
         }
         else {
-          this.ins_id = 1;
+          this.id= 1;
         }
 
         //console.log(this.id);
@@ -63,20 +62,17 @@ export class InspectionPage {
       })
       this.assetinspect = {
         asset_id: data.id,
-        id: this.ins_id,
+        id: this.id,
         rfid: null,
         ins_type: null,
-        start_date: null,
+        start_date: this.date,
         last_date: null,
         process_loc: data.process_loc,
         class: data.class,
         asset_type: data.asset_type
       };
 
-
-
     } else {
-
 
 
     }
@@ -104,14 +100,9 @@ export class InspectionPage {
     this.navCtrl.push('PendingPage');
   }
 
-  showImage(image) {
-    if (!image) {
-      return null;
-    } else {
-      return 'data:image/jpeg;base64' + image;
-    }
+  showImage2(pic) { 
+    return 'data:image/jpeg;base64,' + pic;
   }
-
 
   openModal() {
     let id: any = Number(this.imageList.length) + 1;
@@ -123,18 +114,23 @@ export class InspectionPage {
     const myModal = this.modal.create('Camera2Page', { params: params }, { cssClass: 'camera2-modal' })
     myModal.onDidDismiss(data => {
       if (data) {
+        alert(JSON.stringify(data));
         this.imageList.push(data);
       }
     })
     myModal.present();
   }
 
+ 
+
 
   ionViewDidLoad() {
 
     this.inspect = "general-info";
 
-    console.log('ionViewDidLoad InspectionPage');
+  
+
+    
   }
 
 }

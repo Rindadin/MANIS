@@ -65,7 +65,7 @@
 
             <ion-item>
               <ion-label stacked color="dark">Start Inspection Date</ion-label>
-              <ion-datetime displayFormat="MMM DD YYYY"  [(ngModel)]="assetinspect.start_date"></ion-datetime>
+              <ion-datetime displayFormat="DD-MM-YYYY"  [(ngModel)]="assetinspect.start_date"></ion-datetime>
              
             </ion-item>
 
@@ -101,8 +101,6 @@
               <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetinspect.asset_type"></ion-input>
             </ion-item>
 
-
-
             <ion-item>
               <ion-label stacked color="dark">Last Inspection date</ion-label>
               <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="assetinspect.last_date"></ion-datetime>
@@ -134,27 +132,27 @@
 
             <ion-item>
               <ion-label>Good</ion-label>
-              <ion-checkbox color="dark"></ion-checkbox>
+              <ion-checkbox [(ngModel)]="routine.good" color="dark"></ion-checkbox>
             </ion-item>
 
             <ion-item>
               <ion-label>Repair</ion-label>
-              <ion-checkbox color="dark"></ion-checkbox>
+              <ion-checkbox [(ngModel)]="routine.repair" color="dark"></ion-checkbox>
             </ion-item>
 
-            <ion-item>
+            <ion-item *ngIf="routine.repair">
               <ion-label>Replace</ion-label>
-              <ion-checkbox color="dark"></ion-checkbox>
+              <ion-checkbox [(ngModel)]="routine.replace" color="dark"></ion-checkbox>
             </ion-item>
 
-            <ion-item>
+            <ion-item *ngIf="routine.repair">
               <ion-label>PLAN Replace</ion-label>
-              <ion-checkbox color="dark"></ion-checkbox>
+              <ion-checkbox [(ngModel)]="routine.plan" color="dark"></ion-checkbox>
             </ion-item>
 
-            <ion-item>
+            <ion-item *ngIf="routine.repair">
               <ion-label>Measurement</ion-label>
-              <ion-checkbox color="dark"></ion-checkbox>
+              <ion-checkbox [(ngModel)]="routine.measurement" color="dark"></ion-checkbox>
             </ion-item>
 
             <ion-item>
@@ -170,7 +168,7 @@
     </div>
   </div>
 
-  <div [ngSwitch]="inspect">
+  <div [ngSwitch]="inspect" *ngIf="routine.repair">
     <div *ngSwitchCase="'hazard'">
       <ion-grid>
         <ion-row>
@@ -234,14 +232,14 @@
 
             <ion-col col-3 *ngFor="let image of imageList">
               <ion-card>
-                <img [src]="showImage(image.photo)||'assets/imgs/dashboard.png'" />
+                <!-- <img [src]="showImage2(image.photo)||'assets/imgs/dashboard.png'" /> -->
+                <img [src]="showImage2(image.photo)"/>
                 <ion-card-content>
                   <p>{{image.title}}</p>
+                  {{image.photo}}
                 </ion-card-content>
               </ion-card>
             </ion-col>
-
-
           </ion-row>
         </ion-grid>
       </div>

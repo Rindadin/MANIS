@@ -29,7 +29,7 @@
         [footerHeight]="50"
         [rowHeight]="50"
         [rows]="assetowningList"
-        [columns]="columns"
+        [columns]="columns1"
         [columnMode]="'force'"
         [limit]="10">
       </ngx-datatable>
@@ -39,13 +39,13 @@
       <div [ngSwitch]="pending">
 
           <div *ngSwitchCase="'inspect'">
-              <ngx-datatable (activate)='openModal($event)'
+              <ngx-datatable 
               [sortType]="'multi'"
               [headerHeight]="50"
               [footerHeight]="50"
               [rowHeight]="50"
-              [rows]="assetowningList"
-              [columns]="columns"
+              [rows]="assetinspectList"
+              [columns]="columns2"
               [columnMode]="'force'"
               [limit]="10">
             </ngx-datatable>

@@ -29,31 +29,31 @@ export class MyApp {
 
   rootPage: any = 'LoginPage';
   isLoggedIn: boolean = false;
-  pages: Array<{title: string, component: any, icon: string}>;
+  pages: Array<{ title: string, component: any, icon: string }>;
 
-  constructor( private storage: Storage, private oneSignal: OneSignal, public user: UserProvider, public events: Events, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(private storage: Storage, private oneSignal: OneSignal, public user: UserProvider, public events: Events, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
-    //this.storage.clear();
+    this.storage.clear();
     // used for an example of ngFor and navigation
     this.pages = [
-      {title: 'Home', component: HomePage, icon: 'home'},
+      { title: 'Home', component: HomePage, icon: 'home' },
       { title: 'Dashboard', component: DashboardPage, icon: 'aperture' },
       { title: 'Profile', component: 'ProfilePage', icon: 'person' },
-      { title: 'Asset Status', component: AssetPage, icon: 'done-all'},
+      // { title: 'Asset Status', component: AssetPage, icon: 'done-all'},
       { title: 'Asset List', component: ListPage, icon: 'list' },
       { title: 'Asset Registration', component: RegisterPage, icon: 'clipboard' },
-      { title: 'Asset Inspection', component: InspectionPage, icon: 'md-create' },
-      {title: 'Notification', component: NotificationPage, icon: 'notifications'},
-      {title: 'Pending Sync', component: PendingPage, icon: 'refresh'}
-      
-     
+      // { title: 'Asset Inspection', component: InspectionPage, icon: 'md-create' },
+      { title: 'Pending Sync', component: PendingPage, icon: 'refresh' },
+      { title: 'Notification', component: NotificationPage, icon: 'notifications' }
+
+
     ];
     this.listenToLoginEvents();
 
   }
 
   initializeApp() {
-    
+
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
@@ -66,16 +66,16 @@ export class MyApp {
 
       });
       this.oneSignal.endInit();
-      
+
     });
   }
 
-  logout(){
+  logout() {
     console.log('logout noe');
     this.user.logout();
   }
 
-  shouldShow(){
+  shouldShow() {
     return this.isLoggedIn;
   }
 
@@ -100,11 +100,11 @@ export class MyApp {
     });
 
     this.events.subscribe('user:logout', () => {
-     // localStorage.setItem('hasLoggedIn', JSON.stringify(false));
+      // localStorage.setItem('hasLoggedIn', JSON.stringify(false));
       //this.enableMenu(false);
       console.log('logout');
       this.isLoggedIn = false;
-      this.nav.setRoot('LoginPage', {}, {animate: true});
+      this.nav.setRoot('LoginPage', {}, { animate: true });
     });
   }
 }

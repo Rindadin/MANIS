@@ -7,6 +7,7 @@ import { PendingPage } from '../pending/pending';
 import { AssetPage } from '../asset/asset';
 import { InspectionPage } from '../inspection/inspection';
 import { ListPage } from '../list/list';
+import { NotificationPage } from '../notification/notification';
 
 
 /**
@@ -46,16 +47,20 @@ export class HomePage {
     this.navCtrl.setRoot(PendingPage, {}, {animate: true});
   }
 
-  goToAsset(){
-    this.navCtrl.setRoot(AssetPage, {}, {animate: true});
-  }
+  // goToAsset(){
+  //   this.navCtrl.setRoot(AssetPage, {}, {animate: true});
+  // }
 
-  goToInspection(){
-    this.navCtrl.setRoot(InspectionPage, {}, {animate: true});
-  }
+  // goToInspection(){
+  //   this.navCtrl.setRoot(InspectionPage, {}, {animate: true});
+  // }
 
   goToList(){
     this.navCtrl.setRoot(ListPage, {}, {animate: true})
+  }
+
+  goToNotification(){
+    this.navCtrl.setRoot(NotificationPage, {}, {animate:true})
   }
 
 }

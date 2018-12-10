@@ -26,18 +26,22 @@ export class PendingPage {
   };
   gis: { gis_id: string, lat: string, long: string };
 
-  // assetgroup: {id: string, primary: string, sub1: string, rfid: string, aisid: string, sub2: string};
+  assetinspect: { asset_id: number, id: number, rfid: number, ins_type: string, start_date: Date, last_date: Date, process_loc: string, class: string, asset_type: string };
+
+ 
   imageData: { id: null, photo: null, title: null, description: null, dateCaptured: null, dateUploaded: null };
 
 
-  // assetlocList: Array<any>
+  
   assetowningList: Array<any>
-  // assetgroupList: Array<any>
+  assetinspectList: Array<any>
+  
   gisList: Array<any>
   imageList: Array<any>
   tablestyle = 'bootstrap';
   public config: Config;
-  public columns: any;
+  public columns1: any;
+  public columns2: any;
   public rows: any;
   users: any;
   id;
@@ -48,12 +52,21 @@ export class PendingPage {
     // this.assetgroupList = [];
     this.modalOpen = true;
     this.gisList = [];
-    this.columns = [
+    this.columns1 = [
       { prop: 'id', name: 'id' },
       { prop: 'owning_org', name: 'Owning Organisation' },
       { prop: 'main_op', name: 'Main Operation' },
       { prop: 'op', name: 'Operation' },
       { prop: 'region', name: 'Region' }
+      
+    ];
+
+    this.columns2 = [
+      { prop: 'id', name: 'Inspection no.' },
+      { prop: 'asset_id', name: 'Asset id' },
+      { prop: 'ins_type', name: 'Inspection type' },
+      { prop: 'start_date', name: 'Start' },
+      { prop: 'last_date', name: 'Finish' }
       
     ];
   }
@@ -116,6 +129,16 @@ export class PendingPage {
       } else {
         this.imageList = [];
         console.log(this.imageList);
+      }
+    })
+
+    this.storage.get('ASSETINSPECT_LIST').then((val) =>{
+      if (val) {
+        this.assetinspect = JSON.parse(val);
+        console.log(JSON.stringify(this.assetinspect))
+      } else{
+        this.assetinspectList = [];
+        console.log(JSON.stringify("no val"))
       }
     })
   }

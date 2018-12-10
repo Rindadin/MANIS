@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { ApiProvider } from '../../providers/api/api';
+import { ListPage } from '../list/list';
 
 @IonicPage()
 @Component({
@@ -7,26 +9,45 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'notification.html',
 })
 export class NotificationPage {
+  notifications: Array<any>;
 
-  items = [
-    'Please perform your asset inspection',
-    'Your profile had been updated ',
-    'Your asset inspection is due in 2 days',
-    'The asset is still pending'
-
-
-  ];
+ 
 
   itemSelected(item: string) {
     console.log("Selected Item",item);
 
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor( public loadingCtrl: LoadingController, public api:ApiProvider, public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  goToList(){
+    this.navCtrl.setRoot(ListPage, {}, {animate: true})
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NotificationPage');
+    let loading = this.loadingCtrl.create({
+      spinner: 'circles',
+      content: 'Please Wait..'
+    });
+    loading.present();
+    this.api.getNotification().then(res => {
+      loading.dismiss();
+      let result: any = res;
+      console.log(result);
+      this.notifications = result.notifications;
+    }).catch (err => {
+      console.log(err)
+      loading.dismiss();
+    });
+    
+  }
+
+  getDateTime(time){
+
+    let dateTime = new Date(time*1000);
+    return dateTime.toLocaleString();
+
   }
 
 }

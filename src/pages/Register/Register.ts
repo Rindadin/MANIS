@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, AlertController, LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation';
 
@@ -46,7 +46,7 @@ export class RegisterPage {
 
   imageList: Array<any>;
 
-  constructor( public alertCtrl: AlertController, private geolocation: Geolocation, public modal: ModalController, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
+  constructor( public loadingCtrl: LoadingController, public alertCtrl: AlertController, private geolocation: Geolocation, public modal: ModalController, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
     this.info = 'general-info';
     this.assetowning = {
       id: this.id,
@@ -319,12 +319,19 @@ export class RegisterPage {
       long: null
     };
 
+    
+    let loading = this.loadingCtrl.create({
+      spinner: 'circles',
+      content: 'Please Wait..'
+    });
+    loading.present();
     this.geolocation.getCurrentPosition().then((resp) => {
-
+      loading.dismiss();
       this.gis.lat = resp.coords.latitude;
       this.gis.long = resp.coords.longitude;
     }).catch((error) => {
       console.log('Error getting location', error);
+      loading.dismiss();
     });
 
     let watch = this.geolocation.watchPosition();
