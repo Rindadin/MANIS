@@ -21,7 +21,7 @@ export class CameraPage {
     }
   }
 
-  closeModal() {
+  saveModal() {
     if(this.imageData.photo && this,this.imageData.title){
       this.viewController.dismiss(this.imageData)
     } else {
@@ -29,9 +29,14 @@ export class CameraPage {
     }
   }
 
-  dismiss() {
+  closeModal() {
     this.viewController.dismiss(null)
   }
+
+
+  // dismiss() {
+  //   this.viewController.dismiss(null)
+  // }
 
   takePhoto() {
     const options: CameraOptions = {

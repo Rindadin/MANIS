@@ -193,7 +193,7 @@ export class RegisterPage {
       { id: "01", name: "ELECTRICAL" },
       { id: "02", name: "MECHANICAL" },
       { id: "03", name: "STRUCTURE" },
-      { id: "04", name: "Instrument" }
+      { id: "04", name: "INSTRUMENT" }
     ];
 
     this.assetowningAsset_type = [
@@ -318,9 +318,10 @@ export class RegisterPage {
     
     let loading = this.loadingCtrl.create({
       spinner: 'circles',
-      content: 'Please Wait..'
+      content: 'Please Wait for latitude and longitude to be retrieve..'
     });
     loading.present();
+    this.type = 'register'
     this.geolocation.getCurrentPosition().then((resp) => {
       loading.dismiss();
       this.gis.lat = resp.coords.latitude;

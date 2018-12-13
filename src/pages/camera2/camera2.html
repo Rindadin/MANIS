@@ -47,10 +47,18 @@
         </ion-item>
       </ion-col>
 
-      <ion-col col-4 offset-8 class="save">
+      <ion-col col-2 offset-8 class="save">
         <ion-buttons end>
-          <button ion-button full (click)="closeModal()">
+          <button ion-button full (click)="saveModal()">
             Save
+          </button>
+        </ion-buttons>
+      </ion-col>
+
+      <ion-col col-2 class="save">
+        <ion-buttons >
+          <button ion-button full (click)="closeModal()">
+            close
           </button>
         </ion-buttons>
       </ion-col>
