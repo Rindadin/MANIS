@@ -13,6 +13,8 @@ export class RegisterPage {
   title: string;
 
 
+   gis: { gis_id: string, lat: number, long: number };
+
   assetowning: {
     id: number, owning_org: string, main_op: string, 
     op: string, region: string, wtp: string,
@@ -24,10 +26,10 @@ export class RegisterPage {
     cm: string, model_no: string, unit_size1: string,
     unit_size2: string, unit_size3: string, plate_no: string,
     formulated: string, serial_no: string, scada: string, asset_tag: string,
-    vendor_part: string, external_id: string, pailet_no: string,
+    vendor_part: string, external_id: string, pailet_no: string, imageList: Array<any>,
+    gis: { gis_id: string, lat: number, long: number }
   };
 
-  gis: { gis_id: string, lat: number, long: number };
 
 
   assetowningList: Array<any>;
@@ -81,9 +83,11 @@ export class RegisterPage {
       asset_tag: null,
       vendor_part: null, 
       external_id: null, 
-      pailet_no: null
+      pailet_no: null,
+      imageList: [],
+      gis: { gis_id: null, lat: null, long: null }
     };
-    this.imageList = [];
+    // this.imageList = [];
 
 
     let data = this.navParams.get('params');
@@ -93,8 +97,8 @@ export class RegisterPage {
     if (data) {
       // for edit case
       this.assetowning = data;
+      this.gis = this.assetowning.gis;
       this.type = 'edit';
-
       this.title = 'Edit Asset';
     } else {
       // new registration
@@ -142,7 +146,9 @@ export class RegisterPage {
           asset_tag: null,
           vendor_part: null, 
           external_id: null, 
-          pailet_no: null
+          pailet_no: null,
+          imageList: [],
+          gis: { gis_id: null, lat: null, long: null }
         };
 
       })
@@ -316,20 +322,32 @@ export class RegisterPage {
     };
 
     
-    let loading = this.loadingCtrl.create({
-      spinner: 'circles',
-      content: 'Please Wait for latitude and longitude to be retrieve..'
-    });
-    loading.present();
-    this.type = 'register'
-    this.geolocation.getCurrentPosition().then((resp) => {
-      loading.dismiss();
-      this.gis.lat = resp.coords.latitude;
-      this.gis.long = resp.coords.longitude;
-    }).catch((error) => {
-      console.log('Error getting location', error);
-      loading.dismiss();
-    });
+    // let loading = this.loadingCtrl.create({
+    //   spinner: 'circles',
+    //   content: 'Please Wait for latitude and longitude to be retrieve..'
+    // });
+    
+    if (this.type == 'register') {
+      let loading = this.loadingCtrl.create({
+        spinner: 'circles',
+        content: 'Please Wait for latitude and longitude to be retrieve..'
+      });
+      this.geolocation.getCurrentPosition().then((resp) => {
+        loading.dismiss();
+        this.gis.lat = resp.coords.latitude;
+        this.gis.long = resp.coords.longitude;
+      }).catch((error) => {
+        console.log('Error getting location', error);
+        loading.dismiss();
+      });
+      
+    } else {
+      let data = this.navParams.get('params');
+      this.index = this.navParams.get('index');
+      console.log('data');
+      console.log(data);
+    }
+   
 
     let watch = this.geolocation.watchPosition();
     watch.subscribe((data) => {
@@ -358,9 +376,6 @@ export class RegisterPage {
 
     console.log
     this.gisList = [];
-
-
-
   }
 
   showAlert(){
@@ -390,15 +405,15 @@ export class RegisterPage {
 
 
   saveAsset() {
-
+    this.assetowning.gis = this.gis;
     if (this.type == 'register') {
       console.log(this.assetowning);
       this.storage.set("id", this.id)
       this.assetowningList.push(this.assetowning);
       console.log(this.assetowningList);
-      this.gisList.push(this.gis);
-      console.log(this.gisList);
-      this.storage.set('GIS_LIST', JSON.stringify(this.gisList));
+     // this.gisList.push(this.gis);
+      //console.log(this.gisList);
+      //this.storage.set('GIS_LIST', JSON.stringify(this.gisList));
       this.showAlert();{
         this.goToPendingPage()
       }

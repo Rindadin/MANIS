@@ -29,26 +29,25 @@
         [footerHeight]="50"
         [rowHeight]="50"
         [rows]="assetowningList"
-        [columns]="columns"
+        [columns]="columns1"
         [columnMode]="'force'"
         [limit]="10">
       </ngx-datatable>
     </div>
       </div>
 
-      <div [ngSwitch]="pending">
-
-          <div *ngSwitchCase="'inspect'">
-              <ngx-datatable 
-              [sortType]="'multi'"
-              [headerHeight]="50"
-              [footerHeight]="50"
-              [rowHeight]="50"
-              [rows]="assetowningList"
-              [columns]="columns2"
-              [columnMode]="'force'"
-              [limit]="10">
-            </ngx-datatable>
-          </div>
-            </div>
+    <div [ngSwitch]="pending">
+      <div *ngSwitchCase="'inspect'">
+          <ngx-datatable 
+          [sortType]="'multi'"
+          [headerHeight]="50"
+          [footerHeight]="50"
+          [rowHeight]="50"
+          [rows]="assetinspectList"
+          [columns]="columns2"
+          [columnMode]="'force'"
+          [limit]="10">
+        </ngx-datatable>
+      </div>
+    </div>
 </ion-content>

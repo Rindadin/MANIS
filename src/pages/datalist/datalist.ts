@@ -61,12 +61,12 @@ export class DatalistPage {
   }
 
   goToEditPage(){
-    this.viewController.dismiss({data: this.assetowning, type: 'edit' , index: this.index})
+    this.viewController.dismiss({data: this.assetowning, type: 'edit', index: this.index})
   }
 
  
 
-
+ 
 
   dismiss() {
     this.viewController.dismiss(null)

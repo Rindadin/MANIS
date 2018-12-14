@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Config, ModalController, } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { RegisterPage } from '../register/register';
-import { InspectionPage } from '../inspection/inspection';
+
 
 
 /**
@@ -19,7 +19,6 @@ import { InspectionPage } from '../inspection/inspection';
 })
 export class PendingPage {
   modalOpen: boolean;
-  
   pending: string;
   assetowning: {
     id: number, owning_org: string,  main_op: string, op: string, region: string, wtp: string,
@@ -27,28 +26,33 @@ export class PendingPage {
   };
   gis: { gis_id: string, lat: string, long: string };
 
-  // assetgroup: {id: string, primary: string, sub1: string, rfid: string, aisid: string, sub2: string};
+  assetinspect: { asset_id: number, id: number, rfid: number, ins_type: string, start_date: Date, last_date: Date, process_loc: string, class: string, asset_type: string };
+
+ 
   imageData: { id: null, photo: null, title: null, description: null, dateCaptured: null, dateUploaded: null };
 
 
-  // assetlocList: Array<any>
+  
   assetowningList: Array<any>
-  // assetgroupList: Array<any>
+  assetinspectList: Array<any>
+  
   gisList: Array<any>
   imageList: Array<any>
   tablestyle = 'bootstrap';
   public config: Config;
-  public columns: any;
+  public columns1: any;
   public columns2: any;
   public rows: any;
   users: any;
   id;
 
   constructor(public modalCtrl: ModalController, public modal: ModalController, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
+    // this.assetowningList = this.navParams.get('params');
+    // this.assetlocList = [];
+    // this.assetgroupList = [];
     this.modalOpen = true;
-    
-    // this.gisList = [];
-    this.columns = [
+    this.gisList = [];
+    this.columns1 = [
       { prop: 'id', name: 'id' },
       { prop: 'owning_org', name: 'Owning Organisation' },
       { prop: 'main_op', name: 'Main Operation' },
@@ -58,16 +62,15 @@ export class PendingPage {
     ];
 
     this.columns2 = [
-      { prop: 'ins_id', name: 'id' },
-      { prop: 'process_loc', name: 'Process Location' },
-      { prop: 'class', name: 'Class' },
-      { prop: 'asset_type', name: 'Asset Type' },
-      
-      
+      { prop: 'id', name: 'Inspection no.' },
+      { prop: 'asset_id', name: 'Asset id' },
+      { prop: 'ins_type', name: 'Inspection type' },
+      { prop: 'start_date', name: 'Start' },
+      { prop: 'last_date', name: 'Finish' }
     ];
   }
 
-  async openModal(e) {
+   async openModal(e) {
     console.log('trigger',e);
 
     let params = {
@@ -82,15 +85,15 @@ export class PendingPage {
         console.log(response)
         if(response.type == 'edit'){
           this.navCtrl.setRoot(RegisterPage, {params: response.data, index: response.index });
-          
         }
       }
     })
-    if (this.modalOpen){
+    if(this.modalOpen){
       this.modalOpen = false;
-      return await modal.present();
+      return await  modal.present();
+
     }
-    
+   
   }
 
   ionViewDidLoad() {
@@ -99,31 +102,41 @@ export class PendingPage {
 
       if (val) {
         this.assetowningList = JSON.parse(val);
-        console.log(JSON.stringify(this.assetowning))
+        console.log(JSON.stringify(this.assetowningList))
       } else {
         this.assetowningList = [];
-        console.log(JSON.stringify(this.assetowning))
+        console.log(JSON.stringify(this.assetowningList))
       }
     })
 
-    this.storage.get('GIS_LIST').then((val) => {
+    // this.storage.get('GIS_LIST').then((val) => {
 
-      if (val) {
-        this.gisList = JSON.parse(val);
-        console.log(JSON.stringify(this.gisList));
-      } else {
-        this.gisList = [];
-        console.log(JSON.stringify(this.gisList)); 
-      }
-    })
+    //   if (val) {
+    //     this.gisList = JSON.parse(val);
+    //     console.log(this.gisList);
+    //   } else {
+    //     this.gisList = [];
+    //     console.log(this.gisList); 
+    //   }
+    // })
 
-    this.storage.get('IMAGE_LIST').then((val) => {
+    // this.storage.get('IMAGE_LIST').then((val) => {
+    //   if (val) {
+    //     this.imageList = JSON.parse(val);
+    //     console.log(this.imageList);
+    //   } else {
+    //     this.imageList = [];
+    //     console.log(this.imageList);
+    //   }
+    // })
+
+    this.storage.get('ASSETINSPECT_LIST').then((val) =>{
       if (val) {
-        this.imageList = JSON.parse(val);
-        console.log(this.imageList);
+        this.assetinspectList = JSON.parse(val);
+        console.log(JSON.stringify(this.assetinspectList))
       } else {
-        this.imageList = [];
-        console.log(this.imageList);
+        this.assetinspectList = [];
+        console.log(JSON.stringify("no val"))
       }
     })
   }
