@@ -11,7 +11,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 export class CameraPage {
   myphoto: any;
   imageData: any
-  public date: string = new Date().toISOString();
+  public date: string = new Date().toLocaleString();
   constructor(public camera: Camera, public viewController: ViewController, public navCtrl: NavController, public navParams: NavParams) {
     let data = this.navParams.get('params');
     this.imageData = {id: null, photo: null, title: null, description: null, dateCaptured: this.date, dateUploaded: this.date}

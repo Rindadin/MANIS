@@ -97,11 +97,23 @@ export class RegisterPage {
     if (data) {
       // for edit case
       this.assetowning = data;
-      this.gis = this.assetowning.gis;
+      // this.gis = this.assetowning.gis;
       this.type = 'edit';
       this.title = 'Edit Asset';
     } else {
       // new registration
+      let loading = this.loadingCtrl.create({
+        spinner: 'circles',
+        content: 'Please Wait for latitude and longitude to be retrieve..'
+      });
+      this.geolocation.getCurrentPosition().then((resp) => {
+        loading.dismiss();
+        this.gis.lat = resp.coords.latitude;
+        this.gis.long = resp.coords.longitude;
+      }).catch((error) => {
+        console.log('Error getting location', error);
+        loading.dismiss();
+      });
       this.type = 'register';
       this.title = 'Asset Registration'
       this.storage.get("id").then(id => {
@@ -327,28 +339,7 @@ export class RegisterPage {
     //   content: 'Please Wait for latitude and longitude to be retrieve..'
     // });
     
-    if (this.type == 'register') {
-      let loading = this.loadingCtrl.create({
-        spinner: 'circles',
-        content: 'Please Wait for latitude and longitude to be retrieve..'
-      });
-      this.geolocation.getCurrentPosition().then((resp) => {
-        loading.dismiss();
-        this.gis.lat = resp.coords.latitude;
-        this.gis.long = resp.coords.longitude;
-      }).catch((error) => {
-        console.log('Error getting location', error);
-        loading.dismiss();
-      });
-      
-    } else {
-      let data = this.navParams.get('params');
-      this.index = this.navParams.get('index');
-      console.log('data');
-      console.log(data);
-    }
-   
-
+    
     let watch = this.geolocation.watchPosition();
     watch.subscribe((data) => {
       // data can be a set of coordinates, or an error (if an error occurred).
@@ -401,8 +392,39 @@ export class RegisterPage {
 
   }
 
+  showImage(image) {
+    if (!image) {
+      return null;
+    } else {
+      return 'data:image/jpeg;base64,' + image;
+    }
+  }
+
+  openModal() {
+    // let imageId = this.imageList.length;
+    let id: any = Number(this.assetowning.imageList.length) + 1;
+
+    let params = {
+      type: 'new',
+      id: id
+    }
+
+    const myModal = this.modal.create('CameraPage', { params: params }, { cssClass: 'camera-modal' })
+
+    myModal.onDidDismiss(data => {
+      if (data) {
+        this.assetowning.imageList.push(data);
+      }
+    })
+    myModal.present();
+  }
 
 
+
+  ionViewDidLoad() {
+    this.asset = "general-info";
+
+  }
 
   saveAsset() {
     this.assetowning.gis = this.gis;
@@ -437,39 +459,7 @@ export class RegisterPage {
     this.navCtrl.push('PendingPage');
   }
 
-  showImage(image) {
-    if (!image) {
-      return null;
-    } else {
-      return 'data:image/jpeg;base64,' + image;
-    }
-  }
-
-  openModal() {
-    // let imageId = this.imageList.length;
-    let id: any = Number(this.imageList.length) + 1;
-
-    let params = {
-      type: 'new',
-      id: id
-    }
-
-    const myModal = this.modal.create('CameraPage', { params: params }, { cssClass: 'camera-modal' })
-
-    myModal.onDidDismiss(data => {
-      if (data) {
-        this.imageList.push(data);
-      }
-    })
-    myModal.present();
-  }
-
-
-
-  ionViewDidLoad() {
-    this.asset = "general-info";
-
-  }
+ 
 
 
 }

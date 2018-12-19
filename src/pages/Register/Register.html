@@ -87,7 +87,7 @@
 
             <ion-item>
               <ion-label stacked color="dark">Process/Function</ion-label>
-              <ion-select [(ngModel)]= "assetowning.function" placeholder="please select">
+              <ion-select [(ngModel)]= "assetowning.function" placeholder="please select" interface="popover">
                 <ion-option *ngFor="let function of assetowningFunction" [value]="function.name">{{function.name}}</ion-option>
                
               </ion-select>
@@ -95,7 +95,7 @@
 
             <ion-item>
               <ion-label stacked color="dark">Sub Process/Function </ion-label>
-              <ion-select [(ngModel)]= "assetowning.sub_function" placeholder="please select">
+              <ion-select [(ngModel)]= "assetowning.sub_function" placeholder="please select" interface="popover">
                 <ion-option *ngFor="let sub_function of assetowningSub_function" [value]="sub_function.name">{{sub_function.name}}</ion-option>
                
               </ion-select>
@@ -103,7 +103,7 @@
 
             <ion-item>
               <ion-label stacked color="dark">Primary (asset type) </ion-label>
-              <ion-select [(ngModel)]= "assetowning.asset_type" placeholder="please select">
+              <ion-select [(ngModel)]= "assetowning.asset_type" placeholder="please select" interface="popover">
                 <ion-option *ngFor="let asset_type of assetowningAsset_type" [value]="asset_type.name">{{asset_type.name}}</ion-option>
                
               </ion-select>
@@ -111,7 +111,7 @@
 
             <ion-item>
               <ion-label stacked color="dark">Sub Category 2</ion-label>
-              <ion-select [(ngModel)]= "assetowning.sub_cat2" placeholder="please select">
+              <ion-select [(ngModel)]= "assetowning.sub_cat2" placeholder="please select" interface="popover">
                 <ion-option *ngFor="let sub_cat2 of assetowningSub_cat2" [value]="sub_cat2.name">{{sub_cat2.name}}</ion-option>
                
               </ion-select>
@@ -132,7 +132,7 @@
 
             <ion-item>
               <ion-label stacked color="dark">Process Location Category</ion-label>
-              <ion-select [(ngModel)]= "assetowning.process_loc" placeholder="please select">
+              <ion-select [(ngModel)]= "assetowning.process_loc" placeholder="please select" interface="popover">
                 <ion-option *ngFor="let process_loc of assetowningProcess_loc" [value]="process_loc.name">{{process_loc.name}}</ion-option>
                
               </ion-select>
@@ -140,7 +140,7 @@
 
             <ion-item>
               <ion-label stacked color="dark">Sub Process/System</ion-label>
-              <ion-select [(ngModel)]= "assetowning.sub_system" placeholder="please select">
+              <ion-select [(ngModel)]= "assetowning.sub_system" placeholder="please select" interface="popover">
                 <ion-option *ngFor="let sub_system of assetowningSub_system" [value]="sub_system.name">{{sub_system.name}}</ion-option>
                
               </ion-select>
@@ -148,7 +148,7 @@
 
             <ion-item>
               <ion-label stacked color="dark">Asset Class</ion-label>
-              <ion-select [(ngModel)]= "assetowning.class" placeholder="please select">
+              <ion-select [(ngModel)]= "assetowning.class" placeholder="please select" interface="popover">
                 <ion-option *ngFor="let class of assetowningClass" [value]="class.name">{{class.name}}</ion-option>
                
               </ion-select>
@@ -156,7 +156,7 @@
 
             <ion-item>
               <ion-label stacked color="dark">Sub Category 1</ion-label>
-              <ion-select [(ngModel)]= "assetowning.sub_cat1" placeholder="please select">
+              <ion-select [(ngModel)]= "assetowning.sub_cat1" placeholder="please select" interface="popover">
                 <ion-option *ngFor="let sub_cat1 of assetowningSub_cat1" [value]="sub_cat1.name">{{sub_cat1.name}}</ion-option>
                
               </ion-select>
@@ -185,14 +185,14 @@
     <ion-col col-6>
       <ion-item>
         <ion-label stacked color="dark">Latitude</ion-label>
-        <ion-input readonly = "{{isReadonly}}" read type="text" [(ngModel)]="gis.lat"></ion-input>
+        <ion-input readonly="true" read type="text" [(ngModel)]="gis.lat"></ion-input>
       </ion-item>
     </ion-col>
 
     <ion-col col-6>
       <ion-item>
         <ion-label stacked color="dark">Longitude</ion-label>
-        <ion-input readonly = "{{isReadonly}}" type="text" [(ngModel)]="gis.long"></ion-input>
+        <ion-input readonly="true" type="text" [(ngModel)]="gis.long"></ion-input>
       </ion-item>
     </ion-col>
 
@@ -721,7 +721,7 @@
 
             <ion-col col-3 *ngFor="let image of imageList">
               <ion-card>
-                <img [src]="showImage(image.photo)||'assets/imgs/dashboard.png'" />
+                <img [src]="showImage(image.photo)||'assets/imgs/dashboard.jpg'" />
                 <ion-card-content>
                   <p>{{image.title}}</p>
                   <p>{{image.dateUploaded}}</p>

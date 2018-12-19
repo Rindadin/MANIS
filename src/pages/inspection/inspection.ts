@@ -10,25 +10,26 @@ import { Storage } from '@ionic/storage';
 export class InspectionPage {
   inspect: string;
   info: string;
-  routine: { good: boolean, repair: boolean, replace: boolean, plan: boolean, measurement: boolean, remark: string };
+  routine: { assetstatus: any, replace: boolean, plan: boolean, measurement: boolean, remark: string };
 
-  assetinspect: { routine: any, asset_id: number, id: number, rfid: number, ins_type: string, start_date: string, last_date: Date, process_loc: string, class: string, asset_type: string };
+  assetinspect: { routine: any, asset_id: number, ins_id: number, rfid: number, ins_type: string, start_date: string, last_date: Date, process_loc: string, class: string, asset_type: string };
   //public date = new Date();
   
   imageList: Array<any>;
   assetowningList: Array<any>;
   assetinspectList: Array<any>;
+  assetinspectStatus: Array<any>;
   // ins_id: any = 0;
-  id: any = 0;
+  ins_id: any = 0;
   type: any;
   index: number;
   
   constructor(public alertCtrl: AlertController, public storage: Storage, public modal: ModalController, public navCtrl: NavController, public navParams: NavParams) {
-    this.routine = { good: false, repair: false, replace: false, plan: false, measurement: false, remark: null}
+    this.routine = { assetstatus: null, replace: false, plan: false, measurement: false, remark: null}
 
     this.assetinspect = {
       asset_id: null,
-      id: null,
+      ins_id: null,
       rfid: null,
       ins_type: null,
       start_date: null,
@@ -57,14 +58,14 @@ export class InspectionPage {
       // })
 
       let _date = new Date();
-      this.id = String(_date.getTime()) + '-' + data.id;
+      this.ins_id = String(_date.getTime()) + '-' + data.id;
       let month = _date.getMonth() + 1;
       let day = _date.getDay();
       let year = _date.getFullYear();
 
       this.assetinspect = {
         asset_id: data.id,
-        id: this.id,
+        ins_id: this.ins_id,
         rfid: null,
         ins_type: null,
         start_date: day + '/' + month + '/' + year,
@@ -76,6 +77,11 @@ export class InspectionPage {
       };
 
     }
+
+    this.assetinspectStatus = [
+      { id:"01", name: "Good"},
+      { id:"01", name: "Repair"}
+    ]
 
     this.storage.get('ASSETINSPECT_LIST').then((val) => {
       console.log(val);

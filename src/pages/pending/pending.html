@@ -38,7 +38,7 @@
 
     <div [ngSwitch]="pending">
       <div *ngSwitchCase="'inspect'">
-          <ngx-datatable 
+          <ngx-datatable (activate)='openModal($event)' 
           [sortType]="'multi'"
           [headerHeight]="50"
           [footerHeight]="50"

@@ -2,15 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Config, ModalController, } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { RegisterPage } from '../register/register';
-
-
-
-/**
- * Generated class for the PendingPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { InspectionPage } from '../inspection/inspection';
 
 @IonicPage()
 @Component({
@@ -20,13 +12,24 @@ import { RegisterPage } from '../register/register';
 export class PendingPage {
   modalOpen: boolean;
   pending: string;
+  type:any;
   assetowning: {
-    id: number, owning_org: string,  main_op: string, op: string, region: string, wtp: string,
-    process_loc: string, function: string, sub_system: string, sub_function: string, class: string, asset_type: string, sub_cat1: string, sub_cat2: string
+    id: number, owning_org: string, main_op: string, 
+    op: string, region: string, wtp: string,
+    process_loc: string, function: string, sub_system: string, 
+    sub_function: string, class: string, asset_type: string, 
+    sub_cat1: string, sub_cat2: string,
+    pm: string, brand: string, size1:string, 
+    size2: string, size3:string, parentplate_no: string, 
+    cm: string, model_no: string, unit_size1: string,
+    unit_size2: string, unit_size3: string, plate_no: string,
+    formulated: string, serial_no: string, scada: string, asset_tag: string,
+    vendor_part: string, external_id: string, pailet_no: string, imageList: Array<any>,
+    gis: { gis_id: string, lat: number, long: number }
   };
-  gis: { gis_id: string, lat: string, long: string };
 
-  assetinspect: { asset_id: number, id: number, rfid: number, ins_type: string, start_date: Date, last_date: Date, process_loc: string, class: string, asset_type: string };
+
+  assetinspect: { asset_id: number, ins_id: number, rfid: number, ins_type: string, start_date: Date, last_date: Date, process_loc: string, class: string, asset_type: string };
 
  
   imageData: { id: null, photo: null, title: null, description: null, dateCaptured: null, dateUploaded: null };
@@ -62,7 +65,7 @@ export class PendingPage {
     ];
 
     this.columns2 = [
-      { prop: 'id', name: 'Inspection no.' },
+      { prop: 'ins_id', name: 'Inspection no.' },
       { prop: 'asset_id', name: 'Asset id' },
       { prop: 'ins_type', name: 'Inspection type' },
       { prop: 'start_date', name: 'Start' },
@@ -70,31 +73,61 @@ export class PendingPage {
     ];
   }
 
-   async openModal(e) {
-    console.log('trigger',e);
-
-    let params = {
-      id: e.row.id
-    }
-
-    const modal = this.modal.create('DatalistPage', { params: params }, { cssClass: 'camera-modal' })
-
-    modal.onDidDismiss(response => {
-      this.modalOpen = true;
-      if(response){
-        console.log(response)
-        if(response.type == 'edit'){
-          this.navCtrl.setRoot(RegisterPage, {params: response.data, index: response.index });
-        }
+   async openModal(e,a) {
+    console.log('trigger',e,a);
+    
+    
+    if (e) {
+      let params = {
+        id: e.row.id
+       
       }
-    })
-    if(this.modalOpen){
-      this.modalOpen = false;
-      return await  modal.present();
+      
+      const modal = this.modal.create('DatalistPage', { params: params }, { cssClass: 'camera-modal' })
 
+      modal.onDidDismiss(response => {
+        this.modalOpen = true;
+        if(response){
+          console.log(response)
+          if(response.type == 'edit'){
+            this.navCtrl.setRoot(RegisterPage, {params: response.data, index: response.index });
+          }
+        }
+      })
+      if(this.modalOpen){
+        this.modalOpen = false;
+        return await  modal.present();
+  
+      }
+      
+    } else {
+      let params = {
+        id: a.row.ins_id
+       
+      }
+      const modal = this.modal.create('InspectionModalPage', { params: params }, { cssClass: 'camera-modal' })
+      modal.onDidDismiss(response => {
+        this.modalOpen = true;
+        if(response){
+          console.log(response)
+          if(response.type == 'edit_ins'){
+            this.navCtrl.setRoot(InspectionPage, {params: response.data, index: response.index });
+          }
+        }
+      })
+
+      if(this.modalOpen){
+        this.modalOpen = false;
+        return await  modal.present();
+  
+      }
+      
     }
    
+   
   }
+
+ 
 
   ionViewDidLoad() {
     this.pending = "register";

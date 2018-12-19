@@ -1,0 +1,105 @@
+<ion-content class="main-view">
+
+  <div class="overlay" (click)="dismiss()"></div>
+
+  <ion-grid class="modal_content">
+        <!-- <ion-scroll > -->
+
+    <ion-row>
+
+      <ion-col col-12>
+          <ion-list>
+
+              <ion-list-header color="list-grey">ASSET INSPECTION</ion-list-header>
+      
+            </ion-list>
+      </ion-col>
+
+        <ion-col col-6 >
+            <ion-item>
+                <ion-label stacked color="dark">Inspection ID</ion-label>
+                <ion-input  readonly="true" type="text" [(ngModel)]="assetinspect.ins_id"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label stacked color="dark">RFID</ion-label>
+                <ion-input  readonly="true" type="text" [(ngModel)]="assetinspect.rfid"></ion-input>
+              </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Start Date</ion-label>
+              <ion-input  readonly="true" type="text" [(ngModel)]="assetinspect.start_date"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Process Location</ion-label>
+              <ion-input  readonly="true" type="text" [(ngModel)]="assetinspect.process_loc"></ion-input>           
+            </ion-item>
+
+
+            <ion-item>
+              <ion-label stacked color="dark">Primary Asset Type</ion-label>
+              <ion-input readonly="true" type="text" [(ngModel)]="assetinspect.asset_type"></ion-input>
+            </ion-item>
+
+           
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked color="dark">Asset ID</ion-label>
+              <ion-input readonly="true"  type="text" [(ngModel)]="assetinspect.asset_id"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Type Of Inspection</ion-label>
+              <ion-input  readonly="true" type="text" [(ngModel)]="assetinspect.ins_type"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Finish Date</ion-label>
+              <ion-input  readonly="true" type="text" [(ngModel)]="assetinspect.last_date"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">Class</ion-label>
+              <ion-input  readonly="true" type="text" [(ngModel)]="assetinspect.class"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked color="dark">routine</ion-label>
+              <ion-input  readonly="true" type="text" [(ngModel)]="assetinspect.routine.assetstatus"></ion-input>
+            </ion-item>
+
+            
+            
+          </ion-col>
+
+          <ion-col col-2 offset-8 class="save">
+            <ion-buttons >
+              <button ion-button full (click)="goToEditPage()">
+                Edit
+              </button>
+            </ion-buttons>
+          </ion-col>
+
+      <ion-col col-2 class="save">
+        <ion-buttons >
+          <button ion-button full (click)="closeModal()">
+            close
+          </button>
+        </ion-buttons>
+      </ion-col>
+
+    
+      <!-- <ion-col col-2>
+          <button ion-button full>Save</button>
+       </ion-col> -->
+
+    </ion-row>
+    <!-- </ion-scroll> -->
+
+  </ion-grid>
+
+</ion-content>
+
