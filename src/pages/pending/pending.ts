@@ -73,12 +73,10 @@ export class PendingPage {
     ];
   }
 
-   async openModal(e,a) {
-    console.log('trigger',e,a);
+   async openModal(e) {
+    console.log('trigger',e);
     
-    
-    if (e) {
-      let params = {
+     let params = {
         id: e.row.id
        
       }
@@ -98,33 +96,36 @@ export class PendingPage {
         this.modalOpen = false;
         return await  modal.present();
   
-      }
-      
-    } else {
-      let params = {
-        id: a.row.ins_id
-       
-      }
-      const modal = this.modal.create('InspectionModalPage', { params: params }, { cssClass: 'camera-modal' })
-      modal.onDidDismiss(response => {
-        this.modalOpen = true;
-        if(response){
-          console.log(response)
-          if(response.type == 'edit_ins'){
-            this.navCtrl.setRoot(InspectionPage, {params: response.data, index: response.index });
-          }
-        }
-      })
+   
+     
+    
+   
+   
+  }
+}
 
-      if(this.modalOpen){
-        this.modalOpen = false;
-        return await  modal.present();
-  
-      }
-      
+  async openModalInspection(a) {
+    let params = {
+      id: a.row.ins_id
+     
     }
-   
-   
+    const modal = this.modal.create('InspectionModalPage', { params: params }, { cssClass: 'camera-modal' })
+    modal.onDidDismiss(response => {
+      this.modalOpen = true;
+      if(response){
+        console.log(response)
+        if(response.type == 'edit_ins'){
+          this.navCtrl.setRoot(InspectionPage, {params: response.data, index: response.index });
+        }
+      }
+    })
+
+    if(this.modalOpen){
+      this.modalOpen = false;
+      return await  modal.present();
+
+    }
+    
   }
 
  
