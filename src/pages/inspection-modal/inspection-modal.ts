@@ -52,7 +52,25 @@ export class InspectionModalPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad InspectionModalPage');
+    this.storage.get('ASSETINSPECT_LIST').then((val) =>{
+      if (val) {
+        console.log('data',this.data.id)
+        this.assetinspectList = JSON.parse(val);
+        console.log(JSON.stringify(this.assetinspectList))
+
+        this.index = this.assetinspectList.findIndex(asset => asset.id == this.data.ins_id);
+
+        if (this.index >= 0) {
+          this.assetinspect = this.assetinspectList[this.index];
+        } else {
+          console.log('asset not found')
+        }
+      } else {
+        this.assetinspectList = [];
+      }
+    })
+    console.log(this.assetinspect);
+  
   }
 
 }

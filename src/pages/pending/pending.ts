@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, Config, ModalController, } from 'i
 import { Storage } from '@ionic/storage';
 import { RegisterPage } from '../register/register';
 import { InspectionPage } from '../inspection/inspection';
+import { ifError } from 'assert';
 
 @IonicPage()
 @Component({
@@ -131,12 +132,13 @@ export class PendingPage {
  
 
   ionViewDidLoad() {
-    this.pending = "register";
+   
     this.storage.get('ASSETOWNING_LIST').then((val) => {
 
       if (val) {
         this.assetowningList = JSON.parse(val);
         console.log(JSON.stringify(this.assetowningList))
+        this.pending = "register";
       } else {
         this.assetowningList = [];
         console.log(JSON.stringify(this.assetowningList))
@@ -168,12 +170,17 @@ export class PendingPage {
       if (val) {
         this.assetinspectList = JSON.parse(val);
         console.log(JSON.stringify(this.assetinspectList))
+       
       } else {
         this.assetinspectList = [];
         console.log(JSON.stringify("no val"))
       }
     })
+    
+   
   }
+
+  
 
 
 }

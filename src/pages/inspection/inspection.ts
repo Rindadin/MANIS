@@ -20,9 +20,12 @@ export class InspectionPage {
   assetinspectList: Array<any>;
   assetinspectStatus: Array<any>;
   // ins_id: any = 0;
-  ins_id: any = 0;
+  id: any = 0;
   type: any;
   index: number;
+  pending: any;
+  title: string;
+
   
   constructor(public alertCtrl: AlertController, public storage: Storage, public modal: ModalController, public navCtrl: NavController, public navParams: NavParams) {
     this.routine = { assetstatus: null, replace: false, plan: false, measurement: false, remark: null}
@@ -46,7 +49,10 @@ export class InspectionPage {
     console.log(data);
 
     if (data) {
-      
+      this.assetinspect = data;
+      this.type = 'edit_ins';
+      this.title = 'Edit Inspection'
+    
       // this.storage.get("id").then(id => {
       //   console.log(id);
       //   if (id) {
@@ -57,15 +63,20 @@ export class InspectionPage {
       //   }
       // })
 
+      
+
+    } else {
+      this.type = 'inspect';
+      this.title = 'Asset Inspection';
       let _date = new Date();
-      this.ins_id = String(_date.getTime()) + '-' + data.id;
+      this.id = String(_date.getTime()) + '-' + data.id;
       let month = _date.getMonth() + 1;
       let day = _date.getDay();
       let year = _date.getFullYear();
-
+      
       this.assetinspect = {
         asset_id: data.id,
-        ins_id: this.ins_id,
+        ins_id: this.id,
         rfid: null,
         ins_type: null,
         start_date: day + '/' + month + '/' + year,
@@ -75,7 +86,6 @@ export class InspectionPage {
         asset_type: data.asset_type,
         routine: null
       };
-
     }
 
     this.assetinspectStatus = [
@@ -113,6 +123,7 @@ export class InspectionPage {
 
   goToPendingPage() {
     this.navCtrl.setRoot('PendingPage');
+    
   }
 
   showImage2(pic) { 
@@ -129,7 +140,7 @@ export class InspectionPage {
     const myModal = this.modal.create('Camera2Page', { params: params }, { cssClass: 'camera2-modal' })
     myModal.onDidDismiss(data => {
       if (data) {
-        alert(JSON.stringify(data));
+        // alert(JSON.stringify(data));
         this.imageList.push(data);
       }
     })
