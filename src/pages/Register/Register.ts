@@ -11,26 +11,24 @@ export class RegisterPage {
   asset: string;
   info: string;
   title: string;
-
-
-   gis: { gis_id: string, lat: number, long: number };
+  assetCorrectiveList: Array<any>;
+  pm: any;
+  gis: { gis_id: string, lat: number, long: number };
 
   assetowning: {
-    id: number, owning_org: string, main_op: string, 
+    id: number, owning_org: string, main_op: string,
     op: string, region: string, wtp: string,
-    process_loc: string, function: string, sub_system: string, 
-    sub_function: string, class: string, asset_type: string, 
+    process_loc: string, function: string, sub_system: string,
+    sub_function: string, class: string, asset_type: string,
     sub_cat1: string, sub_cat2: string,
-    pm: string, brand: string, size1:string, 
-    size2: string, size3:string, parentplate_no: string, 
+    pm: string, brand: string, size1: string,
+    size2: string, size3: string, parentplate_no: string,
     cm: string, model_no: string, unit_size1: string,
     unit_size2: string, unit_size3: string, plate_no: string,
     formulated: string, serial_no: string, scada: string, asset_tag: string,
     vendor_part: string, external_id: string, pailet_no: string, imageList: Array<any>,
     gis: { gis_id: string, lat: number, long: number }
   };
-
-
 
   assetowningList: Array<any>;
   gisList: Array<any>;
@@ -48,7 +46,7 @@ export class RegisterPage {
 
   imageList: Array<any>;
 
-  constructor( public loadingCtrl: LoadingController, public alertCtrl: AlertController, private geolocation: Geolocation, public modal: ModalController, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public loadingCtrl: LoadingController, public alertCtrl: AlertController, private geolocation: Geolocation, public modal: ModalController, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
     this.info = 'general-info';
     this.assetowning = {
       id: this.id,
@@ -65,24 +63,24 @@ export class RegisterPage {
       asset_type: null,
       sub_cat1: null,
       sub_cat2: null,
-      pm: null, 
-      brand: null, 
-      size1:null, 
-      size2: null, 
-      size3:null, 
-      parentplate_no: null, 
-      cm: null, 
-      model_no: null, 
+      pm: null,
+      brand: null,
+      size1: null,
+      size2: null,
+      size3: null,
+      parentplate_no: null,
+      cm: null,
+      model_no: null,
       unit_size1: null,
-      unit_size2: null, 
-      unit_size3: null, 
+      unit_size2: null,
+      unit_size3: null,
       plate_no: null,
-      formulated: null, 
-      serial_no: null, 
-      scada: null, 
+      formulated: null,
+      serial_no: null,
+      scada: null,
       asset_tag: null,
-      vendor_part: null, 
-      external_id: null, 
+      vendor_part: null,
+      external_id: null,
       pailet_no: null,
       imageList: [],
       gis: { gis_id: null, lat: null, long: null }
@@ -92,8 +90,8 @@ export class RegisterPage {
 
     let data = this.navParams.get('params');
     this.index = this.navParams.get('index');
-    console.log('data');
-    console.log(data);
+    //console.log('data');
+    //console.log(data);
     if (data) {
       // for edit case
       this.assetowning = data;
@@ -106,14 +104,7 @@ export class RegisterPage {
         spinner: 'circles',
         content: 'Please Wait for latitude and longitude to be retrieve..'
       });
-      this.geolocation.getCurrentPosition().then((resp) => {
-        loading.dismiss();
-        this.gis.lat = resp.coords.latitude;
-        this.gis.long = resp.coords.longitude;
-      }).catch((error) => {
-        console.log('Error getting location', error);
-        loading.dismiss();
-      });
+
       this.type = 'register';
       this.title = 'Asset Registration'
       this.storage.get("id").then(id => {
@@ -123,8 +114,12 @@ export class RegisterPage {
         else {
           this.id = 1;
         }
+        let d = new Date();
+        this.pm = new Date();
+        this.pm.setDate(d.getDate() + 90);
+        // console.log('cm',this.cm);
+        // console.log(this.id);
 
-        console.log(this.id);
         this.assetowning = {
           id: this.id,
           owning_org: 'PENGURUSAN AIR SELANGOR SDN BHD',
@@ -140,32 +135,44 @@ export class RegisterPage {
           asset_type: null,
           sub_cat1: null,
           sub_cat2: null,
-          pm: null, 
-          brand: null, 
-          size1:null, 
-          size2: null, 
-          size3:null, 
-          parentplate_no: null, 
-          cm: null, 
-          model_no: null, 
+          pm: this.pm.toISOString(),
+          brand: null,
+          size1: null,
+          size2: null,
+          size3: null,
+          parentplate_no: null,
+          cm: null,
+          model_no: null,
           unit_size1: null,
-          unit_size2: null, 
-          unit_size3: null, 
+          unit_size2: null,
+          unit_size3: null,
           plate_no: null,
-          formulated: null, 
-          serial_no: null, 
-          scada: null, 
+          formulated: null,
+          serial_no: null,
+          scada: null,
           asset_tag: null,
-          vendor_part: null, 
-          external_id: null, 
+          vendor_part: null,
+          external_id: null,
           pailet_no: null,
           imageList: [],
           gis: { gis_id: null, lat: null, long: null }
         };
 
-      })
-    }
+        this.geolocation.getCurrentPosition().then((resp) => {
+          loading.dismiss();
+          this.assetowning.gis.lat = resp.coords.latitude;
+          this.assetowning.gis.long = resp.coords.longitude;
+          console.log(this.assetowning.gis.lat);
+        }).catch((error) => {
+          console.log('Error getting location', error);
+          loading.dismiss();
+        });
 
+      })
+
+
+      // this.assetowning.pm = (this.cm.setDate(d.getDate()+90)).toISOString();
+    }
 
     this.assetowningProcess_loc = [
       { id: "01", name: "ADMIN" },
@@ -191,7 +198,6 @@ export class RegisterPage {
       { id: "06", name: "SLUDGE THICKENINGTANK 3" },
       { id: "07", name: "SLUDGE THICKENINGTANK 4" },
       { id: "08", name: "GENERATOR" }
-
     ];
 
     this.assetowningSub_function = [
@@ -204,7 +210,6 @@ export class RegisterPage {
       { id: "07", name: "RESIDUAL THICKENER 3" },
       { id: "08", name: "RESIDUAL THICKENER 4" },
       { id: "09", name: "TRANSFORMER" }
-
     ];
 
     this.assetowningClass = [
@@ -276,8 +281,6 @@ export class RegisterPage {
       { id: "39", name: "FUEL OIL TRANSFER PUMP" },
       { id: "40", name: "MOTOR FUEL OIL TRANSFER PUMP" },
       { id: "41", name: "OVERHEAD CRANE" }
-
-
     ];
 
     this.assetowningSub_cat2 = [
@@ -322,10 +325,13 @@ export class RegisterPage {
       { id: "39", name: "FUEL OIL TRANSFER PUMP" },
       { id: "40", name: "MOTOR FUEL OIL TRANSFER PUMP" },
       { id: "41", name: "OVERHEAD CRANE" }
-
-
     ];
 
+    this.assetCorrectiveList = [
+      { id: 1, name: "Once a year" },
+      { id: 2, name: "Twice a year" },
+      { id: 3, name: "Three times a year" }
+    ]
 
     this.gis = {
       gis_id: null,
@@ -333,13 +339,13 @@ export class RegisterPage {
       long: null
     };
 
-    
+
     // let loading = this.loadingCtrl.create({
     //   spinner: 'circles',
     //   content: 'Please Wait for latitude and longitude to be retrieve..'
     // });
-    
-    
+
+
     let watch = this.geolocation.watchPosition();
     watch.subscribe((data) => {
       // data can be a set of coordinates, or an error (if an error occurred).
@@ -369,35 +375,29 @@ export class RegisterPage {
     this.gisList = [];
   }
 
-  showAlert(){
-    
+
+  showAlert() {
+
     if (this.type == 'register') {
-      
+
       const alert = this.alertCtrl.create({
-        title:'Registration is saved!',
+        title: 'Registration is saved!',
         buttons: ['ok']
 
-        
+
       });
       alert.present();
-    }else {
+    } else {
       const alert = this.alertCtrl.create({
-        title:'Asset has been edited!',
+        title: 'Asset has been edited!',
         buttons: ['ok']
       });
       alert.present();
-
     }
-
-
   }
 
-  showImage(image) {
-    if (!image) {
-      return null;
-    } else {
-      return 'data:image/jpeg;base64,' + image;
-    }
+  showImage(image: string) {
+    return 'data:image/jpeg;base64,' + image;
   }
 
   openModal() {
@@ -427,39 +427,28 @@ export class RegisterPage {
   }
 
   saveAsset() {
-    this.assetowning.gis = this.gis;
+    //this.assetowning.gis = this.gis;
     if (this.type == 'register') {
       console.log(this.assetowning);
       this.storage.set("id", this.id)
       this.assetowningList.push(this.assetowning);
       console.log(this.assetowningList);
-     // this.gisList.push(this.gis);
+      // this.gisList.push(this.gis);
       //console.log(this.gisList);
       //this.storage.set('GIS_LIST', JSON.stringify(this.gisList));
-      this.showAlert();{
-        this.goToPendingPage()
-      }
-
-    } else  {
-
+    } else {
       this.assetowningList[this.index] = this.assetowning;
-      this.showAlert();{
-        this.goToPendingPage()
-      }
-
-      
     }
-
-    this.storage.set('ASSETOWNING_LIST', JSON.stringify(this.assetowningList));
-
-
+      this.storage.set('ASSETOWNING_LIST', JSON.stringify(this.assetowningList));
+      this.showAlert();
+      this.goToPendingPage()
   }
 
   goToPendingPage() {
     this.navCtrl.push('PendingPage');
   }
 
- 
+
 
 
 }

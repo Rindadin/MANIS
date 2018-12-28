@@ -15,7 +15,7 @@
 <ion-content>
   <div padding>
 
-    
+
     <!-- <div>
       <ion-grid>
         <ion-row>
@@ -58,7 +58,7 @@
     <div *ngSwitchCase="'general-info'">
       <ion-grid>
         <ion-row>
-        
+
 
           <ion-col col-12>
             <ion-list>
@@ -87,33 +87,33 @@
 
             <ion-item>
               <ion-label stacked color="dark">Process/Function</ion-label>
-              <ion-select [(ngModel)]= "assetowning.function" placeholder="please select" interface="popover">
+              <ion-select [(ngModel)]="assetowning.function" placeholder="please select" interface="popover">
                 <ion-option *ngFor="let function of assetowningFunction" [value]="function.name">{{function.name}}</ion-option>
-               
+
               </ion-select>
             </ion-item>
 
             <ion-item>
               <ion-label stacked color="dark">Sub Process/Function </ion-label>
-              <ion-select [(ngModel)]= "assetowning.sub_function" placeholder="please select" interface="popover">
+              <ion-select [(ngModel)]="assetowning.sub_function" placeholder="please select" interface="popover">
                 <ion-option *ngFor="let sub_function of assetowningSub_function" [value]="sub_function.name">{{sub_function.name}}</ion-option>
-               
+
               </ion-select>
             </ion-item>
 
             <ion-item>
               <ion-label stacked color="dark">Primary (asset type) </ion-label>
-              <ion-select [(ngModel)]= "assetowning.asset_type" placeholder="please select" interface="popover">
+              <ion-select [(ngModel)]="assetowning.asset_type" placeholder="please select" interface="popover">
                 <ion-option *ngFor="let asset_type of assetowningAsset_type" [value]="asset_type.name">{{asset_type.name}}</ion-option>
-               
+
               </ion-select>
             </ion-item>
 
             <ion-item>
               <ion-label stacked color="dark">Sub Category 2</ion-label>
-              <ion-select [(ngModel)]= "assetowning.sub_cat2" placeholder="please select" interface="popover">
+              <ion-select [(ngModel)]="assetowning.sub_cat2" placeholder="please select" interface="popover">
                 <ion-option *ngFor="let sub_cat2 of assetowningSub_cat2" [value]="sub_cat2.name">{{sub_cat2.name}}</ion-option>
-               
+
               </ion-select>
             </ion-item>
 
@@ -127,584 +127,586 @@
 
             <ion-item>
               <ion-label stacked color="dark">Region</ion-label>
-              <ion-input type="text" [(ngModel)]="assetowning.region"></ion-input>           
+              <ion-input type="text" [(ngModel)]="assetowning.region"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label stacked color="dark">Process Location Category</ion-label>
-              <ion-select [(ngModel)]= "assetowning.process_loc" placeholder="please select" interface="popover">
+              <ion-select [(ngModel)]="assetowning.process_loc" placeholder="please select" interface="popover">
                 <ion-option *ngFor="let process_loc of assetowningProcess_loc" [value]="process_loc.name">{{process_loc.name}}</ion-option>
-               
+
               </ion-select>
             </ion-item>
 
             <ion-item>
               <ion-label stacked color="dark">Sub Process/System</ion-label>
-              <ion-select [(ngModel)]= "assetowning.sub_system" placeholder="please select" interface="popover">
+              <ion-select [(ngModel)]="assetowning.sub_system" placeholder="please select" interface="popover">
                 <ion-option *ngFor="let sub_system of assetowningSub_system" [value]="sub_system.name">{{sub_system.name}}</ion-option>
-               
+
               </ion-select>
             </ion-item>
 
             <ion-item>
               <ion-label stacked color="dark">Asset Class</ion-label>
-              <ion-select [(ngModel)]= "assetowning.class" placeholder="please select" interface="popover">
+              <ion-select [(ngModel)]="assetowning.class" placeholder="please select" interface="popover">
                 <ion-option *ngFor="let class of assetowningClass" [value]="class.name">{{class.name}}</ion-option>
-               
+
               </ion-select>
             </ion-item>
 
             <ion-item>
               <ion-label stacked color="dark">Sub Category 1</ion-label>
-              <ion-select [(ngModel)]= "assetowning.sub_cat1" placeholder="please select" interface="popover">
+              <ion-select [(ngModel)]="assetowning.sub_cat1" placeholder="please select" interface="popover">
                 <ion-option *ngFor="let sub_cat1 of assetowningSub_cat1" [value]="sub_cat1.name">{{sub_cat1.name}}</ion-option>
-               
+
               </ion-select>
             </ion-item>
-          
-            
+
+
           </ion-col>
-       
 
-    <ion-col col-12>
-      <ion-list>
-
-        <ion-list-header stacked color="list-grey">GIS DETAILS FOR ASSET PHYSICAL LOCATION</ion-list-header>
-
-      </ion-list>
-    </ion-col>
-
-    <ion-col col-12>
-      <ion-item>
-        <ion-label stacked color="dark">GIS/ESRI ID</ion-label>
-        <ion-input type="text" [(ngModel)]="gis.gis_id"></ion-input>
-      </ion-item>
-
-    </ion-col>
-
-    <ion-col col-6>
-      <ion-item>
-        <ion-label stacked color="dark">Latitude</ion-label>
-        <ion-input readonly="true" read type="text" [(ngModel)]="gis.lat"></ion-input>
-      </ion-item>
-    </ion-col>
-
-    <ion-col col-6>
-      <ion-item>
-        <ion-label stacked color="dark">Longitude</ion-label>
-        <ion-input readonly="true" type="text" [(ngModel)]="gis.long"></ion-input>
-      </ion-item>
-    </ion-col>
-
-    <ion-col col-12>
-      <ion-list>
-
-        <ion-list-header color="list-grey">ASSET DETAIL DESCRIPTION</ion-list-header>
-
-      </ion-list>
-    </ion-col>
-
-    <ion-col col-6>
-
-        <ion-item>
-            <ion-label stacked color="dark">Preventive Maintainance</ion-label>
-            <ion-input type="text"  [(ngModel)]="assetowning.pm"></ion-input>
-          </ion-item>
-
-      <ion-item>
-        <ion-label stacked color="dark">Brand</ion-label>
-        <ion-input type="text"  [(ngModel)]="assetowning.brand"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label stacked color="dark">Size/Capacity 1</ion-label>
-        <ion-input type="text"  [(ngModel)]="assetowning.size1"></ion-input>
-      </ion-item>
-
-
-      <ion-item>
-        <ion-label stacked color="dark">Size/Capacity 2</ion-label>
-        <ion-input type="text"  [(ngModel)]="assetowning.size2"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label stacked color="dark">Size/Capacity 3</ion-label>
-        <ion-input type="text"  [(ngModel)]="assetowning.size3"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label stacked color="dark">Parent Asset/Plate Number</ion-label>
-        <ion-input type="text"  [(ngModel)]="assetowning.parentplate_no"></ion-input>
-      </ion-item>
-    </ion-col>
-
-    <ion-col col-6>
-
-        <ion-item>
-            <ion-label stacked color="dark">Corrective Maintainance</ion-label>
-            <ion-input type="text"  [(ngModel)]="assetowning.cm"></ion-input>
-          </ion-item>
-
-      <ion-item>
-        <ion-label stacked color="dark">Model Number</ion-label>
-        <ion-input type="text"  [(ngModel)]="assetowning.model_no"></ion-input>
-      </ion-item>
-
-
-      <ion-item>
-        <ion-label stacked color="dark">Size/Capacity 1-Unit measurement</ion-label>
-        <ion-input type="text"  [(ngModel)]="assetowning.unit_size1"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label stacked color="dark">Size/Capacity 2-Unit measurement</ion-label>
-        <ion-input type="text"  [(ngModel)]="assetowning.unit_size2"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label stacked color="dark">Size/Capacity 3-Unit measurement</ion-label>
-        <ion-input type="text"  [(ngModel)]="assetowning.unit_size3"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label stacked color="dark">Asset/Plate Number</ion-label>
-        <ion-input type="text"  [(ngModel)]="assetowning.plate_no"></ion-input>
-      </ion-item>
-
-    </ion-col>
-
-    <ion-col col-12>
-      <ion-item>
-        <ion-label stacked color="dark">Detailed Description(Formulated)</ion-label>
-        <ion-input type="text" [(ngModel)]="assetowning.formulated"></ion-input>
-      </ion-item>
-    </ion-col>
-
-    <ion-col col-6>
-      <ion-item>
-        <ion-label stacked color="dark">Serial Number</ion-label>
-        <ion-input type="text" [(ngModel)]="assetowning.serial_no"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label stacked color="dark">SCADA ID</ion-label>
-        <ion-input type="text" [(ngModel)]="assetowning.scada"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label stacked color="dark">Asset Tag Number</ion-label>
-        <ion-input type="text" [(ngModel)]="assetowning.asset_tag"></ion-input>
-      </ion-item>
-    </ion-col>
-
-    <ion-col col-6>
-      <ion-item>
-        <ion-label stacked color="dark">Vendor Part Number</ion-label>
-        <ion-input type="text" [(ngModel)]="assetowning.vendor_part"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label stacked color="dark">External ID</ion-label>
-        <ion-input type="text" [(ngModel)]="assetowning.external_id"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label stacked color="dark">Pailet Number</ion-label>
-        <ion-input type="text" [(ngModel)]="assetowning.pailet_no"></ion-input>
-      </ion-item>
-
-    </ion-col>
-
-    <ion-col col-6>
-
-    </ion-col>
-  </ion-row>
-</ion-grid>
-</div>
-
-<div *ngSwitchCase="'technical-spect'">
-
-  <div [ngSwitch]="assetowning.asset_type">
-    <div *ngSwitchCase="'PUMP'">
-      <ion-grid>
-        <ion-row>
 
           <ion-col col-12>
             <ion-list>
-              <ion-list-header color="list-grey">PUMP</ion-list-header>
+
+              <ion-list-header stacked color="list-grey">GIS DETAILS FOR ASSET PHYSICAL LOCATION</ion-list-header>
+
+            </ion-list>
+          </ion-col>
+
+          <ion-col col-12>
+            <ion-item>
+              <ion-label stacked color="dark">GIS/ESRI ID</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.gis_id"></ion-input>
+            </ion-item>
+
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked color="dark">Latitude</ion-label>
+              <ion-input readonly="true" read type="text" [(ngModel)]="assetowning.gis.lat"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked color="dark">Longitude</ion-label>
+              <ion-input readonly="true" type="text" [(ngModel)]="assetowning.gis.long"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-12>
+            <ion-list>
+
+              <ion-list-header color="list-grey">ASSET DETAIL DESCRIPTION</ion-list-header>
+
             </ion-list>
           </ion-col>
 
           <ion-col col-6>
             <ion-item>
-              <ion-label stacked color="dark">Manufacture Part No</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-label stacked color="dark">Preventive Maintainance</ion-label>
+              <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="assetowning.pm" max="2030-12-31"></ion-datetime>
             </ion-item>
 
             <ion-item>
-              <ion-label stacked color="dark">Model</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-label stacked color="dark">Brand</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.brand"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label stacked color="dark">Pump Tyre</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-label stacked color="dark">Size/Capacity 1</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.size1"></ion-input>
+            </ion-item>
+
+
+            <ion-item>
+              <ion-label stacked color="dark">Size/Capacity 2</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.size2"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label stacked color="dark">HP</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-label stacked color="dark">Size/Capacity 3</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.size3"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label stacked color="dark">Speed</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Flow</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-label stacked color="dark">Parent Asset/Plate Number</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.parentplate_no"></ion-input>
             </ion-item>
           </ion-col>
 
           <ion-col col-6>
+
             <ion-item>
-              <ion-label stacked color="dark">Head</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-label stacked color="dark">Corrective Maintainance</ion-label>
+              <!-- <ion-input type="text" [(ngModel)]="assetowning.cm"></ion-input> -->
+              <ion-select [(ngModel)]= "assetowning.cm" placeholder="Please select" interface="popover">
+                <ion-option *ngFor="let corrective of assetCorrectiveList" [value]="corrective.id">{{corrective.name}}</ion-option>
+              </ion-select>
             </ion-item>
 
             <ion-item>
-              <ion-label stacked color="dark">No Of Staging</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-label stacked color="dark">Model Number</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.model_no"></ion-input>
+            </ion-item>
+
+
+            <ion-item>
+              <ion-label stacked color="dark">Size/Capacity 1-Unit measurement</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.unit_size1"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label stacked color="dark">Manufacruring Year</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-label stacked color="dark">Size/Capacity 2-Unit measurement</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.unit_size2"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label stacked color="dark">Weight</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-label stacked color="dark">Size/Capacity 3-Unit measurement</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.unit_size3"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label stacked color="dark">Medium</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-label stacked color="dark">Asset/Plate Number</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.plate_no"></ion-input>
             </ion-item>
 
-            <ion-item>
-              <ion-label stacked color="dark">Pressure</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
           </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
 
-    <div *ngSwitchCase="'MOTOR'">
-      <ion-grid>
-        <ion-row>
           <ion-col col-12>
-            <ion-list>
-              <ion-list-header color="list-grey">MOTOR</ion-list-header>
-            </ion-list>
+            <ion-item>
+              <ion-label stacked color="dark">Detailed Description(Formulated)</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.formulated"></ion-input>
+            </ion-item>
           </ion-col>
 
           <ion-col col-6>
             <ion-item>
-              <ion-label stacked color="dark">Serial No.</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-label stacked color="dark">Serial Number</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.serial_no"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label stacked color="dark">Manufacture Part No.</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-label stacked color="dark">SCADA ID</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.scada"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label stacked color="dark">Quantity</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">RPM</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Kw/Hp</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Voltage(V)</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-
-            <ion-item>
-              <ion-label stacked color="dark">Insulation Class</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-label stacked color="dark">Asset Tag Number</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.asset_tag"></ion-input>
             </ion-item>
           </ion-col>
+
           <ion-col col-6>
             <ion-item>
-              <ion-label stacked color="dark">Frequency</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-label stacked color="dark">Vendor Part Number</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.vendor_part"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label stacked color="dark">Current(A)</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-label stacked color="dark">External ID</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.external_id"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label stacked color="dark">Capacity</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-label stacked color="dark">Pailet Number</ion-label>
+              <ion-input type="text" [(ngModel)]="assetowning.pailet_no"></ion-input>
             </ion-item>
 
-            <ion-item>
-              <ion-label stacked color="dark">Manufacturing Year</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Weight</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">No Of Phases</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Model</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
           </ion-col>
 
+          <ion-col col-6>
+
+          </ion-col>
         </ion-row>
       </ion-grid>
     </div>
 
-    <div *ngSwitchCase="'VALVE'">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-12>
-            <ion-list>
-              <ion-list-header color="list-grey">VALVE</ion-list-header>
-            </ion-list>
-          </ion-col>
+    <div *ngSwitchCase="'technical-spect'">
 
-          <ion-col col-6>
-            <ion-item>
-              <ion-label stacked color="dark">Serial No.</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
+      <div [ngSwitch]="assetowning.asset_type">
+        <div *ngSwitchCase="'PUMP'">
+          <ion-grid>
+            <ion-row>
 
-            <ion-item>
-              <ion-label stacked color="dark">Model</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
+              <ion-col col-12>
+                <ion-list>
+                  <ion-list-header color="list-grey">PUMP</ion-list-header>
+                </ion-list>
+              </ion-col>
 
-            <ion-item>
-              <ion-label stacked color="dark">Manufacturing Year</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
+              <ion-col col-6>
+                <ion-item>
+                  <ion-label stacked color="dark">Manufacture Part No</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
 
-            <ion-item>
-              <ion-label stacked color="dark">Manufacturing Part No</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
+                <ion-item>
+                  <ion-label stacked color="dark">Model</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
 
-            <ion-item>
-              <ion-label stacked color="dark">Type</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
+                <ion-item>
+                  <ion-label stacked color="dark">Pump Tyre</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">HP</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Speed</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Flow</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col col-6>
+                <ion-item>
+                  <ion-label stacked color="dark">Head</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">No Of Staging</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Manufacruring Year</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Weight</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Medium</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Pressure</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+
+        <div *ngSwitchCase="'MOTOR'">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-12>
+                <ion-list>
+                  <ion-list-header color="list-grey">MOTOR</ion-list-header>
+                </ion-list>
+              </ion-col>
+
+              <ion-col col-6>
+                <ion-item>
+                  <ion-label stacked color="dark">Serial No.</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Manufacture Part No.</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Quantity</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">RPM</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Kw/Hp</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Voltage(V)</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
 
 
-          </ion-col>
+                <ion-item>
+                  <ion-label stacked color="dark">Insulation Class</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-6>
+                <ion-item>
+                  <ion-label stacked color="dark">Frequency</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
 
-          <ion-col col-6>
+                <ion-item>
+                  <ion-label stacked color="dark">Current(A)</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
 
-            <ion-item>
-              <ion-label stacked color="dark">Pressure Rating</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
+                <ion-item>
+                  <ion-label stacked color="dark">Capacity</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
 
-            <ion-item>
-              <ion-label stacked color="dark">Diameter</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
+                <ion-item>
+                  <ion-label stacked color="dark">Manufacturing Year</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
 
-            <ion-item>
-              <ion-label stacked color="dark">Weight</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
+                <ion-item>
+                  <ion-label stacked color="dark">Weight</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
 
-            <ion-item>
-              <ion-label stacked color="dark">Material</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
+                <ion-item>
+                  <ion-label stacked color="dark">No Of Phases</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
 
-            <ion-item>
-              <ion-label stacked color="dark">Make/Brand</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
+                <ion-item>
+                  <ion-label stacked color="dark">Model</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+              </ion-col>
 
-          </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
 
-        </ion-row>
-      </ion-grid>
+        <div *ngSwitchCase="'VALVE'">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-12>
+                <ion-list>
+                  <ion-list-header color="list-grey">VALVE</ion-list-header>
+                </ion-list>
+              </ion-col>
+
+              <ion-col col-6>
+                <ion-item>
+                  <ion-label stacked color="dark">Serial No.</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Model</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Manufacturing Year</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Manufacturing Part No</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Type</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+
+              </ion-col>
+
+              <ion-col col-6>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Pressure Rating</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Diameter</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Weight</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Material</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Make/Brand</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+              </ion-col>
+
+            </ion-row>
+          </ion-grid>
+        </div>
+
+
+
+
+        <div *ngSwitchCase="'BOARD'">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-12>
+                <ion-list>
+                  <ion-list-header color="list-grey">CIVIL STRUCTURE</ion-list-header>
+                </ion-list>
+              </ion-col>
+
+              <ion-col col-6>
+                <ion-item>
+                  <ion-label stacked color="dark">Shape</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Diameter</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Material</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Capacity</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col col-6>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Type</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Area</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Material</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+              </ion-col>
+
+            </ion-row>
+          </ion-grid>
+        </div>
+
+
+
+        <div *ngSwitchCase="'TANK'">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-12>
+                <ion-list>
+                  <ion-list-header color="list-grey">TANK</ion-list-header>
+                </ion-list>
+              </ion-col>
+
+              <ion-col col-6>
+                <ion-item>
+                  <ion-label stacked color="dark">Construction Year</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Type</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Capacity</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Size</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Shape</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Dimension</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col col-6>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Inlet Pipe Dia</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Outlet Pipe Dia</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Staging Height</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Staging Height</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Lsl</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Fsl</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label stacked color="dark">Material</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+
+              </ion-col>
+
+            </ion-row>
+          </ion-grid>
+        </div>
+
+      </div>
     </div>
-
-
-
-
-    <div *ngSwitchCase="'BOARD'">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-12>
-            <ion-list>
-              <ion-list-header color="list-grey">CIVIL STRUCTURE</ion-list-header>
-            </ion-list>
-          </ion-col>
-
-          <ion-col col-6>
-            <ion-item>
-              <ion-label stacked color="dark">Shape</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Diameter</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Material</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Capacity</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-          </ion-col>
-
-          <ion-col col-6>
-
-            <ion-item>
-              <ion-label stacked color="dark">Type</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Area</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Material</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-          </ion-col>
-
-        </ion-row>
-      </ion-grid>
-    </div>
-
-
-
-    <div *ngSwitchCase="'TANK'">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-12>
-            <ion-list>
-              <ion-list-header color="list-grey">TANK</ion-list-header>
-            </ion-list>
-          </ion-col>
-
-          <ion-col col-6>
-            <ion-item>
-              <ion-label stacked color="dark">Construction Year</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Type</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Capacity</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Size</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Shape</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Dimension</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-          </ion-col>
-
-          <ion-col col-6>
-
-            <ion-item>
-              <ion-label stacked color="dark">Inlet Pipe Dia</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Outlet Pipe Dia</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Staging Height</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Staging Height</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Lsl</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Fsl</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked color="dark">Material</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-
-
-          </ion-col>
-
-        </ion-row>
-      </ion-grid>
-    </div>
-
-  </div>
-</div>
 
 
     <div *ngSwitchCase="'media'">
@@ -718,23 +720,18 @@
                 </button>
               </div>
             </ion-col>
-
-            <ion-col col-3 *ngFor="let image of imageList">
+            <ion-col col-3 *ngFor="let image of assetowning.imageList">
               <ion-card>
-                <img [src]="showImage(image.photo)||'assets/imgs/dashboard.jpg'" />
+                <img [src]="showImage(image.photo)" />
                 <ion-card-content>
                   <p>{{image.title}}</p>
                   <p>{{image.dateUploaded}}</p>
                 </ion-card-content>
               </ion-card>
             </ion-col>
-
-            
           </ion-row>
         </ion-grid>
       </div>
     </div>
   </div>
 </ion-content>
-
-  

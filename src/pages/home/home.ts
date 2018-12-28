@@ -1,11 +1,11 @@
-import { Component, animate } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { RegisterPage } from '../register/register';
 import { ProfilePage } from '../profile/profile';
 import { PendingPage } from '../pending/pending';
-import { AssetPage } from '../asset/asset';
-import { InspectionPage } from '../inspection/inspection';
+// import { AssetPage } from '../asset/asset';
+// import { InspectionPage } from '../inspection/inspection';
 import { ListPage } from '../list/list';
 import { NotificationPage } from '../notification/notification';
 

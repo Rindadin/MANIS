@@ -1,4 +1,4 @@
-import { Component, ViewChild} from '@angular/core';
+import { Component} from '@angular/core';
 import { NavController } from 'ionic-angular';
 // import{ Chart } from 'chart.js';
 import { ChartsModule } from 'ng2-charts';

@@ -13,15 +13,33 @@ export class InspectionModalPage {
   asset: string;
   info: string;
   data: any;
-  routine: { assetstatus: any, replace: boolean, plan: boolean, measurement: boolean, remark: string };
-  assetinspect: { routine: any, asset_id: number, ins_id: number, rfid: number, ins_type: string, start_date: string, last_date: Date, process_loc: string, class: string, asset_type: string };
+  
+
+  assetinspect: { 
+    asset_id: number, 
+    ins_id: number, 
+    rfid: number, 
+    ins_type: string, 
+    start_date: string, 
+    last_date: Date, 
+    process_loc: string, 
+    class: string, 
+    asset_type: string,
+    routine: { assetstatus: any, replace: boolean, plan: boolean, measurement: boolean, remark: string },
+    images: {
+      imageBefore: Array<any>,
+      imageDuring: Array<any>,
+      imageAfter: Array<any>
+    }
+   };
   assetinspectList: Array<any>
   index:number;
+  myphoto: any;
 
   constructor( public viewController: ViewController, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
 
-    this.routine = { assetstatus: true, replace: false, plan: false, measurement: false, remark: null}
-
+   
+    this.myphoto = 'assets/imgs/nod-home.jpg';
     this.assetinspect = {
       asset_id: null,
       ins_id: null,
@@ -32,7 +50,12 @@ export class InspectionModalPage {
       process_loc: null,
       class: null,
       asset_type: null,
-      routine: true
+      routine: { assetstatus: null, replace: null, plan: null, measurement: null, remark: null },
+      images: {
+        imageBefore: [],
+        imageDuring: [],
+        imageAfter: []
+      }
     };
     this.data = this.navParams.get('params');
     console.log(this.data);
@@ -43,7 +66,7 @@ export class InspectionModalPage {
   }
 
   goToEditPage(){
-    this.viewController.dismiss({data: this.assetinspect, type: 'edit_ins', index: this.index})
+    this.viewController.dismiss({data: this.assetinspect, type: 'edit', index: this.index})
   }
 
 
@@ -56,9 +79,9 @@ export class InspectionModalPage {
       if (val) {
         console.log('data',this.data.id)
         this.assetinspectList = JSON.parse(val);
-        console.log(JSON.stringify(this.assetinspectList))
+        //console.log(JSON.stringify(this.assetinspectList))
 
-        this.index = this.assetinspectList.findIndex(asset => asset.id == this.data.ins_id);
+        this.index = this.assetinspectList.findIndex(inspection => inspection.id == this.data.ins_id);
 
         if (this.index >= 0) {
           this.assetinspect = this.assetinspectList[this.index];

@@ -33,10 +33,6 @@ export class Camera2Page {
     this.viewController.dismiss(null)
   }
 
-  // dismiss() {
-  //   this.viewController.dismiss(null)
-  // }
-
   takePhoto() {
     const options: CameraOptions = {
       quality: 50,

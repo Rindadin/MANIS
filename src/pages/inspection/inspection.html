@@ -128,7 +128,7 @@
 
             <ion-item>
               <ion-label stacked color="dark">Asset Status</ion-label>
-              <ion-select [(ngModel)]="routine.assetstatus"placeholder="please select" interface="popover">
+              <ion-select [(ngModel)]="routine.assetstatus" placeholder="please select" interface="popover">
                 <ion-option *ngFor="let assetstatus of assetinspectStatus" [value]="assetstatus.name">{{assetstatus.name}}</ion-option>
               </ion-select>
             </ion-item>
@@ -222,15 +222,14 @@
           <ion-row>
             <ion-col col-3 offset-9>
               <div align="right">
-                <button icon-end class="btn" ion-button (click)="openModal()">Image Before
-                  <!-- <ion-icon name="add"></ion-icon> -->
+                <button icon-end class="btn" ion-button (click)="openModal('before')">Image Before
                 </button>
               </div>
             </ion-col>
 
-            <ion-col col-3 style="bottom: 30px" *ngFor="let image of imageList">
+            <ion-col col-3 style="bottom: 30px" *ngFor="let image of assetinspect.images.imageBefore">
               <ion-card>
-                <img [src]="showImage(image.photo)||'assets/imgs/dashboard.jpg'" />
+                <img [src]="showImage2(image.photo)" />
                 <ion-card-content>
                   <p>{{image.title}}</p>
                 </ion-card-content>
@@ -239,15 +238,14 @@
 
             <ion-col col-3 offset-9>
               <div align="right">
-                <button icon-end class="btn" ion-button (click)="openModal()">Image During
-                  <!-- <ion-icon name="add"></ion-icon> -->
+                <button icon-end class="btn" ion-button (click)="openModal('during')">Image During
                 </button>
               </div>
             </ion-col>
 
-            <ion-col  col-3 style="bottom: 30px" *ngFor="let image of imageList">
+            <ion-col  col-3 style="bottom: 30px" *ngFor="let image of assetinspect.images.imageDuring">
               <ion-card>
-                <img [src]="showImage(image.photo)||'assets/imgs/dashboard.png'" />
+                <img [src]="showImage2(image.photo)" />
                 <ion-card-content>
                   <p>{{image.title}}</p>
                 </ion-card-content>
@@ -256,15 +254,14 @@
 
             <ion-col col-3 offset-9>
               <div align="right">
-                <button icon-end class="btn" ion-button (click)="openModal()">Image After
-                  <!-- <ion-icon name="add"></ion-icon> -->
+                <button icon-end class="btn" ion-button (click)="openModal('after')">Image After
                 </button>
               </div>
             </ion-col>
 
-            <ion-col col-3 style="bottom: 30px"  *ngFor="let image of imageList">
+            <ion-col col-3 style="bottom: 30px"  *ngFor="let image of assetinspect.images.imageAfter">
               <ion-card>
-                <img [src]="showImage(image.photo)||'assets/imgs/dashboard.png'" />
+                <img [src]="showImage2(image.photo)" />
                 <ion-card-content>
                   <p>{{image.title}}</p>
                 </ion-card-content>

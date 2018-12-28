@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, Config, ModalController, } from 'i
 import { Storage } from '@ionic/storage';
 import { RegisterPage } from '../register/register';
 import { InspectionPage } from '../inspection/inspection';
-import { ifError } from 'assert';
 
 @IonicPage()
 @Component({
@@ -115,8 +114,8 @@ export class PendingPage {
       this.modalOpen = true;
       if(response){
         console.log(response)
-        if(response.type == 'edit_ins'){
-          this.navCtrl.setRoot(InspectionPage, {params: response.data, index: response.index });
+        if(response.type == 'edit'){
+          this.navCtrl.setRoot(InspectionPage, {params: response.data, index: response.index, type: response.type });
         }
       }
     })

@@ -13,13 +13,13 @@ export class DatalistPage {
   info: string;
   data: any;
   assetowning: {
-    id: number, owning_org: string, main_op: string, 
+    id: number, owning_org: string, main_op: string,
     op: string, region: string, wtp: string,
-    process_loc: string, function: string, sub_system: string, 
-    sub_function: string, class: string, asset_type: string, 
+    process_loc: string, function: string, sub_system: string,
+    sub_function: string, class: string, asset_type: string,
     sub_cat1: string, sub_cat2: string,
-    pm: string, brand: string, size1:string, 
-    size2: string, size3:string, parentplate_no: string, 
+    pm: string, brand: string, size1: string,
+    size2: string, size3: string, parentplate_no: string,
     cm: string, model_no: string, unit_size1: string,
     unit_size2: string, unit_size3: string, plate_no: string,
     formulated: string, serial_no: string, scada: string, asset_tag: string,
@@ -90,10 +90,6 @@ export class DatalistPage {
     this.viewController.dismiss({data: this.assetowning, type: 'edit', index: this.index})
   }
 
- 
-
- 
-
   dismiss() {
     this.viewController.dismiss(null)
   }
@@ -120,28 +116,6 @@ export class DatalistPage {
       }
 
     })
-
-    // this.storage.get('GIS_LIST').then((val) => {
-
-    //   if (val) {
-    //     console.log('data', this.data.lat)
-    //     this.gisList = JSON.parse(val);
-    //     console.log(JSON.stringify(this.gisList))
-
-    //     let index = this.gisList.findIndex(asset => asset.lat == this.data.lat);
-
-    //     if (index >= 0) {
-    //       this.gis = this.gisList[index];
-    //     } else {
-    //       console.log('asset not found')
-    //     }
-
-    //   } else {
-    //     this.gisList = [];
-    //   }
-
-    // })
-
 
     console.log(this.assetowning);
 
