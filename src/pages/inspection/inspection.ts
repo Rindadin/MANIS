@@ -144,7 +144,7 @@ export class InspectionPage {
   }
 
   goToPendingPage() {
-    this.navCtrl.setRoot('PendingPage');
+    this.navCtrl.setRoot('PendingPage', {type: 'inspect'});
   }
 
   showImage2(pic: string) {
@@ -158,7 +158,7 @@ export class InspectionPage {
       type: 'new',
       id: id
     }
-    const myModal = this.modal.create('Camera2Page', { params: params }, { cssClass: 'camera2-modal' })
+    const myModal = this.modal.create('Camera2Page', { params: params }, { cssClass: 'camera2-modal', enableBackdropDismiss: false })
     myModal.onDidDismiss(data => {
       if (data) {
         // alert(JSON.stringify(data));

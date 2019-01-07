@@ -31,7 +31,7 @@ export class DatalistPage {
   assetowningList: Array<any>
   gisList: Array<any>
   index: number;
-
+  myphoto: any;
   constructor(public storage: Storage, public viewController: ViewController, public navCtrl: NavController, public navParams: NavParams) {
    this.assetowning = {
       id: null,
@@ -71,13 +71,6 @@ export class DatalistPage {
       gis: { gis_id: null, lat: null, long: null }
     };
 
-    this.gis = {
-      gis_id: null, 
-      lat: null, 
-      long: null
-
-    };
-
     this.data = this.navParams.get('params');
     console.log(this.data);
   }
@@ -107,6 +100,17 @@ export class DatalistPage {
 
         if (this.index >= 0) {
           this.assetowning = this.assetowningList[this.index];
+          if(this.assetowning.imageList[0]){
+            let photo = this.assetowning.imageList[0].photo;
+            if(photo){
+              this.myphoto = 'data:image/jpeg;base64,'+ photo;
+            } else {
+              this.myphoto = null;
+            }
+          } else {
+            this.myphoto = null;
+          }
+          
         } else {
           console.log('asset not found')
         }

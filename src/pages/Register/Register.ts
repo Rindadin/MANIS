@@ -104,6 +104,7 @@ export class RegisterPage {
         spinner: 'circles',
         content: 'Please Wait for latitude and longitude to be retrieve..'
       });
+      loading.present();
 
       this.type = 'register';
       this.title = 'Asset Registration'
@@ -409,7 +410,7 @@ export class RegisterPage {
       id: id
     }
 
-    const myModal = this.modal.create('CameraPage', { params: params }, { cssClass: 'camera-modal' })
+    const myModal = this.modal.create('CameraPage', { params: params }, { cssClass: 'camera-modal', enableBackdropDismiss: false })
 
     myModal.onDidDismiss(data => {
       if (data) {
@@ -445,7 +446,7 @@ export class RegisterPage {
   }
 
   goToPendingPage() {
-    this.navCtrl.push('PendingPage');
+    this.navCtrl.setRoot('PendingPage', {type: 'register'});
   }
 
 

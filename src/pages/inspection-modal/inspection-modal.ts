@@ -38,7 +38,6 @@ export class InspectionModalPage {
 
   constructor( public viewController: ViewController, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
 
-   
     this.myphoto = 'assets/imgs/nod-home.jpg';
     this.assetinspect = {
       asset_id: null,
@@ -81,18 +80,30 @@ export class InspectionModalPage {
         this.assetinspectList = JSON.parse(val);
         //console.log(JSON.stringify(this.assetinspectList))
 
-        this.index = this.assetinspectList.findIndex(inspection => inspection.id == this.data.ins_id);
+        this.index = this.assetinspectList.findIndex(inspection => inspection.ins_id == this.data.id);
 
         if (this.index >= 0) {
           this.assetinspect = this.assetinspectList[this.index];
+          if(this.assetinspect.images.imageBefore[0]){
+            let photo = this.assetinspect.images.imageBefore[0].photo;
+            if(photo){
+              this.myphoto = 'data:image/jpeg;base64,'+ photo;
+            } else {
+              this.myphoto = null;
+            }
+          } else {
+            this.myphoto = null;
+          }
         } else {
           console.log('asset not found')
         }
+        console.log(this.assetinspect);
+
+        
       } else {
         this.assetinspectList = [];
       }
     })
-    console.log(this.assetinspect);
   
   }
 

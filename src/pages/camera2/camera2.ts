@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ActionSheetController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
 
@@ -10,9 +10,13 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 })
 export class Camera2Page {
   myphoto: any;
-  imageData: any;
+  imageData: {id: any, photo: any, title: string, description: string, dateCaptured: string, dateUploaded: string}
   public date: string = new Date().toLocaleString();
-  constructor( public camera: Camera, public viewController: ViewController, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public camera: Camera, 
+    public viewController: ViewController, 
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public actionSheetCtrl: ActionSheetController) {
     let data = this.navParams.get('params');
     this.imageData = {id: null, photo: null, title: null, description: null, dateCaptured: this.date, dateUploaded: this.date}
     if (data.type == 'new'){
@@ -33,7 +37,35 @@ export class Camera2Page {
     this.viewController.dismiss(null)
   }
 
-  takePhoto() {
+  async selectPhoto(){
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Get image from..',
+      buttons: [
+        {
+          text: 'Camera',
+          handler: () => {
+            this.takePhoto(this.camera.PictureSourceType.CAMERA);
+          }
+        },
+        {
+          text: 'Photo Album',
+          handler: () => {
+            this.takePhoto(this.camera.PictureSourceType.PHOTOLIBRARY);
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            return;
+          }
+        }
+      ]
+    });
+    await actionSheet.present();
+  }
+
+  takePhoto(sourceType: any) {
     const options: CameraOptions = {
       quality: 50,
       targetHeight: 600,
@@ -41,7 +73,8 @@ export class Camera2Page {
       correctOrientation: true,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
+      mediaType: this.camera.MediaType.PICTURE,
+      sourceType: sourceType
     }
 
     this.camera.getPicture(options).then((imageData) => {

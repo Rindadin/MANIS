@@ -15,12 +15,6 @@ import { ListPage } from '../pages/list/list';
 import { Storage } from '@ionic/storage';
 import { NotificationPage } from '../pages/notification/notification';
 
-
-
-
-
-
-
 @Component({
   templateUrl: 'app.html'
 })
@@ -33,8 +27,8 @@ export class MyApp {
 
   constructor(private storage: Storage, private oneSignal: OneSignal, public user: UserProvider, public events: Events, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
-    // this.storage.clear();
-    // used for an example of ngFor and navigation
+    //this.storage.clear();
+    //used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage, icon: 'home' },
       { title: 'Dashboard', component: DashboardPage, icon: 'aperture' },
@@ -49,7 +43,6 @@ export class MyApp {
 
     ];
     this.listenToLoginEvents();
-
   }
 
   initializeApp() {
@@ -63,7 +56,6 @@ export class MyApp {
         //alert(JSON.stringify(data))
       }, err => {
         //alert(JSON.stringify(err))
-
       });
       this.oneSignal.endInit();
 

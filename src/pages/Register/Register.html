@@ -206,7 +206,7 @@
 
           <ion-col col-6>
             <ion-item>
-              <ion-label stacked color="dark">Preventive Maintainance</ion-label>
+              <ion-label stacked color="dark">Corrective Maintainance</ion-label>
               <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="assetowning.pm" max="2030-12-31"></ion-datetime>
             </ion-item>
 
@@ -240,7 +240,7 @@
           <ion-col col-6>
 
             <ion-item>
-              <ion-label stacked color="dark">Corrective Maintainance</ion-label>
+              <ion-label stacked color="dark">Preventive Maintainance</ion-label>
               <!-- <ion-input type="text" [(ngModel)]="assetowning.cm"></ion-input> -->
               <ion-select [(ngModel)]= "assetowning.cm" placeholder="Please select" interface="popover">
                 <ion-option *ngFor="let corrective of assetCorrectiveList" [value]="corrective.id">{{corrective.name}}</ion-option>
