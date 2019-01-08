@@ -10,11 +10,10 @@
           </div>
           <ion-list no-lines>
             <ion-item >
-              <ion-input type="text" placeholder="Email"></ion-input>
+              <ion-input type="text" placeholder="Username" [(ngModel)]="userInfo.username"></ion-input>
             </ion-item>
-
             <ion-item>
-              <ion-input type="password" placeholder="Password" color="dark"></ion-input>
+              <ion-input type="password" placeholder="Password" color="dark"  [(ngModel)]="userInfo.password"></ion-input>
             </ion-item>
           </ion-list>
           <ion-item>

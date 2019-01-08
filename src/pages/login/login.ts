@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
-import { HomePage } from '../home/home';
+// import { HomePage } from '../home/home';
 
 
 
@@ -18,21 +18,26 @@ import { HomePage } from '../home/home';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public user: UserProvider) {
+  userInfo: { username: string, password: string }
+  constructor(private loadingController: LoadingController, public navCtrl: NavController, public navParams: NavParams, public user: UserProvider) {
+    this.userInfo = { username: null, password: null };
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  doLogin(){
-    this.user.login('username');
-    this.navCtrl.setRoot(HomePage, {}, {animate: true});
+  doLogin() {
+    const loading = this.loadingController.create({
+      duration: 1500
+    });
+    loading.present();
+    this.user.login(this.userInfo);
+    //this.navCtrl.setRoot(HomePage, {}, {animate: true});
   }
 
-  forgotPassword(){
-    
+  forgotPassword() {
+
   }
 
 }

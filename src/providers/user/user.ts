@@ -2,7 +2,9 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/share';
 import { Injectable } from '@angular/core';
 import { ApiProvider } from '../api/api';
-import { Events } from 'ionic-angular';
+import { Events, AlertController } from 'ionic-angular';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Storage } from '@ionic/storage';
 
 
 /**
@@ -28,9 +30,11 @@ import { Events } from 'ionic-angular';
 export class UserProvider {
   _user: any;
   _type: string;
-
-  constructor(public api: ApiProvider, protected events: Events) { 
+  token: string = null;
+  baseURL: string = 'http://demo.amisapi.com.ngrok.io/api/v1';
+  constructor(public api: ApiProvider, protected events: Events, public alertCtrl: AlertController, public http: HttpClient, public storage: Storage) { 
     this._type = 'normal';
+    
   }
 
   /**
@@ -38,7 +42,25 @@ export class UserProvider {
    * the user entered on the form.
    */
   login(accountInfo: any) {
-    this.events.publish('user:login');
+    this.api.doLogin(accountInfo).then(data => {
+      let res: any = data
+      console.log(res);
+      if(res.access_token){ // if login success
+        this.storage.set('TOKEN', res.access_token);
+        this.events.publish('user:login');
+      } else {
+        const alert = this.alertCtrl.create({
+          title: 'Invalid username or password!',
+          buttons: ['OK']
+        });
+        alert.present();
+      }
+    }, err => {
+      alert(JSON.stringify(err));
+    })
+    
+    // this.events.publish('user:login');
+
     //let seq = this.api.post('login', accountInfo).share();
     // let seq = this.api.post('login', accountInfo);
     // seq.subscribe((res: any) => {
@@ -61,6 +83,29 @@ export class UserProvider {
     // });
       
   }
+
+  getProfile(id: any) {
+    let url = this.baseURL + '/user/13';
+    return new Promise((resolve, reject) => {
+      this.storage.get('TOKEN').then(data => {
+
+        this.token = data;
+        console.log('token ', this.token)
+        let _headers = new HttpHeaders({
+          'Authorization': this.token
+        })
+
+        this.http.get(url, { headers: _headers })
+        .subscribe(response => {
+          resolve(response);
+        }, err => {
+          reject(err);
+        })
+
+      })
+    })
+  }
+
 
   userType(){
     return this._type;
@@ -93,7 +138,12 @@ export class UserProvider {
    * Log the user out, which forgets the session
    */
   logout() {
-    this._user = null;
+    // this._user = null;
+    // this.api.doLogout().then(res => {
+
+    // }, err => {
+
+    // })
     this.events.publish('user:logout');
   }
 

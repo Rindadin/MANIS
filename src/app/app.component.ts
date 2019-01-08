@@ -63,7 +63,7 @@ export class MyApp {
   }
 
   logout() {
-    console.log('logout noe');
+    console.log('logout now');
     this.user.logout();
   }
 
@@ -85,6 +85,7 @@ export class MyApp {
       //this.setProfile();
       //this.enableMenu(true);
       this.isLoggedIn = true;
+      this.nav.setRoot(HomePage, {}, {animate: true});
     });
 
     this.events.subscribe('user:signup', () => {
