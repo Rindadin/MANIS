@@ -2,7 +2,7 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/share';
 import { Injectable } from '@angular/core';
 import { ApiProvider } from '../api/api';
-import { Events, AlertController } from 'ionic-angular';
+import { Events, AlertController, LoadingController } from 'ionic-angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 
@@ -32,9 +32,9 @@ export class UserProvider {
   _type: string;
   token: string = null;
   baseURL: string = 'http://demo.amisapi.com.ngrok.io/api/v1';
-  constructor(public api: ApiProvider, protected events: Events, public alertCtrl: AlertController, public http: HttpClient, public storage: Storage) { 
+  constructor(public loadingController: LoadingController, public api: ApiProvider, protected events: Events, public alertCtrl: AlertController, public http: HttpClient, public storage: Storage) {
     this._type = 'normal';
-    
+
   }
 
   /**
@@ -42,76 +42,110 @@ export class UserProvider {
    * the user entered on the form.
    */
   login(accountInfo: any) {
+    const loading = this.loadingController.create({
+      spinner: 'circles'
+    });
+    loading.present();
     this.api.doLogin(accountInfo).then(data => {
       let res: any = data
       console.log(res);
-      if(res.access_token){ // if login success
+      if (res.access_token) { // if login success
         this.storage.set('TOKEN', res.access_token);
-        this.events.publish('user:login');
+        this.getProfile(res.id).then(res=>{
+          loading.dismiss();
+          this.events.publish('user:login');
+          let response: any = res;
+          let user = response.feedData[0];
+          console.log(user);
+          this.storage.set('USER', JSON.stringify(user));
+        }, err=>{ 
+          console.log(JSON.stringify(err))
+          loading.dismiss();
+        }) 
       } else {
+        loading.dismiss();
         const alert = this.alertCtrl.create({
-          title: 'Invalid username or password!',
+          title: 'Token not found!',
           buttons: ['OK']
         });
         alert.present();
       }
     }, err => {
-      alert(JSON.stringify(err));
+      loading.dismiss();
+      const alert = this.alertCtrl.create({
+        title: 'Invalid username or password!',
+        buttons: ['OK']
+      });
+      alert.present();
+      //alert(JSON.stringify(err));
     })
-    
-    // this.events.publish('user:login');
 
-    //let seq = this.api.post('login', accountInfo).share();
-    // let seq = this.api.post('login', accountInfo);
-    // seq.subscribe((res: any) => {
-    //   // If the API returned a successful response, mark the user as logged in
-    //   if (res.status == 'success') {
-    //     this._loggedIn(res);
-    //   } else {
-    //   }
-    // }, err => {
-    //   console.error('ERROR', err);
-    // });
-
-    // return seq;
   }
 
-  hasLoggedIn(){
-    
+  hasLoggedIn() {
+
     // return this.storage.get(this.HAS_LOGGED_IN).then((value) => {
     //   return value === true;
     // });
-      
+
   }
 
   getProfile(id: any) {
-    let url = this.baseURL + '/user/13';
+    let url = this.baseURL + '/user/'+id;
+    console.log(url);
     return new Promise((resolve, reject) => {
       this.storage.get('TOKEN').then(data => {
 
         this.token = data;
         console.log('token ', this.token)
-        let _headers = new HttpHeaders({
-          'Authorization': this.token
-        })
+        // let _headers = new HttpHeaders({
+        //   'Authorization': this.token
+        // })
+        // let _headers = new HttpHeaders();
+        // _headers.set('Accept', 'text/javascript');
+        // _headers.set('Authorization', 'dzczSml3SmRnQ3JXWkZCV3Y1SEZmU0Y2a2E3RDdZU2Z6b29hZlJZTXVscUhYNEhkVjMyb1M2STFqM0NH5c34b890add40');
+        const httpOptions = {
+          headers: new HttpHeaders().append('Authorization', this.token)
+        };
+        this.http.get(url, httpOptions)
+          // console.log(url)
+          // this.http.get(url)
+          .subscribe(response => {
+            console.log(response)
+            resolve(response);
+          }, err => {
+            reject(err);
+          })
 
-        this.http.get(url, { headers: _headers })
-        .subscribe(response => {
-          resolve(response);
-        }, err => {
-          reject(err);
+      })
+    })
+  }
+
+  logout() {
+    let url = this.baseURL + '/logout';
+    let body = {};
+    return new Promise((resolve, reject) => {
+      this.storage.get('TOKEN').then(token => {
+        let _headers = new HttpHeaders({
+          'Authorization': token
         })
+        this.http.post(url, JSON.stringify(body), { headers: _headers })
+          .subscribe(response => {
+            resolve(response)
+          }, err => {
+            reject(err);
+          })
 
       })
     })
   }
 
 
-  userType(){
+  userType() {
     return this._type;
   }
 
-  setUserType(type){
+  setUserType(type) {
     this._type = type;
   }
 
@@ -137,7 +171,7 @@ export class UserProvider {
   /**
    * Log the user out, which forgets the session
    */
-  logout() {
+  logout_old() {
     // this._user = null;
     // this.api.doLogout().then(res => {
 
@@ -156,5 +190,5 @@ export class UserProvider {
 
 
 
-  
+
 }

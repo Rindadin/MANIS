@@ -51,7 +51,12 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.oneSignal.startInit('14ab8625-efd9-4b39-b071-2e51809d5334', '1071403410139');
-
+      this.storage.get('HAS_LOGGED_IN').then(res=>{
+        //let token: any = JSON.parse(_token);
+        if(res){
+          this.events.publish('user:login');
+        }
+      })
       this.oneSignal.getIds().then((data) => {
         //alert(JSON.stringify(data))
       }, err => {
@@ -64,7 +69,10 @@ export class MyApp {
 
   logout() {
     console.log('logout now');
-    this.user.logout();
+    this.events.publish('user:logout');
+    this.user.logout().then(res=>{
+      console.log(res);
+    });
   }
 
   shouldShow() {
@@ -81,7 +89,7 @@ export class MyApp {
   listenToLoginEvents() {
 
     this.events.subscribe('user:login', () => {
-      localStorage.setItem('hasLoggedIn', JSON.stringify(true));
+      this.storage.set('HAS_LOGGED_IN', true);
       //this.setProfile();
       //this.enableMenu(true);
       this.isLoggedIn = true;
@@ -93,7 +101,7 @@ export class MyApp {
     });
 
     this.events.subscribe('user:logout', () => {
-      // localStorage.setItem('hasLoggedIn', JSON.stringify(false));
+      this.storage.remove('HAS_LOGGED_IN');
       //this.enableMenu(false);
       console.log('logout');
       this.isLoggedIn = false;

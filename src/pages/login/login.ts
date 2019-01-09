@@ -28,10 +28,6 @@ export class LoginPage {
   }
 
   doLogin() {
-    const loading = this.loadingController.create({
-      duration: 1500
-    });
-    loading.present();
     this.user.login(this.userInfo);
     //this.navCtrl.setRoot(HomePage, {}, {animate: true});
   }
