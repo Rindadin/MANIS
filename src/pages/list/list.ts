@@ -35,7 +35,9 @@ export class ListPage {
     // this.assetlocList = [];
     // this.assetgroupList = [];
     this.modalOpen = true;
-    this.assetowningList = [];
+    this.assetowningList = [
+      
+    ];
     this.columns = [
       { prop: 'process_loc', name: 'Process Location' },
       { prop: 'function', name: 'Process Function ' },

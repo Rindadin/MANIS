@@ -3,12 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { UserProvider } from '../../providers/user/user';
 import { Storage } from '@ionic/storage';
 
-/**
- * Generated class for the ProfilePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({

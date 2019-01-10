@@ -1,17 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
-/*
-  Generated class for the ApiProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class ApiProvider {
   baseURL: string = 'http://demo.amisapi.com.ngrok.io/api/v1';
+  token: string;
 
-  constructor(public http: HttpClient) {
+  constructor(public storage: Storage, public http: HttpClient) {
     console.log('Hello ApiProvider Provider');
   }
 
@@ -28,6 +25,37 @@ export class ApiProvider {
           reject(err);
         })
     })
+  }
+
+  getTechnicalSpect(assetID: any) {
+    let url = this.baseURL + '/asset/'+assetID;
+    return new Promise((resolve, reject) => {
+      this.storage.get('TOKEN').then(data => {
+
+        this.token = data;
+        console.log('token ', this.token)
+        // let _headers = new HttpHeaders({
+        //   'Authorization': this.token
+        // })
+        // let _headers = new HttpHeaders();
+        // _headers.set('Accept', 'text/javascript');
+        // _headers.set('Authorization', 'dzczSml3SmRnQ3JXWkZCV3Y1SEZmU0Y2a2E3RDdZU2Z6b29hZlJZTXVscUhYNEhkVjMyb1M2STFqM0NH5c34b890add40');
+        const httpOptions = {
+          headers: new HttpHeaders().append('Authorization', this.token)
+        };
+        this.http.get(url, httpOptions)
+          // console.log(url)
+          // this.http.get(url)
+          .subscribe(response => {
+            // console.log(response)
+            resolve(response);
+          }, err => {
+            reject(err);
+          })
+
+      })
+    })
+
   }
 
   doLogin(accountInfo: any) {

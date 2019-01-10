@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, Config } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
+import { ApiProvider } from '../../providers/api/api';
 
 
 @IonicPage()
@@ -15,18 +16,18 @@ export class Datalist2Page {
   info: string;
   data: any;
   assetowning: {
-    id: number, owning_org: string,  main_op: string, op: string, region: string, wtp: string,
+    id: number, owning_org: string, main_op: string, op: string, region: string, wtp: string,
     process_loc: string, function: string, sub_system: string, sub_function: string, class: string, asset_type: string, sub_cat1: string, sub_cat2: string
   };
   assetowningList: Array<any>
-  index:number;
+  index: number;
 
-  constructor( public _HTTP: HttpClient,  public storage: Storage, public viewController: ViewController, public navCtrl: NavController, public navParams: NavParams) {
-    
+  constructor( public api: ApiProvider, public _HTTP: HttpClient, public storage: Storage, public viewController: ViewController, public navCtrl: NavController, public navParams: NavParams) {
+
     this.assetowning = {
       id: null,
-      owning_org:  null,
-      main_op:  null,
+      owning_org: null,
+      main_op: null,
       op: null,
       region: null,
       wtp: null,
@@ -47,28 +48,33 @@ export class Datalist2Page {
     this.viewController.dismiss(null)
   }
 
-  goToInspectionPage(){
-    this.viewController.dismiss({data: this.assetowning, type: 'inspect'})
+  goToInspectionPage() {
+    this.viewController.dismiss({ data: this.assetowning, type: 'inspect' })
   }
 
 
-  ionViewDidLoad() : void {
+  ionViewDidLoad(): void {
 
-   
-    this._HTTP
-    .get<Config>('../../assets/data/asset.json')
-    .subscribe((data) =>
-    {
-      let value: any = data; 
-      this.assetowningList = value.asset;
-      let index = this.assetowningList.findIndex(asset => asset.id == this.data.id);
-      
-      if (index >= 0) {
-        this.assetowning = this.assetowningList[index];
-      } else {
-        console.log('asset not found')
-      }
 
-    });
- }
+    // this._HTTP
+    //   .get<Config>('../../assets/data/asset.json')
+    //   .subscribe((data) => {
+    //     let value: any = data;
+    //     this.assetowningList = value.asset;
+    //     let index = this.assetowningList.findIndex(asset => asset.id == this.data.id);
+
+    //     if (index >= 0) {
+    //       this.assetowning = this.assetowningList[index];
+    //     } else {
+    //       console.log('asset not found')
+    //     }
+
+    //   });
+    console.log(this.data.id);
+    this.api.getTechnicalSpect(this.data.id).then( res =>{
+      let response:any = res;
+      console.log(response);
+    })
+
   }
+}
