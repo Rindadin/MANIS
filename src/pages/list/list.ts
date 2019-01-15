@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
 import { InspectionPage } from '../inspection/inspection';
+import { ApiProvider } from '../../providers/api/api';
 
 
 export interface Config {
@@ -31,7 +32,7 @@ export class ListPage {
   public rows: any;
   users: any;
 
-  constructor(public modalCtrl: ModalController, public modal: ModalController, public _HTTP: HttpClient, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
+  constructor( public api: ApiProvider, public loadingCtrl: LoadingController, public modalCtrl: ModalController, public modal: ModalController, public _HTTP: HttpClient, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
     // this.assetlocList = [];
     // this.assetgroupList = [];
     this.modalOpen = true;
@@ -39,10 +40,10 @@ export class ListPage {
       
     ];
     this.columns = [
-      { prop: 'process_loc', name: 'Process Location' },
-      { prop: 'function', name: 'Process Function ' },
-      { prop: 'sub_system', name: 'Sub System Category' },
-      { prop: 'sub_function', name: 'Sub System Function' }
+      { prop: 'assetID', name: 'asset ID' },
+      { prop: 'RFID', name: 'RFID ' },
+      { prop: 'SoftTag', name: 'Soft Tag' },
+      { prop: 'Name', name: 'Name' }
     ];
 
   }
@@ -51,7 +52,7 @@ export class ListPage {
     console.log('trigger',e);
 
     let params = {
-      id: e.row.id
+      id: e.row.assetID
     }
 
     const modal = this.modal.create('Datalist2Page', { params: params }, { cssClass: 'camera-modal' })
@@ -71,13 +72,47 @@ export class ListPage {
     }
   }
 
-  ionViewDidLoad(): void {
-    this._HTTP
-      .get<Config>('../../assets/data/asset.json')
-      .subscribe((data) => {
-        this.rows = data.asset;
+  getSyncData(){
+    
+    let loading = this.loadingCtrl.create({
+      spinner: 'circles',
+      content: 'Please Wait..'
+    });
+
+
+    loading.present();
+    this.api.getAssetAll().then(res => {
+      loading.dismiss();
+      let result: any = res;
+      console.log(result);
+      this.assetowningList = result.assetCat;
+      console.log(this.assetowningList);
+      this.storage.set('ASSETOWNINGLIST', JSON.stringify(this.assetowningList)).then(res=>{
+        this.ionViewDidLoad();
       });
+      
+    }).catch (err => {
+      console.log(err)
+      loading.dismiss();
+      
+    });
   }
+
+  ionViewDidLoad(): void {
+    // this._HTTP
+    //   .get<Config>('../../assets/data/asset.json')
+    //   .subscribe((data) => {
+    //     this.rows = data.asset;
+    //   });
+    this.storage.get('ASSETOWNINGLIST').then(data =>{
+      this.assetowningList = JSON.parse(data)
+      this.rows = this.assetowningList;
+      console.log(this.rows);
+    })
+
+  }
+
+
 
 }
 

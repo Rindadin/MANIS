@@ -9,65 +9,71 @@
         <ion-col col-6 >
             <ion-item>
                 <ion-label stacked color="dark">Asset ID</ion-label>
-                <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.id"></ion-input>
+                <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.assetID"></ion-input>
               </ion-item>
 
             <ion-item>
-              <ion-label stacked color="dark">Main Operation</ion-label>
-              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.main_op"></ion-input>
+              <ion-label stacked color="dark">Soft Tag</ion-label>
+              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.SoftTag"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label stacked color="dark">Region</ion-label>
-              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.region"></ion-input>           
+              <ion-label stacked color="dark">last Preventive</ion-label>
+              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.LastPreventive"></ion-input>           
             </ion-item>
 
 
             <ion-item>
-              <ion-label stacked color="dark">Process Location Category</ion-label>
-              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.process_loc"></ion-input>
+              <ion-label stacked color="dark">Model</ion-label>
+              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.Model"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label stacked color="dark">Sub Process/System</ion-label>
-              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.sub_system"></ion-input>
+              <ion-label stacked color="dark">Speed(RPM)</ion-label>
+              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.Speed"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label stacked color="dark">Sub Category 1</ion-label>
-              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.sub_cat1"></ion-input>
+              <ion-label stacked color="dark">Frequency</ion-label>
+              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.Frequency"></ion-input>
             </ion-item>
           </ion-col>
 
           <ion-col col-6>
             <ion-item>
-              <ion-label stacked color="dark">Owning Organization</ion-label>
-              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.owning_org"></ion-input>
+              <ion-label stacked color="dark">RFID</ion-label>
+              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.RFID"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label stacked color="dark">Operation</ion-label>
-              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.op"></ion-input>
+              <ion-label stacked color="dark">Name</ion-label>
+              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.Name"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label stacked color="dark">Treatment Water Plant</ion-label>
-              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.wtp"></ion-input>
+              <ion-label stacked color="dark">Last Corrective</ion-label>
+              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.LastCorrective"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label stacked color="dark">Process/Function</ion-label>
-              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.function"></ion-input>
+              <ion-label stacked color="dark">Serial Number</ion-label>
+              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.SerialNo"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label stacked color="dark">Sub Process/Function </ion-label>
-              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.sub_function"></ion-input>
+              <ion-label stacked color="dark">Voltage(V)</ion-label>
+              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.Voltage"></ion-input>
             </ion-item>
-
+            <!-- <div *ngIf="checkEquipmentName(assetowning.Name)">
+              <ion-item>
+                <ion-label stacked color="dark">Equipment Name</ion-label>
+                <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.EquipmentName"></ion-input>
+              </ion-item>
+              
+            </div> -->
             <ion-item>
-              <ion-label stacked color="dark">Sub Category 2</ion-label>
-              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.sub_cat2"></ion-input>
+              <ion-label stacked color="dark">Current(A)</ion-label>
+              <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.CurrentA"></ion-input>
             </ion-item>
             
           </ion-col>

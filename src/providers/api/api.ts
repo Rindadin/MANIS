@@ -28,12 +28,12 @@ export class ApiProvider {
   }
 
   getTechnicalSpect(assetID: any) {
-    let url = this.baseURL + '/asset/'+assetID;
+    let url = this.baseURL + '/assetQRCODE/'+assetID;
     return new Promise((resolve, reject) => {
       this.storage.get('TOKEN').then(data => {
 
         this.token = data;
-        console.log('token ', this.token)
+        console.log('token', this.token)
         // let _headers = new HttpHeaders({
         //   'Authorization': this.token
         // })
@@ -55,6 +55,38 @@ export class ApiProvider {
 
       })
     })
+
+  }
+
+  getAssetAll() {
+    let url = this.baseURL + '/assetAll';
+    return new Promise((resolve, reject) => {
+      this.storage.get('TOKEN').then(data => {
+
+        this.token = data;
+        console.log('token', this.token)
+        // let _headers = new HttpHeaders({
+        //   'Authorization': this.token
+        // })
+        // let _headers = new HttpHeaders();
+        // _headers.set('Accept', 'text/javascript');
+        // _headers.set('Authorization', 'dzczSml3SmRnQ3JXWkZCV3Y1SEZmU0Y2a2E3RDdZU2Z6b29hZlJZTXVscUhYNEhkVjMyb1M2STFqM0NH5c34b890add40');
+        const httpOptions = {
+          headers: new HttpHeaders().append('Authorization', this.token)
+        };
+        this.http.get(url, httpOptions)
+          // console.log(url)
+          // this.http.get(url)
+          .subscribe(response => {
+            // console.log(response)
+            resolve(response);
+          }, err => {
+            reject(err);
+          })
+
+      })
+    })
+
 
   }
 
