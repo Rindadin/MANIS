@@ -1,14 +1,16 @@
 import { Component} from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 // import{ Chart } from 'chart.js';
 import { ChartsModule } from 'ng2-charts';
+import { ApiProvider } from '../../providers/api/api';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-dashboard',
   templateUrl: 'dashboard.html'
 })
 export class DashboardPage {
-  
+  assetowningList: Array<any>
   
   public lineChartData:Array<any> = [
     {data: [100, 80, 280, 410, 560], label: 'Structure'},
@@ -33,6 +35,7 @@ export class DashboardPage {
     { // chocolate
       backgroundColor: 'rgba(210,105,30,0.2)',
       borderColor: 'rgba(210,105,30,1)',
+      
       pointBackgroundColor: 'rgba(210,105,30,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
@@ -80,7 +83,7 @@ export class DashboardPage {
   }
 
   // Doughnut
-  public doughnutChartLabels:string[] = ['Instrument', 'Mechanical', 'Electrical', 'Structure'];
+  public doughnutChartLabels:string[] = ['Pump', 'Motor', 'Valve', 'Gear Box'];
   public doughnutChartData:number[] = [400, 200, 200, 200];
   public doughnutChartType:string = 'doughnut';
 
@@ -102,8 +105,8 @@ public barChartType:string = 'bar';
 public barChartLegend:boolean = true;
 
 public barChartData:any[] = [
-  {data: [520,450,310,780,560,460,310,420,580,601,710,900], label:'Instrument'},
-  {data: [401,250,290,580,480,370,300,380,390,401,720,600], label:'Mechanical'}
+  {data: [520,450,310,780,560,460,310,420,580,601,710,900], label:'Pump'},
+  {data: [401,250,290,580,480,370,300,380,390,401,720,600], label:'Motor'}
 
 ];
 
@@ -118,11 +121,44 @@ public chartHover(e:any):void {
 
 
   
-constructor (public navCtrl: NavController, public chart: ChartsModule){}
-  IonViewDidLoad(){
-    console.log('ioniViewLoad DashboardPage');
+constructor ( public storage: Storage, public loadingCtrl:LoadingController, public api:ApiProvider, public navCtrl: NavController, public chart: ChartsModule){
+  this.assetowningList = [];
+}
+getSyncData(){
+    
+  let loading = this.loadingCtrl.create({
+    spinner: 'circles',
+    content: 'Please Wait..'
+  });
+
+
+  loading.present();
+  this.api.getAssetAll().then(res => {
+    loading.dismiss();
+    let result: any = res;
+    console.log(result);
+    this.assetowningList = result.assetCat;
+    console.log(this.assetowningList);
+    this.storage.set('ASSETOWNINGLIST', JSON.stringify(this.assetowningList)).then(res=>{
+      this.ionViewDidLoad();
+    });
+    
+  }).catch (err => {
+    console.log(err)
+    loading.dismiss();
+    
+  });
+}
+
+  ionViewDidLoad(){
    
-      
+   
+      this.storage.get('ASSETOWNINGLIST').then(data =>{
+        this.assetowningList = JSON.parse(data);
+        console.log(data);
+       
+      })
+  
     }
     
   }

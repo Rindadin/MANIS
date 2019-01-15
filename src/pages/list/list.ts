@@ -98,7 +98,8 @@ export class ListPage {
     });
   }
 
-  ionViewDidLoad(): void {
+  ionViewDidLoad()
+: void {
     // this._HTTP
     //   .get<Config>('../../assets/data/asset.json')
     //   .subscribe((data) => {
@@ -111,7 +112,6 @@ export class ListPage {
     })
 
   }
-
 
 
 }

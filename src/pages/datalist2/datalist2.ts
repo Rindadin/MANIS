@@ -91,8 +91,8 @@ export class Datalist2Page {
     this.viewController.dismiss({ data: this.assetowning, type: 'inspect' })
   }
 
-  // checkEquipmentName(Name: string) {
-  //   return (Name == "Crane" || Name == "Gear Box");
+  // checkAssetName(Name: string) {
+  //   return (Name == "Crane");
   // }
 
 
