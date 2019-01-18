@@ -50,18 +50,29 @@ export class UserProvider {
       let res: any = data
       console.log(res);
       if (res.access_token) { // if login success
-        this.storage.set('TOKEN', res.access_token);
-        this.getProfile(res.id).then(res=>{
-          loading.dismiss();
-          this.events.publish('user:login');
-          let response: any = res;
-          let user = response.feedData[0];
-          console.log(user);
-          this.storage.set('USER', JSON.stringify(user));
-        }, err=>{ 
-          console.log(JSON.stringify(err))
-          loading.dismiss();
-        }) 
+        this.storage.set('TOKEN', res.access_token).then(() =>{
+          this.getProfile(res.id).then(res => {
+            let response: any = res;
+            let user = response.feedData[0];
+            console.log(user);
+            this.storage.set('USER', JSON.stringify(user));
+            this.api.getDashboard().then(res2 => {
+              loading.dismiss();
+              let response: any = res2;
+              this.storage.set('DASHBOARD', JSON.stringify(response)).then(()=>{
+                this.events.publish('user:login');
+              })
+              
+            }), err => {
+              console.log(JSON.stringify(err))
+            }
+  
+          }, err => {
+            console.log(JSON.stringify(err))
+            loading.dismiss();
+          })
+        });
+       
       } else {
         loading.dismiss();
         const alert = this.alertCtrl.create({
@@ -91,7 +102,7 @@ export class UserProvider {
   }
 
   getProfile(id: any) {
-    let url = this.baseURL + '/user/'+id;
+    let url = this.baseURL + '/user/' + id;
     console.log(url);
     return new Promise((resolve, reject) => {
       this.storage.get('TOKEN').then(data => {

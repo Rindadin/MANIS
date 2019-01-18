@@ -8,25 +8,25 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-label>Process Location Category Breakdown</ion-label>
-  <div class="row">
-    <div class="col-md-6">
-      <div style="display: bllock;">
-        <canvas baseChart width="900" height="300"
-                    [datasets]="lineChartData"
-                    [labels]="lineChartLabels"
-                    [options]="lineChartOptions"
-                  [colors]="lineChartColors"
-                  [legend]="lineChartLegend"
-                  [chartType]="lineChartType"
-                  (chartHover)="chartHovered($event)"
-                  (chartClick)="chartClicked($event)"></canvas>
-      </div>
-    </div>
-  </div>
+
+  <ion-card>
+
+    <ion-card-header class="card">
+      WATER TREATMENT PLANT LANGAT 2
+    </ion-card-header>
+  
+    <ion-card-content class="card">
+      <img class="img" src="assets/imgs/Langat2.png" />
+     
+     
+    </ion-card-content>
+    
+   
+  
+  </ion-card>
   <ion-grid>
     <ion-row>
-      <ion-col col-6>
+      <ion-col col-12>
         <ion-label>Asset Class Breakdown</ion-label>
          <div style="display: block">
           <canvas baseChart
@@ -37,27 +37,6 @@
                       (chartClick)="chartClicke($event)"></canvas>
         </div>
         </ion-col>
-
-        <ion-col col-6>
-          <ion-label>Asset Class Breakdown</ion-label>
-            <div>
-                <div style="display: block">
-                  <canvas baseChart
-                          [datasets]="barChartData"
-                          [labels]="barChartLabels"
-                          [options]="barChartOptions"
-                          [legend]="barChartLegend"
-                          [chartType]="barChartType"
-                          (chartHover)="chartHover($event)"
-                          (chartClick)="chartClick($event)"></canvas>
-                </div>
-                
-              </div>
-        
-
-      </ion-col>
-    </ion-row>
-  </ion-grid>
- 
-
+        </ion-row>
+        </ion-grid>
 </ion-content>

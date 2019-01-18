@@ -84,9 +84,9 @@ export class InspectionPage {
       let year = _date.getFullYear();
 
       this.assetinspect = {
-        asset_id: data.id,
+        asset_id: data.assetID,
         ins_id: this.id,
-        rfid: null,
+        rfid: data.RFID,
         ins_type: null,
         start_date: day + '/' + month + '/' + year,
         last_date: null,
