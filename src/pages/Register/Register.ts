@@ -104,7 +104,7 @@ export class RegisterPage {
         spinner: 'circles',
         content: 'Please Wait for latitude and longitude to be retrieve..'
       });
-      loading.present();
+      // loading.present();
 
       this.type = 'register';
       this.title = 'Asset Registration'

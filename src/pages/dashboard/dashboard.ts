@@ -28,7 +28,7 @@ export class DashboardPage {
 
   // map: GoogleMap;
 
-  public doughnutChartLabels: string[] = ['registered', 'rejected', 'validated', 'verified'];
+  public doughnutChartLabels: string[] = ['registered', 'rejected', 'verified', 'validated'];
   public doughnutChartData: number[] = [null, null, null, null];
   public doughnutChartType: string = 'doughnut';
 

@@ -90,8 +90,8 @@ export class InspectionPage {
         ins_type: null,
         start_date: day + '/' + month + '/' + year,
         last_date: null,
-        process_loc: data.process_loc,
-        class: data.class,
+        process_loc: data.Name,
+        class: data.SoftTag,
         asset_type: data.asset_type,
         routine: null,
         images: {

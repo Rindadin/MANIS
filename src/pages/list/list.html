@@ -13,18 +13,53 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked color="dark">Process Location</ion-label>
+          <ion-select placeholder="please select" interface="popover">
+            <ion-option *ngFor="let process of processloc" [value]="process.name">{{process.name}}</ion-option>
 
-    <div>
-      <ngx-datatable (activate)='openModal($event)'
-        [sortType]="'multi'"
-        [headerHeight]="50"
-        [footerHeight]="50"
-        [rowHeight]="50"
-        [rows]="rows"
-        [columns]="columns"
-        [columnMode]="'force'"
-        [limit]="10">
-      </ngx-datatable>
-    </div>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked color="dark">Asset Category</ion-label>
+          <ion-select placeholder="please select" interface="popover">
+            <ion-option *ngFor="let asset of assetcat" [value]="asset.name">{{asset.name}}</ion-option>
+
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div>
+    <ngx-datatable (activate)='openModal($event)' [sortType]="'multi'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50"
+      [rows]="rows" [columns]="columns" [columnMode]="'force'" [limit]="10">
+      <ngx-datatable-column prop="assetID" name="asset ID" [width]="300"></ngx-datatable-column>
+      <ngx-datatable-column prop="RFID" name="RFID"></ngx-datatable-column>
+      <ngx-datatable-column prop="SoftTag" name="Soft Tag"></ngx-datatable-column>
+      <ngx-datatable-column name="Action">
+        <ng-template let-value="assetID" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+          <button (click)="inspection(rowIndex)" ion-button>
+            Inspection
+          </button>
+        </ng-template>
+      </ngx-datatable-column>
+      <!-- <ngx-datatable-column name="Actions">
+         
+          <template  ngx-datatable-cell-template>
+              <button ion-button (click)="blockAgents(value)">Inspection
+                 
+              </button>
+              
+          </template>
+      </ngx-datatable-column> -->
+
+    </ngx-datatable>
+  </div>
 
 </ion-content>

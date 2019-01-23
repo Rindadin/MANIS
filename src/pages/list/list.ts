@@ -31,10 +31,39 @@ export class ListPage {
   public columns: any;
   public rows: any;
   users: any;
+  assetcat:Array<any>;
+  processloc: Array<any>;
 
   constructor( public api: ApiProvider, public loadingCtrl: LoadingController, public modalCtrl: ModalController, public modal: ModalController, public _HTTP: HttpClient, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
     // this.assetlocList = [];
     // this.assetgroupList = [];
+    this.processloc = [
+      { id: "01", name: "ADMIN" },
+      { id: "02", name: "RAW WATER" },
+      { id: "03", name: "TREATMENT PROCESS" },
+      { id: "04", name: "SLUDGE TREATMENT" },
+      { id: "05", name: "POWER SUPPLY" }
+    ];
+
+    this.assetcat = [
+      { id: "01", name: "BOARD" },
+      { id: "02", name: "PANELS" },
+      { id: "03", name: "ELECTRIC ACTUATOR" },
+      { id: "04", name: "VALVE" },
+      { id: "05", name: "PUMP" },
+      { id: "06", name: "MOTOR" },
+      { id: "07", name: "FLOWMETER" },
+      { id: "08", name: "TANKS" },
+      { id: "09", name: "FILTERS" },
+      { id: "10", name: "SLUDGE THICKENER" },
+      { id: "11", name: "DRIVE ASSEMBLY" },
+      { id: "12", name: "TRANSFORMERS" },
+      { id: "13", name: "GENERATORS" },
+      { id: "14", name: "ALTERNATORS" },
+      { id: "15", name: "AIR RECEIVERS" },
+      { id: "16", name: "ACCUMULATORS" },
+      { id: "17", name: "LIFTING" }
+    ];
     this.modalOpen = true;
     this.assetowningList = [
       
@@ -43,9 +72,14 @@ export class ListPage {
       { prop: 'assetID', name: 'asset ID' },
       { prop: 'RFID', name: 'RFID ' },
       { prop: 'SoftTag', name: 'Soft Tag' },
-      { prop: 'Name', name: 'Name' }
+      { prop: 'Name', name: 'Name' },
+   
     ];
 
+  }
+
+  inspection(row) {
+    console.log(row);
   }
 
   async openModal(e) {
