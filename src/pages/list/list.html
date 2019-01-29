@@ -37,16 +37,22 @@
   </ion-grid>
 
   <div>
-    <ngx-datatable (activate)='openModal($event)' [sortType]="'multi'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50"
+    <ngx-datatable [sortType]="'multi'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50"
       [rows]="rows" [columns]="columns" [columnMode]="'force'" [limit]="10">
-      <ngx-datatable-column prop="assetID" name="asset ID" [width]="300"></ngx-datatable-column>
+      <ngx-datatable-column prop="assetID" name="asset ID"></ngx-datatable-column>
       <ngx-datatable-column prop="RFID" name="RFID"></ngx-datatable-column>
-      <ngx-datatable-column prop="SoftTag" name="Soft Tag"></ngx-datatable-column>
+      <ngx-datatable-column prop="Name" name="Asset"></ngx-datatable-column>
       <ngx-datatable-column name="Action">
         <ng-template let-value="assetID" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-          <button (click)="inspection(rowIndex)" ion-button>
-            Inspection
+          <button ion-button clear color="dark" (click)='openModal(row)'>
+            <ion-icon class="table" name="eye"></ion-icon>
           </button>
+          <button ion-button clear color="dark" (click)='goToInspectionPage(rowIndex)'>
+            <ion-icon class="table" name="build"></ion-icon>
+          </button>
+           
+         
+        
         </ng-template>
       </ngx-datatable-column>
       <!-- <ngx-datatable-column name="Actions">
@@ -54,7 +60,7 @@
           <template  ngx-datatable-cell-template>
               <button ion-button (click)="blockAgents(value)">Inspection
                  
-              </button>
+              </button> (activate)='openModal($event)'
               
           </template>
       </ngx-datatable-column> -->

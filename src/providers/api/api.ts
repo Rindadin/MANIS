@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { FormArray } from '@angular/forms';
 
 
 @Injectable()
@@ -113,12 +114,40 @@ export class ApiProvider {
           }, err => {
             reject(err);
           })
+          
 
       })
     })
 
 
-  }
+  } 
+  // postSyncData(asset: any){
+  //   let url = this.baseURL + '/all';
+  //   let body = new FormData();
+
+  //   body.append('assetID', asset.assetID);
+  //   body.append('RFID', asset.RFID);
+
+
+  //   return new Promise((resolve, reject) => {
+  //     this.storage.get('TOKEN').then(data =>{
+  //     this.token = data
+  //     })
+  //      const httpOptions = {
+  //       headers: new HttpHeaders().append('Authorization', this.token)
+  //     };
+  //     this.http.post(url,body)
+  //     this.http.get(url,httpOptions)
+  //     // console.log(url)
+  //     // this.http.get(url)
+  //     .subscribe(response => {
+  //       // console.log(response)
+  //       resolve(response);
+  //     }, err => {
+  //       reject(err);
+  //     })
+  //   })
+  // }
 
   doLogin(accountInfo: any) {
     let url = this.baseURL + '/login';

@@ -14,6 +14,7 @@ import { OneSignal } from '@ionic-native/onesignal';
 import { ListPage } from '../pages/list/list';
 import { Storage } from '@ionic/storage';
 import { NotificationPage } from '../pages/notification/notification';
+import { InspectlistPage } from '../pages/inspectlist/inspectlist';
 
 @Component({
   templateUrl: 'app.html'
@@ -32,13 +33,13 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage, icon: 'home' },
       { title: 'Dashboard', component: DashboardPage, icon: 'aperture' },
-      { title: 'Profile', component: 'ProfilePage', icon: 'person' },
+      { title: 'Asset Registration', component: RegisterPage, icon: 'clipboard' },
       // { title: 'Asset Status', component: AssetPage, icon: 'done-all'},
       { title: 'Asset List', component: ListPage, icon: 'list' },
-      { title: 'Asset Registration', component: RegisterPage, icon: 'clipboard' },
-      // { title: 'Asset Inspection', component: InspectionPage, icon: 'md-create' },
+      { title: 'Asset Inspection', component: InspectlistPage, icon: 'md-create' },
       { title: 'Pending Sync', component: PendingPage, icon: 'refresh' },
-      { title: 'Notification', component: NotificationPage, icon: 'notifications' }
+      { title: 'Notification', component: NotificationPage, icon: 'notifications' },
+      { title: 'Profile', component: 'ProfilePage', icon: 'person' }
 
 
     ];

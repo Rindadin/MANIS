@@ -25,6 +25,7 @@ import { OneSignal } from '@ionic-native/onesignal';
 import { ListPageModule } from '../pages/list/list.module';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NotificationPageModule } from '../pages/notification/notification.module';
+import { InspectlistPageModule } from '../pages/inspectlist/inspectlist.module';
 
 
 
@@ -51,7 +52,8 @@ import { NotificationPageModule } from '../pages/notification/notification.modul
     PendingPageModule,
     HomePageModule,
     NgxDatatableModule,
-    NotificationPageModule
+    NotificationPageModule,
+    InspectlistPageModule
     
 
   ],

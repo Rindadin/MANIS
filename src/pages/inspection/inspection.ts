@@ -78,7 +78,7 @@ export class InspectionPage {
     } else {
       this.title = 'Asset Inspection';
       let _date = new Date();
-      this.id = String(_date.getTime()) + '-' + data.id;
+      this.id = String(_date.getTime()) + '-' + data.assetID;
       let month = _date.getMonth() + 1;
       let day = _date.getDay();
       let year = _date.getFullYear();

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController, ViewController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
 import { InspectionPage } from '../inspection/inspection';
@@ -18,6 +18,7 @@ export interface Config {
 })
 export class ListPage {
   modalOpen: boolean;
+  data: any
   assetowning: {
     id: number, owning_org: string, main_op: string, op: string, region: string, wtp: string,
     process_loc: string, function: string, sub_system: string, sub_function: string, class: string, asset_type: string, sub_cat1: string, sub_cat2: string
@@ -34,7 +35,7 @@ export class ListPage {
   assetcat:Array<any>;
   processloc: Array<any>;
 
-  constructor( public api: ApiProvider, public loadingCtrl: LoadingController, public modalCtrl: ModalController, public modal: ModalController, public _HTTP: HttpClient, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
+  constructor( public viewController: ViewController, public api: ApiProvider, public loadingCtrl: LoadingController, public modalCtrl: ModalController, public modal: ModalController, public _HTTP: HttpClient, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
     // this.assetlocList = [];
     // this.assetgroupList = [];
     this.processloc = [
@@ -78,15 +79,15 @@ export class ListPage {
 
   }
 
-  inspection(row) {
-    console.log(row);
-  }
+  // inspection(row) {
+  //   console.log(row);
+  // }
 
-  async openModal(e) {
-    console.log('trigger',e);
+  async openModal(rows) {
+    console.log('row',rows);
 
     let params = {
-      id: e.row.assetID
+      id: rows.assetID
     }
 
     const modal = this.modal.create('Datalist2Page', { params: params }, { cssClass: 'camera-modal' })
@@ -106,6 +107,17 @@ export class ListPage {
     }
   }
 
+  goToInspectionPage(row) {
+    // let params = {
+    //   id: row.assetID
+    // }
+
+    this.assetowning = this.assetowningList[row];
+    console.log(row);
+
+    this.navCtrl.setRoot(InspectionPage,{ params: this.assetowning, type: 'inspect' })
+  }
+
   getSyncData(){
     
     let loading = this.loadingCtrl.create({
@@ -119,7 +131,7 @@ export class ListPage {
       loading.dismiss();
       let result: any = res;
       console.log(result);
-      this.assetowningList = result.assetCat;
+      this.assetowningList = result;
       console.log(this.assetowningList);
       this.storage.set('ASSETOWNINGLIST', JSON.stringify(this.assetowningList)).then(res=>{
         this.ionViewDidLoad();
