@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
-export interface Config {
-  asset: string;
-}
 
 @IonicPage()
 @Component({
@@ -17,8 +14,7 @@ export class InspectlistPage {
     process_loc: string, function: string, sub_system: string, sub_function: string, class: string, asset_type: string, sub_cat1: string, sub_cat2: string
   };
   assetowningList: Array<any>
-  tablestyle = 'bootstrap';
-  public config: Config;
+  // tablestyle = 'bootstrap';
   public columns: any;
   public rows: any;
 

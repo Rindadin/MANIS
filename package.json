@@ -1,5 +1,5 @@
 {
-  "name": "AMISApp",
+  "name": "MANIS",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
@@ -31,7 +31,7 @@
     "@swimlane/ngx-datatable": "^13.1.0",
     "apk": "1.2.0",
     "chart.js": "^2.7.3",
-    "cordova-android": "7.0.0",
+    "cordova-android": "^7.1.4",
     "cordova-browser": "5.0.4",
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-device": "^2.0.2",
@@ -51,7 +51,7 @@
     "zone.js": "0.8.26"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "3.2.0",
+    "@ionic/app-scripts": "^3.2.2",
     "typescript": "~2.6.2"
   },
   "description": "An Ionic project",
