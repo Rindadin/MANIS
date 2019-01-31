@@ -14,14 +14,24 @@ export class InspectlistPage {
     process_loc: string, function: string, sub_system: string, sub_function: string, class: string, asset_type: string, sub_cat1: string, sub_cat2: string
   };
   assetowningList: Array<any>
-  // tablestyle = 'bootstrap';
+  tablestyle = 'bootstrap';
   public columns: any;
   public rows: any;
+  type: any;
+  index: number;
+
 
   constructor( public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
-    this.assetowningList = [
+    let data = this.navParams.get('params');
+    this.type = this.navParams.get('type');
+    this.index = this.navParams.get('index');
+    console.log('data');
+    console.log(data);
+    
+    this.assetowningList =[data];
 
-    ];
+  
+
     
     this.columns = [
       { prop: 'assetID', name: 'asset ID' },
@@ -34,11 +44,12 @@ export class InspectlistPage {
   }
 
   ionViewDidLoad() {
-    this.storage.get('ASSETOWNINGLIST').then(data =>{
-      this.assetowningList = JSON.parse(data)
-      this.rows = this.assetowningList;
-      console.log(this.rows);
-    })
+    // this.storage.get('ASSETOWNINGLIST').then(data =>{
+    //   this.assetowningList = JSON.parse(data)
+    //   this.rows = this.assetowningList;
+    //   console.log(this.rows);
+    // })
+    this.rows = this.assetowningList;
 
     
   }

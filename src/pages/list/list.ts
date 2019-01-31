@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
 import { InspectionPage } from '../inspection/inspection';
 import { ApiProvider } from '../../providers/api/api';
+import { InspectlistPage } from '../inspectlist/inspectlist';
 
 
 export interface Config {
@@ -70,7 +71,7 @@ export class ListPage {
       
     ];
     this.columns = [
-      { prop: 'assetID', name: 'asset ID' },
+      { prop: 'ID', name: 'asset ID' },
       { prop: 'RFID', name: 'RFID ' },
       { prop: 'SoftTag', name: 'Soft Tag' },
       { prop: 'Name', name: 'Name' },
@@ -115,48 +116,51 @@ export class ListPage {
     this.assetowning = this.assetowningList[row];
     console.log(row);
 
-    this.navCtrl.setRoot(InspectionPage,{ params: this.assetowning, type: 'inspect' })
+    this.navCtrl.setRoot(InspectlistPage,{ params: this.assetowning, type: 'inspect', index: this.assetowning })
   }
 
-  getSyncData(){
+  // getSyncData(){
     
-    let loading = this.loadingCtrl.create({
-      spinner: 'circles',
-      content: 'Please Wait..'
-    });
+  //   let loading = this.loadingCtrl.create({
+  //     spinner: 'circles',
+  //     content: 'Please Wait..'
+  //   });
 
 
-    loading.present();
-    this.api.getAssetAll().then(res => {
-      loading.dismiss();
-      let result: any = res;
-      console.log(result);
-      this.assetowningList = result;
-      console.log(this.assetowningList);
-      this.storage.set('ASSETOWNINGLIST', JSON.stringify(this.assetowningList)).then(res=>{
-        this.ionViewDidLoad();
-      });
+  //   loading.present();
+  //   this.api.getAssetAll().then(res => {
+  //     loading.dismiss();
+  //     let result: any = res;
+  //     console.log(result);
+  //     this.assetowningList = result;
+  //     console.log(this.assetowningList);
+  //     this.storage.set('ASSETOWNINGLIST', JSON.stringify(this.assetowningList)).then(res=>{
+  //       this.ionViewDidLoad();
+  //     });
       
-    }).catch (err => {
-      console.log(err)
-      loading.dismiss();
+  //   }).catch (err => {
+  //     console.log(err)
+  //     loading.dismiss();
       
-    });
-  }
+  //   });
+  // }
 
+ 
   ionViewDidLoad()
 : void {
-    // this._HTTP
-    //   .get<Config>('../../assets/data/asset.json')
-    //   .subscribe((data) => {
-    //     this.rows = data.asset;
-    //   });
-    this.storage.get('ASSETOWNINGLIST').then(data =>{
-      this.assetowningList = JSON.parse(data)
-      this.rows = this.assetowningList;
-      console.log(this.rows);
-    })
-
+    this._HTTP
+      .get<Config>('../../assets/data/asset.json')
+      .subscribe((data) => {
+        this.rows = data.asset;
+      });
+    // this.storage.get('ASSETOWNINGLIST').then(data =>{
+    //   this.assetowningList = JSON.parse(data)
+    //   this.rows = this.assetowningList;
+    //   console.log(this.rows);
+    // })
+   
+      
+  
   }
 
 
