@@ -1,16 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
-// import { HomePage } from '../home/home';
+import { HomePage } from '../home/home';
 
 
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -28,8 +23,8 @@ export class LoginPage {
   }
 
   doLogin() {
-    this.user.login(this.userInfo);
-    //this.navCtrl.setRoot(HomePage, {}, {animate: true});
+    // this.user.login(this.userInfo);
+    this.navCtrl.setRoot(HomePage, {}, {animate: true});
   }
 
   forgotPassword() {

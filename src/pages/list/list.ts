@@ -19,7 +19,8 @@ export interface Config {
 })
 export class ListPage {
   modalOpen: boolean;
-  data: any
+  data: any;
+  inspectionCheckList: Array<any>;
   assetowning: {
     id: number, owning_org: string, main_op: string, op: string, region: string, wtp: string,
     process_loc: string, function: string, sub_system: string, sub_function: string, class: string, asset_type: string, sub_cat1: string, sub_cat2: string
@@ -33,12 +34,13 @@ export class ListPage {
   public columns: any;
   public rows: any;
   users: any;
-  assetcat:Array<any>;
+  assetcat: Array<any>;
   processloc: Array<any>;
 
-  constructor( public viewController: ViewController, public api: ApiProvider, public loadingCtrl: LoadingController, public modalCtrl: ModalController, public modal: ModalController, public _HTTP: HttpClient, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public viewController: ViewController, public api: ApiProvider, public loadingCtrl: LoadingController, public modalCtrl: ModalController, public modal: ModalController, public _HTTP: HttpClient, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
     // this.assetlocList = [];
     // this.assetgroupList = [];
+    this.inspectionCheckList = [];
     this.processloc = [
       { id: "01", name: "ADMIN" },
       { id: "02", name: "RAW WATER" },
@@ -68,14 +70,14 @@ export class ListPage {
     ];
     this.modalOpen = true;
     this.assetowningList = [
-      
+
     ];
     this.columns = [
       { prop: 'ID', name: 'asset ID' },
       { prop: 'RFID', name: 'RFID ' },
       { prop: 'SoftTag', name: 'Soft Tag' },
       { prop: 'Name', name: 'Name' },
-   
+
     ];
 
   }
@@ -85,7 +87,7 @@ export class ListPage {
   // }
 
   async openModal(rows) {
-    console.log('row',rows);
+    console.log('row', rows);
 
     let params = {
       id: rows.assetID
@@ -102,9 +104,41 @@ export class ListPage {
         }
       }
     })
-    if(this.modalOpen){
+    if (this.modalOpen) {
       this.modalOpen = false;
       return await modal.present();
+    }
+  }
+
+  addToInspection(rowIndex: number) {
+
+    let asset: any = this.assetowningList[rowIndex];
+    //for add data
+    if (this.checkListExist(rowIndex) == 'primary') {
+      let inspectionData = {
+        asset_id: asset.assetID
+        //insert data on all asset
+      }
+      this.inspectionCheckList.push(inspectionData)
+      console.log(this.inspectionCheckList);    } else {
+      let index = this.inspectionCheckList.findIndex(inspection => inspection.asset_id == asset.assetID);
+      //for remove data
+      if (index >= 0) {
+        this.inspectionCheckList.splice(index, 1);
+      }
+    }
+    console.log(this.inspectionCheckList);
+    this.storage.set('INSPECTIONCHECKLIST', JSON.stringify(this.inspectionCheckList));
+
+  }
+
+  checkListExist(rowIndex) {
+    let asset = this.assetowningList[rowIndex];
+    let index = this.inspectionCheckList.findIndex(inspection => inspection.asset_id == asset.assetID);
+    if (index >= 0) {
+      return 'secondary';
+    } else {
+      return 'primary';
     }
   }
 
@@ -116,11 +150,11 @@ export class ListPage {
     this.assetowning = this.assetowningList[row];
     console.log(row);
 
-    this.navCtrl.setRoot(InspectlistPage,{ params: this.assetowning, type: 'inspect', index: this.assetowning })
+    this.navCtrl.setRoot(InspectlistPage, { params: this.assetowning, type: 'inspect', index: this.assetowning })
   }
 
   // getSyncData(){
-    
+
   //   let loading = this.loadingCtrl.create({
   //     spinner: 'circles',
   //     content: 'Please Wait..'
@@ -137,30 +171,39 @@ export class ListPage {
   //     this.storage.set('ASSETOWNINGLIST', JSON.stringify(this.assetowningList)).then(res=>{
   //       this.ionViewDidLoad();
   //     });
-      
+
   //   }).catch (err => {
   //     console.log(err)
   //     loading.dismiss();
-      
+
   //   });
   // }
 
- 
-  ionViewDidLoad()
-: void {
+
+  ionViewDidLoad(): void {
     this._HTTP
       .get<Config>('../../assets/data/asset.json')
       .subscribe((data) => {
         this.rows = data.asset;
+        this.assetowningList = this.rows;
       });
+    this.storage.get('INSPECTIONCHECKLIST').then(data => {
+      this.inspectionCheckList = JSON.parse(data);
+
+    })
     // this.storage.get('ASSETOWNINGLIST').then(data =>{
     //   this.assetowningList = JSON.parse(data)
     //   this.rows = this.assetowningList;
-    //   console.log(this.rows);
+    //   console.log(this.rows); 
     // })
-   
-      
-  
+
+
+
+  }
+
+  removeData() {
+    this.inspectionCheckList.pop();
+    this.storage.set('INSPECTIONCHECKLIST', JSON.stringify(this.inspectionCheckList))
   }
 
 

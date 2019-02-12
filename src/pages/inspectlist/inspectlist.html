@@ -1,10 +1,11 @@
 
 <ion-header>
-
   <ion-navbar>
-    <ion-title>inspectlist</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Inspect List</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
@@ -12,7 +13,7 @@
   <div>
     <ngx-datatable [sortType]="'multi'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50"
     [rows]="rows" [columns]="columns" [columnMode]="'force'" [limit]="10">
-    <ngx-datatable-column prop="assetID" name="asset ID"></ngx-datatable-column>
+    <ngx-datatable-column prop="asset_id" name="asset ID"></ngx-datatable-column>
     <ngx-datatable-column prop="RFID" name="RFID"></ngx-datatable-column>
     <ngx-datatable-column prop="Name" name="Asset"></ngx-datatable-column>
     <ngx-datatable-column name="Action">
