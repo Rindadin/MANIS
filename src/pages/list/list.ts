@@ -142,6 +142,17 @@ export class ListPage {
     }
   }
 
+  goToInspectionPage(row) {
+    // let params = {
+    //   id: row.assetID
+    // }
+
+    this.assetowning = this.assetowningList[row];
+    console.log(row);
+
+    this.navCtrl.setRoot(InspectlistPage, { params: this.assetowning, type: 'inspect', index: this.assetowning })
+  }
+
   // getSyncData(){
 
   //   let loading = this.loadingCtrl.create({
@@ -175,7 +186,6 @@ export class ListPage {
       .subscribe((data) => {
         this.rows = data.asset;
         this.assetowningList = this.rows;
-        this.storage.set('ASSETOWNINGLIST', JSON.stringify(this.assetowningList));
       });
     this.storage.get('INSPECTIONCHECKLIST').then(data => {
       this.inspectionCheckList = JSON.parse(data);

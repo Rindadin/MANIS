@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { InspectionPage } from '../inspection/inspection';
 
 
 @IonicPage()
@@ -32,17 +31,7 @@ export class InspectlistPage {
       { prop: '', name: 'Name' }
     ];
   
-  }
-
-  goToInspectionPage(row) {
-    // let params = {
-    //   id: row.assetID
-    // }
-
-    this.assetowning = this.inspectionCheckList[row];
-    console.log(row);
-
-    this.navCtrl.setRoot(InspectionPage, { params: this.assetowning, type: 'inspect', index: this.assetowning })
+  
   }
 
   ionViewDidLoad() {

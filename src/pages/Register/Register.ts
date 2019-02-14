@@ -420,11 +420,6 @@ export class RegisterPage {
     myModal.present();
   }
 
-  // checkParentName(Name: string){
-  //   return (Name == "")
-
-  // }
-
 
 
   ionViewDidLoad() {
