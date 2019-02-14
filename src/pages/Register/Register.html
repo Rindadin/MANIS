@@ -148,9 +148,8 @@
 
             <ion-item>
               <ion-label stacked color="dark">Asset Class</ion-label>
-              <ion-select [(ngModel)]="assetowning.class" placeholder="please select" interface="popover">
+              <ion-select [(ngModel)]="assetowning.class" placeholder="please select" interface="popover" (ionChange)="assetClassChange()">
                 <ion-option *ngFor="let class of assetowningClass" [value]="class.name">{{class.name}}</ion-option>
-
               </ion-select>
             </ion-item>
 

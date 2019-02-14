@@ -37,6 +37,7 @@ export class RegisterPage {
   assetowningSub_system: Array<any>;
   assetowningSub_function: Array<any>;
   assetowningClass: Array<any>;
+  assetOwningClassType: Array<any>;
   assetowningAsset_type: Array<any>;
   assetowningSub_cat1: Array<any>;
   assetowningSub_cat2: Array<any>;
@@ -220,6 +221,47 @@ export class RegisterPage {
       { id: "04", name: "INSTRUMENT" }
     ];
 
+    this.assetOwningClassType = [
+      { id: "01", 
+        name: "ELECTRICAL" ,
+        type: [
+          { id: "03", name: "ELECTRIC ACTUATOR" },
+          { id: "12", name: "TRANSFORMERS" },
+          { id: "13", name: "GENERATORS" },
+          { id: "14", name: "ALTERNATORS" },
+        ]
+      },
+      { 
+        id: "02", 
+        name: "MECHANICAL",
+        type: [
+          { id: "04", name: "VALVE" },
+          { id: "05", name: "PUMP" },
+          { id: "06", name: "MOTOR" },
+          { id: "07", name: "FLOWMETER" },
+          { id: "08", name: "TANKS" },
+          { id: "09", name: "FILTERS" },
+        ]
+      },
+      { id: "03", 
+        name: "STRUCTURE",
+        type: [
+          { id: "01", name: "BOARD" },
+          { id: "02", name: "PANELS" }
+        ] 
+      },
+      { id: "04", 
+        name: "INSTRUMENT",
+        type: [
+          { id: "15", name: "AIR RECEIVERS" },
+          { id: "16", name: "ACCUMULATORS" },
+          { id: "17", name: "LIFTING" },
+          { id: "10", name: "SLUDGE THICKENER" },
+          { id: "11", name: "DRIVE ASSEMBLY" },
+        ] 
+      }
+    ];
+
     this.assetowningAsset_type = [
       { id: "01", name: "BOARD" },
       { id: "02", name: "PANELS" },
@@ -376,7 +418,15 @@ export class RegisterPage {
     this.gisList = [];
   }
 
-
+  assetClassChange(){
+    console.log(this.assetowning.class);
+    this.assetowning.asset_type = null;
+    let index = this.assetOwningClassType.findIndex(asset => asset.name == this.assetowning.class)
+    if (index > -1) {
+      this.assetowningAsset_type = this.assetOwningClassType[index].type;
+      console.log('changed: ',this.assetowningAsset_type);
+    }
+  }
   showAlert() {
 
     if (this.type == 'register') {
