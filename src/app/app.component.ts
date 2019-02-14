@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, Events } from 'ionic-angular';
+import { Nav, Platform, Events, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -26,7 +26,7 @@ export class MyApp {
   isLoggedIn: boolean = false;
   pages: Array<{ title: string, component: any, icon: string }>;
 
-  constructor(private storage: Storage, private oneSignal: OneSignal, public user: UserProvider, public events: Events, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public alertCtrl: AlertController, private storage: Storage, private oneSignal: OneSignal, public user: UserProvider, public events: Events, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
     // this.storage.clear();
     //used for an example of ngFor and navigation
@@ -68,12 +68,38 @@ export class MyApp {
     });
   }
 
+  showAllert(){
+    
+   
+  }
+
+
   logout() {
-    console.log('logout now');
-    this.events.publish('user:logout');
-    this.user.logout().then(res=>{
-      console.log(res);
+    let alert = this.alertCtrl.create({
+      title: 'Confirm logout',
+      message: 'Do you want to logout?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Confirm',
+          handler: () => {
+            this.events.publish('user:logout');
+          }
+        }
+      ]
     });
+    alert.present();
+    console.log('logout now');
+   
+    // this.user.logout().then(res=>{
+    //   console.log(res);
+    // });
   }
 
   shouldShow() {

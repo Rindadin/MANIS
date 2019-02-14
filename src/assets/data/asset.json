@@ -1,7 +1,7 @@
 {
    "asset" : [
       {
-         "id" : "ACMP-0000040",
+         "assetID" : "ACMP-0000040",
          "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
          "main_op" : "OPERATION",
          "op" : "WATER TREATMENT",
@@ -18,7 +18,7 @@
 
       },
       {
-         "id" : "WATR-0000199",
+         "assetID" : "WATR-0000199",
          "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
          "main_op" : "OPERATION",
          "op" : "WATER TREATMENT",
@@ -35,7 +35,8 @@
 
       },
       {
-         "id" : "GBOX-0000260",
+         "assetID" : "GBOX-0000260",
+         "RFID" : "0000260",
          "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
          "main_op" : "OPERATION",
          "op" : "WATER TREATMENT",
@@ -52,7 +53,8 @@
 
       },
       {
-         "id" : "CRNT-0000029",
+         "assetID" : "CRNT-0000029",
+         "RFID" : "0000029",
          "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
          "main_op" : "OPERATION",
          "op" : "WATER TREATMENT",
@@ -69,7 +71,8 @@
 
       },
       {
-         "id" : "TANK-0000043",
+         "assetID" : "TANK-0000043",
+         "RFID" : "0000043",
          "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
          "main_op" : "OPERATION",
          "op" : "WATER TREATMENT",
@@ -86,7 +89,8 @@
 
       },
       {
-         "id" : "SPPU-0000039",
+         "assetID" : "SPPU-0000039",
+         "RFID" : "0000039",
          "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
          "main_op" : "OPERATION",
          "op" : "WATER TREATMENT",
@@ -103,7 +107,8 @@
 
       },
       {
-         "id" : "MOTR-0003366",
+         "assetID" : "MOTR-0003366",
+         "RFID" : "0003366",
          "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
          "main_op" : "OPERATION",
          "op" : "WATER TREATMENT",
@@ -120,7 +125,8 @@
 
       },
       {
-         "id" : "GATV-0000212",
+         "assetID" : "GATV-0000212",
+         "RFID" : "0000212",
          "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
          "main_op" : "OPERATION",
          "op" : "WATER TREATMENT",
@@ -137,7 +143,8 @@
 
       },
       {
-         "id" : "ARCV-0000008",
+         "assetID" : "ARCV-0000008",
+         "RFID" : "0000008",
          "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
          "main_op" : "OPERATION",
          "op" : "WATER TREATMENT",
@@ -154,7 +161,8 @@
 
       },
       {
-         "id" : "FLTR-0000021",
+         "assetID" : "FLTR-0000021",
+         "RFID" : "0000021",
          "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
          "main_op" : "OPERATION",
          "op" : "WATER TREATMENT",
@@ -171,7 +179,8 @@
 
       },
       {
-         "id" : "SURV-0000067",
+         "assetID" : "SURV-0000067",
+         "RFID" : "0000067",
          "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
          "main_op" : "OPERATION",
          "op" : "WATER TREATMENT",
@@ -188,7 +197,8 @@
 
       },
       {
-         "id" : "CRAN-0000130",
+         "assetID" : "CRAN-0000130",
+         "RFID" : "0000130",
          "owning_org" : "PENGURUSAN AIR SELANGOR SDN BHD",
          "main_op" : "OPERATION",
          "op" : "WATER TREATMENT",
