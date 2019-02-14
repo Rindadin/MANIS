@@ -6,79 +6,79 @@
 
     <ion-row>
 
-        <ion-col col-6 >
-            <ion-item>
-                <ion-label stacked color="dark">Asset ID</ion-label>
-                <ion-input readonly="true" type="text" [(ngModel)]="assetowning.assetID"></ion-input>
-              </ion-item>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked color="dark">Asset ID</ion-label>
+          <ion-input readonly="true" type="text" [(ngModel)]="assetowning.assetID"></ion-input>
+        </ion-item>
 
-            <ion-item>
-              <ion-label stacked color="dark">Soft Tag</ion-label>
-              <ion-input readonly="true" type="text" [(ngModel)]="assetowning.SoftTag"></ion-input>
-            </ion-item>
+        <ion-item>
+          <ion-label stacked color="dark">Soft Tag</ion-label>
+          <ion-input readonly="true" type="text" [(ngModel)]="assetowning.SoftTag"></ion-input>
+        </ion-item>
 
-            <ion-item>
-              <ion-label stacked color="dark">last Preventive</ion-label>
-              <ion-input readonly="true" type="text" [(ngModel)]="assetowning.LastPreventive"></ion-input>           
-            </ion-item>
+        <ion-item>
+          <ion-label stacked color="dark">last Preventive</ion-label>
+          <ion-input readonly="true" type="text" [(ngModel)]="assetowning.LastPreventive"></ion-input>
+        </ion-item>
 
 
-            <ion-item>
-              <ion-label stacked color="dark">Model</ion-label>
-              <ion-input readonly="true" type="text" [(ngModel)]="assetowning.Model"></ion-input>
-            </ion-item>
+        <ion-item>
+          <ion-label stacked color="dark">Model</ion-label>
+          <ion-input readonly="true" type="text" [(ngModel)]="assetowning.Model"></ion-input>
+        </ion-item>
 
-            <ion-item>
-              <ion-label stacked color="dark">Speed(RPM)</ion-label>
-              <ion-input readonly="true" type="text" [(ngModel)]="assetowning.Speed"></ion-input>
-            </ion-item>
+        <ion-item>
+          <ion-label stacked color="dark">Speed(RPM)</ion-label>
+          <ion-input readonly="true" type="text" [(ngModel)]="assetowning.Speed"></ion-input>
+        </ion-item>
 
-            <ion-item>
-              <ion-label stacked color="dark">Frequency</ion-label>
-              <ion-input readonly="true" type="text" [(ngModel)]="assetowning.Frequency"></ion-input>
-            </ion-item>
-          </ion-col>
+        <ion-item>
+          <ion-label stacked color="dark">Frequency</ion-label>
+          <ion-input readonly="true" type="text" [(ngModel)]="assetowning.Frequency"></ion-input>
+        </ion-item>
+      </ion-col>
 
-          <ion-col col-6>
-            <ion-item>
-              <ion-label stacked color="dark">RFID</ion-label>
-              <ion-input readonly="true" type="text" [(ngModel)]="assetowning.RFID"></ion-input>
-            </ion-item>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked color="dark">RFID</ion-label>
+          <ion-input readonly="true" type="text" [(ngModel)]="assetowning.RFID"></ion-input>
+        </ion-item>
 
-            <ion-item>
-              <ion-label stacked color="dark">Name</ion-label>
-              <ion-input readonly="true" type="text" [(ngModel)]="assetowning.Name"></ion-input>
-            </ion-item>
+        <ion-item>
+          <ion-label stacked color="dark">Name</ion-label>
+          <ion-input readonly="true" type="text" [(ngModel)]="assetowning.Name"></ion-input>
+        </ion-item>
 
-            <ion-item>
-              <ion-label stacked color="dark">Last Corrective</ion-label>
-              <ion-input readonly="true" type="text" [(ngModel)]="assetowning.LastCorrective"></ion-input>
-            </ion-item>
+        <ion-item>
+          <ion-label stacked color="dark">Last Corrective</ion-label>
+          <ion-input readonly="true" type="text" [(ngModel)]="assetowning.LastCorrective"></ion-input>
+        </ion-item>
 
-            <ion-item>
-              <ion-label stacked color="dark">Serial Number</ion-label>
-              <ion-input readonly="true" type="text" [(ngModel)]="assetowning.SerialNo"></ion-input>
-            </ion-item>
+        <ion-item>
+          <ion-label stacked color="dark">Serial Number</ion-label>
+          <ion-input readonly="true" type="text" [(ngModel)]="assetowning.SerialNo"></ion-input>
+        </ion-item>
 
-            <ion-item>
-              <ion-label stacked color="dark">Voltage(V)</ion-label>
-              <ion-input readonly="true" type="text" [(ngModel)]="assetowning.Voltage"></ion-input>
-            </ion-item>
-            <!-- <div *ngIf="checkAssetName(assetowning.Name)">
+        <ion-item>
+          <ion-label stacked color="dark">Voltage(V)</ion-label>
+          <ion-input readonly="true" type="text" [(ngModel)]="assetowning.Voltage"></ion-input>
+        </ion-item>
+        <!-- <div *ngIf="checkAssetName(assetowning.Name)">
               <ion-item>
                 <ion-label stacked color="dark">Equipment Name</ion-label>
                 <ion-input readonly="{{isReadonly}}" type="text" [(ngModel)]="assetowning.EquipmentName"></ion-input>
               </ion-item>
               
             </div> -->
-            <ion-item>
-              <ion-label stacked color="dark">Current(A)</ion-label>
-              <ion-input readonly="true" type="text" [(ngModel)]="assetowning.CurrentA"></ion-input>
-            </ion-item>
-            
-          </ion-col>
+        <ion-item>
+          <ion-label stacked color="dark">Current(A)</ion-label>
+          <ion-input readonly="true" type="text" [(ngModel)]="assetowning.CurrentA"></ion-input>
+        </ion-item>
 
-          <!-- <ion-col col-4 class="save">
+      </ion-col>
+
+      <!-- <ion-col col-4 class="save">
             <ion-buttons>
               <button ion-button full (click)=" goToInspectionPage()">
                 Inspection
@@ -95,7 +95,7 @@
           </ion-col> -->
 
       <ion-col col-4 class="save">
-        <ion-buttons >
+        <ion-buttons>
           <button ion-button full (click)="closeModal()">
             close
           </button>
@@ -110,7 +110,7 @@
         </ion-buttons>
       </ion-col> -->
 
-    
+
       <!-- <ion-col col-2>
           <button ion-button full>Save</button>
        </ion-col> -->

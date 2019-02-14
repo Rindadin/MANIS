@@ -78,13 +78,13 @@ export class InspectionPage {
     } else {
       this.title = 'Asset Inspection';
       let _date = new Date();
-      this.id = String(_date.getTime()) + '-' + data.assetID;
+      this.id = String(_date.getTime()) + '-' + data.asset_id;
       let month = _date.getMonth() + 1;
       let day = _date.getDay();
       let year = _date.getFullYear();
 
       this.assetinspect = {
-        asset_id: data.assetID,
+        asset_id: data.asset_id,
         ins_id: this.id,
         rfid: data.RFID,
         ins_type: null,
@@ -100,6 +100,8 @@ export class InspectionPage {
           imageAfter: []
         }
       };
+
+      // console.log('data: ',data)
     }
 
     this.assetinspectStatus = [
