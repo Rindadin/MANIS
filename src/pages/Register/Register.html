@@ -87,7 +87,7 @@
 
             <ion-item>
               <ion-label stacked color="dark">Process/Function</ion-label>
-              <ion-select [(ngModel)]="assetowning.function" placeholder="please select" interface="popover">
+              <ion-select [(ngModel)]="assetowning.function" placeholder="please select" interface="popover" (ionChange)="functionChange()" >
                 <ion-option *ngFor="let function of assetowningFunction" [value]="function.name">{{function.name}}</ion-option>
 
               </ion-select>
@@ -132,9 +132,8 @@
 
             <ion-item>
               <ion-label stacked color="dark">Process Location Category</ion-label>
-              <ion-select [(ngModel)]="assetowning.process_loc" placeholder="please select" interface="popover">
+              <ion-select [(ngModel)]="assetowning.process_loc" placeholder="please select" interface="popover" (ionChange)="processLocChange()" >
                 <ion-option *ngFor="let process_loc of assetowningProcess_loc" [value]="process_loc.name">{{process_loc.name}}</ion-option>
-
               </ion-select>
             </ion-item>
 

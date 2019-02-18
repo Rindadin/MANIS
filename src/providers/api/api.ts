@@ -155,6 +155,7 @@ export class ApiProvider {
 
     body.append('Username', accountInfo.username);
     body.append('Password', accountInfo.password);
+  
     // let _headers = new HttpHeaders({
     //   'Authorization': 'Basic YTc0OTllNTgtYTEyNi00ODgyLWEyZjMtNDk3NmIzMTFjZDI5'
     // })
@@ -162,6 +163,7 @@ export class ApiProvider {
       this.http.post(url, body)
         .subscribe(response => {
           resolve(response)
+          console.log('Username', response)
         }, err => {
           reject(err);
         })

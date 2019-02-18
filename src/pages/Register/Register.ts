@@ -34,6 +34,8 @@ export class RegisterPage {
   gisList: Array<any>;
   assetowningFunction: Array<any>;
   assetowningProcess_loc: Array<any>;
+  assetowningProcessLocFunction: Array<any>;
+  assetowningFunctionSubSystem: Array<any>;
   assetowningSub_system: Array<any>;
   assetowningSub_function: Array<any>;
   assetowningClass: Array<any>;
@@ -177,29 +179,384 @@ export class RegisterPage {
     }
 
     this.assetowningProcess_loc = [
-      { id: "01", name: "ADMIN" },
-      { id: "02", name: "RAW WATER" },
-      { id: "03", name: "TREATMENT PROCESS" },
+      { id: "01", name: "TREATMENT PROCESS" },
+      { id: "02", name: "ADMIN" },
+      { id: "03", name: "RAW WATER" },
       { id: "04", name: "SLUDGE TREATMENT" },
       { id: "05", name: "POWER SUPPLY" }
     ];
 
+    this.assetowningProcessLocFunction = [
+      {
+        id: "01",
+        name: "TREATMENT PROCESS",
+        type: [
+          { id: "01", name: "AERATOR/INLET CHAMBER" },
+          { id: "02", name: "CLARIFIER" },
+          { id: "03", name: "FILTER" },
+          { id: "04", name: "CHEMICAL BUILDING" },
+          { id: "05", name: "CLEAR WATER TANK" },
+          { id: "06", name: "RESIDUAL EMERGENCY LAGOON" },
+          { id: "07", name: "TREATED WATER PUMPING STATION" },
+          { id: "08", name: "WASH WATER RECOVERY PLANT" },
+          { id: "18", name: "CHLORINE BUILDING" },
+          { id: "19", name: "RESIDUAL THICKENING PUMPING STATION" },
+          { id: "20", name: "GENERATOR HOUSE" },
+        ]
+      },
+      
+      {
+        id: "02",
+        name: "ADMIN",
+        type: [
+          { id: "09", name: "ADMINISTRATION BUILDING" },
+          { id: "10", name: "GUARD HOUSE" },
+          { id: "11", name: "STORE HOUSE" },
+          { id: "12", name: "WORKSHOP" },
+        ]
+      },
+
+      {
+        id: "03",
+        name: "RAW WATER",
+        type: []
+      },
+
+     
+
+      {
+        id: "04",
+        name: "SLUDGE TREATMENT",
+        type: [
+          { id: "13", name: "THICKENED RESIDUAL PUMPING STATION" },
+        ]
+      },
+
+      {
+        id: "05",
+        name: "POWER SUPPLY",
+        type: [
+          { id: "14", name: "CONSUMER 33KV SWITCH HOUSE" },
+          { id: "15", name: "GENSET GENERATOR PLANT" },
+          { id: "16", name: "TRANSFORMER YARD" },
+          { id: "17", name: "TREATMENT PLANT SWITCH HOUSE" },
+        ]
+      }
+    ];
+
     this.assetowningFunction = [
       { id: "01", name: "AERATOR/INLET CHAMBER" },
-      { id: "02", name: "FILTER" },
-      { id: "03", name: "THICKENED RESIDUAL PUMPING STATION" },
-      { id: "04", name: "GENSET GENERATOR PLANT" }
+      { id: "02", name: "CLARIFIER" },
+      { id: "03", name: "FILTER" },
+      { id: "04", name: "CHEMICAL BUILDING" },
+      { id: "05", name: "CLEAR WATER TANK" },
+      { id: "06", name: "RESIDUAL EMERGENCY LAGOON" },
+      { id: "07", name: "TREATED WATER PUMPING STATION" },
+      { id: "08", name: "WASH WATER RECOVERY PLANT" },
+      { id: "09", name: "ADMINISTRATION BUILDING" },
+      { id: "10", name: "GUARD HOUSE" },
+      { id: "11", name: "STORE HOUSE" },
+      { id: "12", name: "WORKSHOP" },
+      { id: "13", name: "THICKENED RESIDUAL PUMPING STATION" },
+      { id: "14", name: "CONSUMER 33KV SWITCH HOUSE" },
+      { id: "15", name: "GENSET GENERATOR PLANT" },
+      { id: "16", name: "TRANSFORMER YARD" },
+      { id: "17", name: "TREATMENT PLANT SWITCH HOUSE" },
+      { id: "18", name: "CHLORINE BUILDING" },
+      { id: "19", name: "RESIDUAL THICKENING PUMPING STATION" },
+      { id: "20", name: "GENERATOR HOUSE" },
     ];
+
+    this.assetowningFunctionSubSystem = [
+
+      {
+        id:"01" ,
+        name:"AERATOR/INLET CHAMBER",
+        type: [
+          { id: "01", name: "PRE LIME DOSING CHAMBER" },
+          { id: "02", name: "PRE OXIDATION TANK" },
+       ]
+      },
+
+      {
+        id:"02" ,
+        name:"CLARIFIER",
+        type: [
+          { id: "03", name: "FLOCCULATION TANK" },
+       ]
+      },
+
+      {
+        id:"03" ,
+        name:"FILTER",
+        type: [
+          { id: "04", name: "HOLDING TANK" },
+          { id: "05", name: "PROCESS CONTROL BUILDING" },
+       ]
+      },
+
+      {
+        id:"04" ,
+        name:"CHEMICAL BUILDING",
+        type: [
+          { id: "08", name: "CHEMICAL PLANT -  FLORIDE" },
+          { id: "09", name: "CHEMICAL PLANT - LIME/SODA" },
+          { id: "10", name: "CHEMICAL PLANT -  PAC" },
+          { id: "11", name: "CHEMICAL PLANT -  POLYMER/POLYELECTROLYTE" },
+          { id: "12", name: "CHEMICAL PLANT -  POTTASIUM PERMANGANATE" },
+       ]
+      },
+
+      {
+        id:"05" ,
+        name:"CLEAR WATER TANK",
+        type: [
+          { id: "44", name: "CHLORINE CONTACT TANK 1" },
+          { id: "45", name: "CHLORINE CONTACT TANK 2" },
+          { id: "46", name: "CHLORINE CONTACT TANK 3" },
+          { id: "47", name: "CHLORINE CONTACT TANK 4" },
+          { id: "48", name: "CLEAR WATER TANK 1" },
+          { id: "49", name: "CLEAR WATER TANK 2" },
+          { id: "50", name: "CLEAR WATER TANK 3" },
+          { id: "51", name: "CLEAR WATER TANK 4" },
+          { id: "52", name: "SCOUR CHAMBER 1" },
+          { id: "53", name: "SCOUR CHAMBER 2" },
+          { id: "54", name: "SCOUR CHAMBER 3" },
+          { id: "55", name: "SCOUR CHAMBER 4" },
+          { id: "56", name: "SCOUR CHAMBER 5" },
+          { id: "57", name: "SCOUR CHAMBER 6" },
+          { id: "58", name: "SCOUR CHAMBER 7" },
+          { id: "59", name: "SCOUR CHAMBER 8" },
+          { id: "60", name: "SCOUR CHAMBER 9" },
+          { id: "61", name: "SCOUR CHAMBER 10" },
+          { id: "62", name: "SCOUR CHAMBER 11" },
+          { id: "63", name: "SCOUR CHAMBER 12" },
+       ]
+      },
+
+      {
+        id:"06" ,
+        name:"RESIDUAL EMERGENCY LAGOON",
+        type: [
+          { id: "66", name: "BUTTERFLY VALVE CHAMBER" },
+          { id: "67", name: "LANDSCAPING VALVE CHAMBER" },
+          { id: "68", name: "RESIDUAL EMERGENCY LAGOON NO.1" },
+          { id: "69", name: "RESIDUAL EMERGENCY LAGOON NO.2" }
+       ]
+      },
+
+      {
+        id:"07" ,
+        name:"TREATED WATER PUMPING STATION",
+        type: [
+          { id: "13", name: "PUMP HALL" },
+          { id: "14", name: "AIR COMPRESSOR BAY" },
+          { id: "15", name: "SCOUR VALVE CHAMBER TYPE 1" },
+          { id: "16", name: "SCOUR VALVE CHAMBER TYPE 2" },
+          { id: "17", name: "SURGE VESSEL 1" },
+          { id: "18", name: "SURGE VESSEL 2" },
+          { id: "19", name: "SURGE VESSEL 3" },
+          { id: "20", name: "SURGE VESSEL 4" },
+          { id: "21", name: "SURGE VESSEL 5" },
+          { id: "22", name: "SURGE VESSEL 6" },
+          { id: "23", name: "SURGE VESSEL 7" },
+          { id: "24", name: "SURGE VESSEL 8" },
+          { id: "25", name: "SURGE VESSEL 9" },
+          { id: "26", name: "UPS & DC SUPPLY ROOM" },
+          { id: "27", name: "TRANSFORMER AREA" },
+          { id: "28", name: "415V SWITCHROOM" },
+          { id: "29", name: "INERT GAS CYLINDER ROOM" },
+          { id: "30", name: "REMOTE SWITCHING STATION ROOM" },
+       ]
+      },
+
+      {
+        id:"08" ,
+        name:"WASH WATER RECOVERY PLANT",
+        type: [
+          { id: "38", name: "WASHWATER RECOVERY TANK" },
+          { id: "39", name: "RESIDUAL HOLDING TANK" },
+          { id: "40", name: "FLOWMETER CHAMBER" },
+          { id: "41", name: "VALVE CHAMBER" },
+       ]
+      },
+
+      {
+        id:"9" ,
+        name:"ADMINISTRATION BUILDING",
+        type: [
+          { id: "42", name: "LABORATORY" },
+          { id: "43", name: "COMMAND CENTRE" },
+       ]
+      },
+
+      {
+        id:"10" ,
+        name:"GUARD HOUSE",
+        type: [
+          
+       ]
+      },
+
+      {
+        id:"11" ,
+        name:"STORE HOUSE",
+        type: [
+          { id: "64", name: "WEIGHBRIDGE" },
+       ]
+      },
+
+      {
+        id:"12" ,
+        name:"WORKSHOP",
+        type: [
+          
+       ]
+      },
+
+      {
+        id:"13" ,
+        name:"THICKENED RESIDUAL PUMPING STATION",
+        type: [
+          
+       ]
+      },
+
+      {
+        id:"14" ,
+        name:"CONSUMER 33KV SWITCH HOUSE",
+        type: [
+          
+       ]
+      },
+
+      {
+        id:"15" ,
+        name:"GENSET GENERATOR PLANT",
+        type: [
+          
+       ]
+      },
+
+      {
+        id:"16" ,
+        name:"TRANSFORMER YARD",
+        type: [
+          
+       ]
+      },
+
+      {
+        id:"17" ,
+        name:"TREATMENT PLANT SWITCH HOUSE",
+        type: [
+          
+       ]
+      },
+
+      {
+        id:"18" ,
+        name:"CHLORINE BUILDING",
+        type: [
+          { id: "06", name: "CHEMICAL PLANT -  CHLORINE GAS SYSTEM" },
+          { id: "07", name: "SCRUBBER SYSTEM" },
+       ]
+      },
+
+      {
+        id:"19" ,
+        name:"RESIDUAL THICKENING PUMPING STATION",
+        type: [
+          { id: "31", name: "DEWATERING PLANT" },
+          { id: "32", name: "THICKENED RESIDUAL STORAGE TANK" },
+          { id: "33", name: "RESIDUAL STORAGE YARD" },
+          { id: "34", name: "SLUDGE THICKENING TANK 1" },
+          { id: "35", name: "SLUDGE THICKENING TANK 2" },
+          { id: "36", name: "SLUDGE THICKENING TANK 3" },
+          { id: "37", name: "SLUDGE THICKENING TANK 4" },
+       ]
+      },
+
+      {
+        id:"20" ,
+        name:"GENERATOR HOUSE",
+        type: [
+          { id: "65", name: "GENERATOR" },
+       ]
+      },
+    ];
+    
 
     this.assetowningSub_system = [
       { id: "01", name: "PRE LIME DOSING CHAMBER" },
       { id: "02", name: "PRE OXIDATION TANK" },
-      { id: "03", name: "HOLDING TANK" },
-      { id: "04", name: "SLUDGE THICKENINGTANK 1" },
-      { id: "05", name: "SLUDGE THICKENINGTANK 2" },
-      { id: "06", name: "SLUDGE THICKENINGTANK 3" },
-      { id: "07", name: "SLUDGE THICKENINGTANK 4" },
-      { id: "08", name: "GENERATOR" }
+      { id: "03", name: "FLOCCULATION TANK" },
+      { id: "04", name: "HOLDING TANK" },
+      { id: "05", name: "PROCESS CONTROL BUILDING" },
+      { id: "06", name: "CHEMICAL PLANT -  CHLORINE GAS SYSTEM" },
+      { id: "07", name: "SCRUBBER SYSTEM" },
+      { id: "08", name: "CHEMICAL PLANT -  FLORIDE" },
+      { id: "09", name: "CHEMICAL PLANT - LIME/SODA" },
+      { id: "10", name: "CHEMICAL PLANT -  PAC" },
+      { id: "11", name: "CHEMICAL PLANT -  POLYMER/POLYELECTROLYTE" },
+      { id: "12", name: "CHEMICAL PLANT -  POTTASIUM PERMANGANATE" },
+      { id: "13", name: "PUMP HALL" },
+      { id: "14", name: "AIR COMPRESSOR BAY" },
+      { id: "15", name: "SCOUR VALVE CHAMBER TYPE 1" },
+      { id: "16", name: "SCOUR VALVE CHAMBER TYPE 2" },
+      { id: "17", name: "SURGE VESSEL 1" },
+      { id: "18", name: "SURGE VESSEL 2" },
+      { id: "19", name: "SURGE VESSEL 3" },
+      { id: "20", name: "SURGE VESSEL 4" },
+      { id: "21", name: "SURGE VESSEL 5" },
+      { id: "22", name: "SURGE VESSEL 6" },
+      { id: "23", name: "SURGE VESSEL 7" },
+      { id: "24", name: "SURGE VESSEL 8" },
+      { id: "25", name: "SURGE VESSEL 9" },
+      { id: "26", name: "UPS & DC SUPPLY ROOM" },
+      { id: "27", name: "TRANSFORMER AREA" },
+      { id: "28", name: "415V SWITCHROOM" },
+      { id: "29", name: "INERT GAS CYLINDER ROOM" },
+      { id: "30", name: "REMOTE SWITCHING STATION ROOM" },
+      { id: "31", name: "DEWATERING PLANT" },
+      { id: "32", name: "THICKENED RESIDUAL STORAGE TANK" },
+      { id: "33", name: "RESIDUAL STORAGE YARD" },
+      { id: "34", name: "SLUDGE THICKENING TANK 1" },
+      { id: "35", name: "SLUDGE THICKENING TANK 2" },
+      { id: "36", name: "SLUDGE THICKENING TANK 3" },
+      { id: "37", name: "SLUDGE THICKENING TANK 4" },
+      { id: "38", name: "WASHWATER RECOVERY TANK" },
+      { id: "39", name: "RESIDUAL HOLDING TANK" },
+      { id: "40", name: "FLOWMETER CHAMBER" },
+      { id: "41", name: "VALVE CHAMBER" },
+      { id: "42", name: "LABORATORY" },
+      { id: "43", name: "COMMAND CENTRE" },
+      { id: "44", name: "CHLORINE CONTACT TANK 1" },
+      { id: "45", name: "CHLORINE CONTACT TANK 2" },
+      { id: "46", name: "CHLORINE CONTACT TANK 3" },
+      { id: "47", name: "CHLORINE CONTACT TANK 4" },
+      { id: "48", name: "CLEAR WATER TANK 1" },
+      { id: "49", name: "CLEAR WATER TANK 2" },
+      { id: "50", name: "CLEAR WATER TANK 3" },
+      { id: "51", name: "CLEAR WATER TANK 4" },
+      { id: "52", name: "SCOUR CHAMBER 1" },
+      { id: "53", name: "SCOUR CHAMBER 2" },
+      { id: "54", name: "SCOUR CHAMBER 3" },
+      { id: "55", name: "SCOUR CHAMBER 4" },
+      { id: "56", name: "SCOUR CHAMBER 5" },
+      { id: "57", name: "SCOUR CHAMBER 6" },
+      { id: "58", name: "SCOUR CHAMBER 7" },
+      { id: "59", name: "SCOUR CHAMBER 8" },
+      { id: "60", name: "SCOUR CHAMBER 9" },
+      { id: "61", name: "SCOUR CHAMBER 10" },
+      { id: "62", name: "SCOUR CHAMBER 11" },
+      { id: "63", name: "SCOUR CHAMBER 12" },
+      { id: "64", name: "WEIGHBRIDGE" },
+      { id: "65", name: "GENERATOR" },
+      { id: "66", name: "BUTTERFLY VALVE CHAMBER" },
+      { id: "67", name: "LANDSCAPING VALVE CHAMBER" },
+      { id: "68", name: "RESIDUAL EMERGENCY LAGOON NO.1" },
+      { id: "69", name: "RESIDUAL EMERGENCY LAGOON NO.2" }
     ];
 
     this.assetowningSub_function = [
@@ -427,6 +784,26 @@ export class RegisterPage {
       console.log('changed: ',this.assetowningAsset_type);
     }
   }
+
+  processLocChange(){
+    this.assetowning.function = null;
+    let index = this.assetowningProcessLocFunction.findIndex(asset => asset.name == this.assetowning.process_loc)
+    if (index > -1) {
+      this.assetowningFunction = this.assetowningProcessLocFunction[index].type;
+      console.log('chaged: ',this.assetowningFunction);
+    }
+
+  }
+
+  functionChange(){
+    this.assetowning.sub_system = null;
+    let index = this.assetowningFunctionSubSystem.findIndex(asset => asset.name == this.assetowning.function)
+    if (index > -1) {
+      this.assetowningSub_system = this.assetowningFunctionSubSystem[index].type;
+      console.log('changed: ',this.assetowningSub_system);
+    }
+  }
+
   showAlert() {
 
     if (this.type == 'register') {

@@ -32,7 +32,7 @@ export class UserProvider {
   _type: string;
   token: string = null;
   baseURL: string = 'http://demo.amisapi.com.ngrok.io/api/v1';
-  constructor(public loadingController: LoadingController, public api: ApiProvider, protected events: Events, public alertCtrl: AlertController, public http: HttpClient, public storage: Storage) {
+    constructor(public loadingController: LoadingController, public api: ApiProvider, protected events: Events, public alertCtrl: AlertController, public http: HttpClient, public storage: Storage) {
     this._type = 'normal';
 
   }
@@ -49,12 +49,13 @@ export class UserProvider {
     this.api.doLogin(accountInfo).then(data => {
       let res: any = data
       console.log(res);
-      if (res.access_token) { // if login success
-        this.storage.set('TOKEN', res.access_token).then(() =>{
-          this.getProfile(res.id).then(res => {
+      if (res.api_token) { // if login success
+        console.log(res.access_token)
+        this.storage.set('TOKEN', res.api_token).then(() =>{
+          this.getProfile(res.ID).then(res => {
             let response: any = res;
             let user = response.feedData[0];
-            console.log(user);
+            console.log('user: ',user);
             this.storage.set('USER', JSON.stringify(user));
             this.api.getDashboard().then(res2 => {
               loading.dismiss();
