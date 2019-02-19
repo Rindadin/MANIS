@@ -6,11 +6,9 @@ import { InspectionPage } from '../inspection/inspection';
 import { ApiProvider } from '../../providers/api/api';
 import { InspectlistPage } from '../inspectlist/inspectlist';
 
-
 export interface Config {
   asset: string;
 }
-
 
 @IonicPage()
 @Component({
@@ -25,7 +23,7 @@ export class ListPage {
     id: number, owning_org: string, main_op: string, op: string, region: string, wtp: string,
     process_loc: string, function: string, sub_system: string, sub_function: string, class: string, asset_type: string, sub_cat1: string, sub_cat2: string
   };
-  //  assetgroup: {id: string, primary: string, sub1: string, rfid: string, aisid: string, sub2: string};
+  // assetgroup: {id: string, primary: string, sub1: string, rfid: string, aisid: string, sub2: string};
   // assetlocList: Array<any>
   // assetgroupList: Array<any>
   assetowningList: Array<any>
@@ -77,14 +75,8 @@ export class ListPage {
       { prop: 'RFID', name: 'RFID ' },
       { prop: 'SoftTag', name: 'Soft Tag' },
       { prop: 'Name', name: 'Name' },
-
     ];
-
   }
-
-  // inspection(row) {
-  //   console.log(row);
-  // }
 
   async openModal(rows) {
     console.log('row', rows);
@@ -104,6 +96,7 @@ export class ListPage {
         }
       }
     })
+
     if (this.modalOpen) {
       this.modalOpen = false;
       return await modal.present();
@@ -111,7 +104,6 @@ export class ListPage {
   }
 
   addToInspection(rowIndex: number) {
-
     let asset: any = this.assetowningList[rowIndex];
     //for add data
     if (this.checkListExist(rowIndex) == 'primary') {
@@ -120,23 +112,26 @@ export class ListPage {
         //insert data on all asset
       }
       this.inspectionCheckList.push(inspectionData)
-      console.log(this.inspectionCheckList);    } else {
+      console.log(this.inspectionCheckList);    
+    } else {
       let index = this.inspectionCheckList.findIndex(inspection => inspection.asset_id == asset.assetID);
       //for remove data
       if (index >= 0) {
         this.inspectionCheckList.splice(index, 1);
       }
     }
-    console.log(this.inspectionCheckList);
     this.storage.set('INSPECTIONCHECKLIST', JSON.stringify(this.inspectionCheckList));
-
   }
 
   checkListExist(rowIndex) {
-    let asset = this.assetowningList[rowIndex];
-    let index = this.inspectionCheckList.findIndex(inspection => inspection.asset_id == asset.assetID);
-    if (index >= 0) {
-      return 'secondary';
+    if(rowIndex && this.inspectionCheckList.length != 0){
+      let asset = this.assetowningList[rowIndex];
+      let index = this.inspectionCheckList.findIndex(inspection => inspection.asset_id == asset.assetID);
+      if (index >= 0) {
+        return 'secondary';
+      } else {
+        return 'primary';
+      }
     } else {
       return 'primary';
     }
@@ -146,7 +141,6 @@ export class ListPage {
     // let params = {
     //   id: row.assetID
     // }
-
     this.assetowning = this.assetowningList[row];
     console.log(row);
 
@@ -159,7 +153,6 @@ export class ListPage {
   //     spinner: 'circles',
   //     content: 'Please Wait..'
   //   });
-
 
   //   loading.present();
   //   this.api.getAssetAll().then(res => {
@@ -188,25 +181,22 @@ export class ListPage {
         this.assetowningList = this.rows;
       });
     this.storage.get('INSPECTIONCHECKLIST').then(data => {
-      this.inspectionCheckList = JSON.parse(data);
-
+      if(data){
+        this.inspectionCheckList = JSON.parse(data);
+      }
+      console.log('chelklist',this.inspectionCheckList);
     })
     // this.storage.get('ASSETOWNINGLIST').then(data =>{
     //   this.assetowningList = JSON.parse(data)
     //   this.rows = this.assetowningList;
     //   console.log(this.rows); 
     // })
-
-
-
   }
 
   removeData() {
     this.inspectionCheckList.pop();
     this.storage.set('INSPECTIONCHECKLIST', JSON.stringify(this.inspectionCheckList))
   }
-
-
 }
 
 
