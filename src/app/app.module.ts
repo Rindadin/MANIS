@@ -26,6 +26,8 @@ import { ListPageModule } from '../pages/list/list.module';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NotificationPageModule } from '../pages/notification/notification.module';
 import { InspectlistPageModule } from '../pages/inspectlist/inspectlist.module';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { QRScanner } from '@ionic-native/qr-scanner';
 
 
 
@@ -74,6 +76,8 @@ import { InspectlistPageModule } from '../pages/inspectlist/inspectlist.module';
     OneSignal,
     Geolocation,
     // GoogleMaps
+    QRScanner,
+    NgxQRCodeModule
   
   ]
 })
