@@ -1,12 +1,17 @@
-
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Inspect List</ion-title>
-  </ion-navbar>
-</ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Inspect List</ion-title>
+      <ion-buttons end>
+        <button icon-end color="orange" solid ion-button (click)="qrCode()">Scan QR
+            <ion-icon name="barcode"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  
 
 
 <ion-content padding>
