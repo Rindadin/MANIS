@@ -172,7 +172,6 @@ export class ListPage {
   //   });
   // }
 
-
   ionViewDidLoad(): void {
     this._HTTP
       .get<Config>('../../assets/data/asset.json')
