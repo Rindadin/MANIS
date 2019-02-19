@@ -27,8 +27,8 @@ export class MyApp {
   pages: Array<{ title: string, component: any, icon: string }>;
 
   constructor(private storage: Storage, private oneSignal: OneSignal, public user: UserProvider, public events: Events, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
-    this.initializeApp();
-    // this.storage.clear();
+    this.initializeApp(); 
+    this.storage.clear();
     //used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage, icon: 'home' },

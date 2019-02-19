@@ -49,10 +49,10 @@ export class UserProvider {
     this.api.doLogin(accountInfo).then(data => {
       let res: any = data
       console.log(res);
-      if (res.api_token) { // if login success
+      if (res.access_token) { // if login success
         console.log(res.access_token)
-        this.storage.set('TOKEN', res.api_token).then(() =>{
-          this.getProfile(res.ID).then(res => {
+        this.storage.set('TOKEN', res.access_token).then(() =>{
+          this.getProfile(res.id).then(res => {
             let response: any = res;
             let user = response.feedData[0];
             console.log('user: ',user);
