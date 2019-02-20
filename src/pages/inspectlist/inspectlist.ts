@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 
 @IonicPage()
@@ -9,6 +10,9 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'inspectlist.html',
 })
 export class InspectlistPage {
+
+  scannedCode = null;
+
   assetowning: {
     id: number, owning_org: string, main_op: string, op: string, region: string, wtp: string,
     process_loc: string, function: string, sub_system: string, sub_function: string, class: string, asset_type: string, sub_cat1: string, sub_cat2: string
@@ -22,7 +26,7 @@ export class InspectlistPage {
   // index: number;
 
 
-  constructor( public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
+  constructor( private barcodeScanner: BarcodeScanner, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
   
     this.columns = [
       { prop: 'asset_id', name: 'Asset ID' },
@@ -32,6 +36,13 @@ export class InspectlistPage {
     ];
   
   
+  }
+
+  scanCode() {
+    this.barcodeScanner.scan().then(barcodeData => {
+      this.scannedCode = barcodeData.text;
+    })
+
   }
 
   ionViewDidLoad() {

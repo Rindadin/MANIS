@@ -27,7 +27,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { NotificationPageModule } from '../pages/notification/notification.module';
 import { InspectlistPageModule } from '../pages/inspectlist/inspectlist.module';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
-import { QRScanner } from '@ionic-native/qr-scanner';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 
 
@@ -76,7 +76,7 @@ import { QRScanner } from '@ionic-native/qr-scanner';
     OneSignal,
     Geolocation,
     // GoogleMaps
-    QRScanner,
+    BarcodeScanner,
     NgxQRCodeModule
   
   ]
