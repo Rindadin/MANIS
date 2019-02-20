@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-// import {GoogleMaps} from '@ionic-native/google-maps';
 import { MyApp } from './app.component';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { RegisterPage } from '../pages/register/register';
@@ -26,19 +25,12 @@ import { ListPageModule } from '../pages/list/list.module';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NotificationPageModule } from '../pages/notification/notification.module';
 import { InspectlistPageModule } from '../pages/inspectlist/inspectlist.module';
-import { NgxQRCodeModule } from 'ngx-qrcode2';
-import { QRScanner } from '@ionic-native/qr-scanner';
-
-
-
 
 @NgModule({
   declarations: [
     MyApp,
     DashboardPage,
     RegisterPage,
-    
-   
   ],
   imports: [
     BrowserModule,
@@ -56,8 +48,6 @@ import { QRScanner } from '@ionic-native/qr-scanner';
     NgxDatatableModule,
     NotificationPageModule,
     InspectlistPageModule
-    
-
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -75,10 +65,6 @@ import { QRScanner } from '@ionic-native/qr-scanner';
     ApiProvider,
     OneSignal,
     Geolocation,
-    // GoogleMaps
-    QRScanner,
-    NgxQRCodeModule
-  
   ]
 })
 export class AppModule {}
