@@ -10,6 +10,15 @@
 
 
 <ion-content padding>
+
+  <button ion-button full icon-left (click)="scanCode()"><ion-icon name="qr-scanner"></ion-icon>Scan Code</button>
+
+  <ion-card *ngIf="scannedCode">
+    <ion-card-content>
+      Result from Scan: {{ scannedCode }}
+    </ion-card-content>
+  </ion-card>
+
   <div>
     <ngx-datatable [sortType]="'multi'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50"
     [rows]="rows" [columns]="columns" [columnMode]="'force'" [limit]="10">

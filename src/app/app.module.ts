@@ -25,6 +25,7 @@ import { ListPageModule } from '../pages/list/list.module';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NotificationPageModule } from '../pages/notification/notification.module';
 import { InspectlistPageModule } from '../pages/inspectlist/inspectlist.module';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,8 @@ import { InspectlistPageModule } from '../pages/inspectlist/inspectlist.module';
     ApiProvider,
     OneSignal,
     Geolocation,
+    BarcodeScanner
+    
   ]
 })
 export class AppModule {}

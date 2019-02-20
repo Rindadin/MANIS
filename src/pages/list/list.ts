@@ -147,38 +147,38 @@ export class ListPage {
     this.navCtrl.setRoot(InspectlistPage, { params: this.assetowning, type: 'inspect', index: this.assetowning })
   }
 
-  // getSyncData(){
+  getSyncData(){
 
-  //   let loading = this.loadingCtrl.create({
-  //     spinner: 'circles',
-  //     content: 'Please Wait..'
-  //   });
+    let loading = this.loadingCtrl.create({
+      spinner: 'circles',
+      content: 'Please Wait..'
+    });
 
-  //   loading.present();
-  //   this.api.getAssetAll().then(res => {
-  //     loading.dismiss();
-  //     let result: any = res;
-  //     console.log(result);
-  //     this.assetowningList = result;
-  //     console.log(this.assetowningList);
-  //     this.storage.set('ASSETOWNINGLIST', JSON.stringify(this.assetowningList)).then(res=>{
-  //       this.ionViewDidLoad();
-  //     });
+    loading.present();
+    this.api.getAssetAll().then(res => {
+      loading.dismiss();
+      let result: any = res;
+      console.log(result);
+      this.assetowningList = result;
+      console.log(this.assetowningList);
+      this.storage.set('ASSETOWNINGLIST', JSON.stringify(this.assetowningList)).then(res=>{
+        this.ionViewDidLoad();
+      });
 
-  //   }).catch (err => {
-  //     console.log(err)
-  //     loading.dismiss();
+    }).catch (err => {
+      console.log(err)
+      loading.dismiss();
 
-  //   });
-  // }
+    });
+  }
 
   ionViewDidLoad(): void {
-    this._HTTP
-      .get<Config>('../../assets/data/asset.json')
-      .subscribe((data) => {
-        this.rows = data.asset;
-        this.assetowningList = this.rows;
-      });
+    // this._HTTP
+    //   .get<Config>('../../assets/data/asset.json')
+    //   .subscribe((data) => {
+    //     this.rows = data.asset;
+    //     this.assetowningList = this.rows;
+    //   });
     this.storage.get('INSPECTIONCHECKLIST').then(data => {
       if(data){
         this.inspectionCheckList = JSON.parse(data);
