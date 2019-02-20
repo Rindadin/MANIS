@@ -10,7 +10,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
   templateUrl: 'inspectlist.html',
 })
 export class InspectlistPage {
-
+   
   scannedCode = null;
 
   assetowning: {
@@ -38,11 +38,10 @@ export class InspectlistPage {
   
   }
 
-  scanCode() {
+  scanCode(){
     this.barcodeScanner.scan().then(barcodeData => {
-      this.scannedCode = barcodeData.text;
+      this.scannedCode = barcodeData;
     })
-
   }
 
   ionViewDidLoad() {

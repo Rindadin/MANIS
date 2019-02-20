@@ -23,8 +23,8 @@ export class LoginPage {
   }
 
   doLogin() {
-    //this.user.login(this.userInfo);
-     this.navCtrl.setRoot(HomePage, {}, {animate: true});
+    this.user.login(this.userInfo);
+    //this.navCtrl.setRoot(HomePage, {}, {animate: true});
   }
 
   forgotPassword() {
