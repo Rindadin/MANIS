@@ -26,7 +26,6 @@ import { ListPageModule } from '../pages/list/list.module';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NotificationPageModule } from '../pages/notification/notification.module';
 import { InspectlistPageModule } from '../pages/inspectlist/inspectlist.module';
-import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 
@@ -77,7 +76,6 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     Geolocation,
     // GoogleMaps
     BarcodeScanner,
-    NgxQRCodeModule
   
   ]
 })
