@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Events } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
 import { HomePage } from '../home/home';
-
-
-
-
 
 @IonicPage()
 @Component({
@@ -14,7 +10,7 @@ import { HomePage } from '../home/home';
 })
 export class LoginPage {
   userInfo: { username: string, password: string }
-  constructor(private loadingController: LoadingController, public navCtrl: NavController, public navParams: NavParams, public user: UserProvider) {
+  constructor(public events: Events, private loadingController: LoadingController, public navCtrl: NavController, public navParams: NavParams, public user: UserProvider) {
     this.userInfo = { username: null, password: null };
   }
 
@@ -23,8 +19,9 @@ export class LoginPage {
   }
 
   doLogin() {
-    //this.user.login(this.userInfo);
-     this.navCtrl.setRoot(HomePage, {}, {animate: true});
+    this.user.login(this.userInfo);
+    // this.navCtrl.setRoot(HomePage, {}, {animate: true});
+    //this.events.publish('user:login');
   }
 
   forgotPassword() {
