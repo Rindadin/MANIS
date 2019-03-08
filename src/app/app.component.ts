@@ -28,7 +28,7 @@ export class MyApp {
 
   constructor(private storage: Storage, private oneSignal: OneSignal, public user: UserProvider, public events: Events, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp(); 
-    //this.storage.clear();
+    //  this.storage.clear();
     //used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage, icon: 'home' },
@@ -36,11 +36,10 @@ export class MyApp {
       { title: 'Asset Registration', component: RegisterPage, icon: 'clipboard' },
       // { title: 'Asset Status', component: AssetPage, icon: 'done-all'},
       { title: 'Asset List', component: ListPage, icon: 'list' },
-      { title: 'Asset Inspection', component: InspectlistPage, icon: 'md-create' },
+      { title: 'Scan Code/QR for Inspection', component: InspectlistPage, icon: 'md-create' },
       { title: 'Pending Sync', component: PendingPage, icon: 'refresh' },
       { title: 'Notification', component: NotificationPage, icon: 'notifications' },
       { title: 'Profile', component: 'ProfilePage', icon: 'person' }
-
 
     ];
     this.listenToLoginEvents();

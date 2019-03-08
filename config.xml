@@ -11,6 +11,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <preference name="Orientation" value="landscape" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />
@@ -20,6 +21,10 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <platform name="android">
+        <hook src="scripts/android_before_build.js" type="before_build" />
+        <hook src="scripts/android_before_build.js" type="before_deploy" />
+        <hook src="scripts/android_before_build.js" type="before_compile" />
+        <hook src="scripts/android_before_build.js" type="before_run" />
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
@@ -93,9 +98,9 @@
         <variable name="PLAY_SERVICES_VERSION" value="15.0.1" />
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="27.+" />
     </plugin>
-    <engine name="browser" spec="5.0.4" />
-    <engine name="android" spec="^7.1.4" />
     <plugin name="phonegap-plugin-barcodescanner" spec="^8.0.1">
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="27.+" />
     </plugin>
+    <engine name="browser" spec="5.0.4" />
+    <engine name="android" spec="^7.1.4" />
 </widget>

@@ -49,9 +49,11 @@ export class InspectlistPage {
       this.inspectionCheckList = JSON.parse(data)
       this.rows = this.inspectionCheckList;
       console.log(this.rows);
+
+    
     })
     this.rows = this.assetowningList;
-
+    
     
   }
 

@@ -1,20 +1,29 @@
 page-login {
   .card-ios,
   .card-md {
-    position: relative;
-    margin-top: -5em;
-    //width: calc(100% - 24px);
-    height: 400px;
-    width: 380px;
+    // position: fixed;
+    // margin-top: -5em;
+    width: calc(100% - 24px);
     background-color: white;
-    text-align: center;
-    margin: 20px;
+    height: 400px;
+    width: 350px;
+    // text-align: center;
+    // margin: 20px;
     box-shadow: none;
-    border-radius: 10px;
-    left: 100px;
-  
-  
+    border-radius: 10px; 
+    // left: 100px;
+    // bottom: 10%;
+    margin: auto;
+    border: 3px solid rgba(1, 50, 67, 1);
+    padding: 10px;
+    padding-bottom: 0 !important;
+
   }
+
+  .scroll-content {
+    padding-bottom: 0 !important;
+ }
+
   .background {
     position: absolute;
     background-image: url("../assets/imgs/login.png");
@@ -26,86 +35,36 @@ page-login {
     align-content: center !important;
     align-items: center !important;
   }
-  .item-ios,
-  .item-md {
-    position: relative;
-    background-color: transparent !important;
-    color: black;
-    margin: 1vh;
-    
-
-  }
-  .text-input::-moz-placeholder {
-    color: white;
-  }
-  .text-input:-ms-input-placeholder {
-    color: black;
-    
-  }
-  .text-input::-webkit-input-placeholder {
-    text-indent: 0;
-    color: black;
-    
-  }
-  .nav{
-    width: 320px;
-    height: auto;
-    margin: 4vh;
-    margin-left: 3.5vh;
-  }
+  // .nav{
+  //   width: 320px;
+  //   height: auto;
+  //   margin: 4vh;
+  //   margin-left: 3.5vh;
+  // }
 
   .btnwidth{
     width: 100%;
     margin-left: 0vh;
 
-  }
-
-  .ing{
-    position: relative;
-    width: 15%;
-    top: -25px;
-    left: 0px;
-    float: left;
 
   }
+
 
   .footer{
-   position: absolute;
-   left: 0;
+    position: fixed;
+    background-color: black;
+  //  left: 0;
    bottom: 0;
-   width: 100%;
-   background-color: black;
+  //  height: 0;
+  //  width: 100%;
    color: white;
    text-align: center;
-   
   }
 
-  .idaman{
-    position: relative;
-    height: 30px;
-    width: 26px;
-    
-  }
+  body.keyboard-open .has-footer{	
+    bottom: 0;
+    }
 
-  // .ipg{
-  //   position: relative;
-  //   width: 150%;
-  //   top: 7px;
-  //   right: 20px;
-  // }
-
-  // .ilg{
-  //   position: relative;
-  //   width: 55%;
-  //   top: 5px;
-  //   left: 50px;
-
-  // }
-
-  // .pass{
-  //   text-align: 20px;
-  //   left: 10%;
-  // }
 
 
 

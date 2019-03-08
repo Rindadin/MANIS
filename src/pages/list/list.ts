@@ -19,6 +19,7 @@ export class ListPage {
   modalOpen: boolean;
   data: any;
   inspectionCheckList: Array<any>;
+  id: any = 0;
   assetowning: {
     id: number, owning_org: string, main_op: string, op: string, region: string, wtp: string,
     process_loc: string, function: string, sub_system: string, sub_function: string, class: string, asset_type: string, sub_cat1: string, sub_cat2: string
@@ -27,6 +28,7 @@ export class ListPage {
   // assetlocList: Array<any>
   // assetgroupList: Array<any>
   assetowningList: Array<any>
+  assetSync: Array<any>
   tablestyle = 'bootstrap';
   public config: Config;
   public columns: any;
@@ -36,6 +38,7 @@ export class ListPage {
   processloc: Array<any>;
 
   constructor(public viewController: ViewController, public api: ApiProvider, public loadingCtrl: LoadingController, public modalCtrl: ModalController, public modal: ModalController, public _HTTP: HttpClient, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
+    this.assetSync = [];
     // this.assetlocList = [];
     // this.assetgroupList = [];
     this.inspectionCheckList = [];
@@ -69,12 +72,6 @@ export class ListPage {
     this.modalOpen = true;
     this.assetowningList = [
 
-    ];
-    this.columns = [
-      { prop: 'ID', name: 'asset ID' },
-      { prop: 'RFID', name: 'RFID ' },
-      { prop: 'SoftTag', name: 'Soft Tag' },
-      { prop: 'Name', name: 'Name' },
     ];
   }
 
@@ -111,8 +108,8 @@ export class ListPage {
         asset_id: asset.assetID
         //insert data on all asset
       }
-      this.inspectionCheckList.push(inspectionData)
-      console.log(this.inspectionCheckList);    
+      this.inspectionCheckList.push(inspectionData);
+         
     } else {
       let index = this.inspectionCheckList.findIndex(inspection => inspection.asset_id == asset.assetID);
       //for remove data
@@ -120,14 +117,19 @@ export class ListPage {
         this.inspectionCheckList.splice(index, 1);
       }
     }
+    console.log(this.inspectionCheckList); 
     this.storage.set('INSPECTIONCHECKLIST', JSON.stringify(this.inspectionCheckList));
   }
 
   checkListExist(rowIndex) {
-    if(rowIndex && this.inspectionCheckList.length != 0){
+    // console.log('rowIndex',rowIndex);
+    // console.log('length available',(rowIndex && (this.inspectionCheckList.length != 0)));
+    if((rowIndex > -1) && (this.inspectionCheckList.length != 0)){
       let asset = this.assetowningList[rowIndex];
+      console.log('asset',asset)
       let index = this.inspectionCheckList.findIndex(inspection => inspection.asset_id == asset.assetID);
-      if (index >= 0) {
+      console.log('index',index)
+      if (index > -1) {
         return 'secondary';
       } else {
         return 'primary';
@@ -150,27 +152,52 @@ export class ListPage {
   getSyncData(){
 
     let loading = this.loadingCtrl.create({
+      cssClass: 'my-loading-class',
       spinner: 'circles',
-      content: 'Please Wait..'
+      content: 'Initiate Ghost Protocol'
+      
     });
 
     loading.present();
     this.api.getAssetAll().then(res => {
       loading.dismiss();
+
       let result: any = res;
-      console.log(result);
-      this.assetowningList = result;
+      console.log('result',result);
+      this.assetSync = result;
+      this.assetowningList = result.Actuator.concat(result.AirReceiver, result.Chlorinator, result.Compressor, result.Crane, result.Gearbox, result.Grinder, result.Motor, result.Pump, result.SandFilter, result.SurgeVessel, result.Tank, result.Valve);
+      // this.assetSync = this.assetSync.concat(result.Actuator);
+      // this.assetSync = this.assetSync.concat(result.AirReceiver);
+      // this.assetSync = this.assetSync.concat(result.Chlorinator);
+      // this.assetSync = this.assetSync.concat(result.Compressor);
+      // this.assetSync = this.assetSync.concat(result.Crane);
+      // this.assetSync = this.assetSync.concat(result.Gearbox);
+      // this.assetSync = this.assetSync.concat(result.Grinder);
+      // this.assetSync = this.assetSync.concat(result.Motor);
+      // this.assetSync = this.assetSync.concat(result.Pump);
+      // this.assetSync = this.assetSync.concat(result.SandFilter);
+      // this.assetSync = this.assetSync.concat(result.SurgeVessel);
+      // this.assetSync = this.assetSync.concat(result.Tank);
+      // this.assetSync = this.assetSync.concat(result.Valve);
+      
+      // this.assetowningList = this.assetSync;
       console.log(this.assetowningList);
+
+      this.rows = this.assetowningList;
+      //console.log(this.assetowningList);
+
       this.storage.set('ASSETOWNINGLIST', JSON.stringify(this.assetowningList)).then(res=>{
         this.ionViewDidLoad();
       });
 
     }).catch (err => {
-      console.log(err)
+      console.log('err',err)
       loading.dismiss();
 
     });
   }
+
+
 
   ionViewDidLoad(): void {
     // this._HTTP
@@ -178,18 +205,21 @@ export class ListPage {
     //   .subscribe((data) => {
     //     this.rows = data.asset;
     //     this.assetowningList = this.rows;
+    //     console.log(JSON.stringify(this.assetowningList));
     //   });
+
     this.storage.get('INSPECTIONCHECKLIST').then(data => {
       if(data){
         this.inspectionCheckList = JSON.parse(data);
       }
-      console.log('chelklist',this.inspectionCheckList);
     })
-    // this.storage.get('ASSETOWNINGLIST').then(data =>{
-    //   this.assetowningList = JSON.parse(data)
-    //   this.rows = this.assetowningList;
-    //   console.log(this.rows); 
-    // })
+
+    this.storage.get('ASSETOWNINGLIST').then(data =>{
+
+      this.assetowningList = JSON.parse(data)
+      this.rows = this.assetowningList;
+      //console.log(this.rows); 
+    })
   }
 
   removeData() {

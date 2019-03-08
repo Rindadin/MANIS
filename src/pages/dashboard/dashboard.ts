@@ -52,11 +52,11 @@ export class DashboardPage {
 
       let result2: any = res;
       let result = JSON.parse(result2);
-      console.log(result);
+      console.log('result',result);
       this.registered = result.registered;
       this.rejected = result.rejected;
-      this.verified = result.verified;
-      this.validated = result.validated;
+      this.verified = result.verify;
+      this.validated = result.validate;
       console.log(this.registered, this.rejected, this.verified,this.validated);
       this.doughnutChartData = [this.registered, this.rejected, this.verified, this.validated];
 

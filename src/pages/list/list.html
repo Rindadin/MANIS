@@ -40,8 +40,8 @@
     <ngx-datatable [sortType]="'multi'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50"
       [rows]="rows" [columns]="columns" [columnMode]="'force'" [limit]="10">
       <ngx-datatable-column prop="assetID" name="asset ID"></ngx-datatable-column>
-      <ngx-datatable-column prop="class" name="Class"></ngx-datatable-column>
-      <ngx-datatable-column prop="asset_type" name="Asset"></ngx-datatable-column>
+      <ngx-datatable-column prop="RFID" name="RFID"></ngx-datatable-column>
+      <ngx-datatable-column prop="Name" name="Asset"></ngx-datatable-column>
       <ngx-datatable-column name="Action">
         <ng-template let-value="assetID" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
           <button ion-button clear color="dark" (click)='openModal(row)'>
@@ -51,6 +51,7 @@
             <ion-icon class="table" name="build"></ion-icon>
           </button> -->
           <button  class="button-table" ion-button [color]="checkListExist(rowIndex)" (click)='addToInspection(rowIndex)'>
+              <!-- <button  class="button-table" ion-button (click)='addToInspection(rowIndex)'> -->
             Inspect
           </button>
            

@@ -109,9 +109,10 @@ export class ApiProvider {
           // console.log(url)
           // this.http.get(url)
           .subscribe(response => {
-            // console.log(response)
+            console.log('asset',JSON.stringify(response))
             resolve(response);
           }, err => {
+            console.log('err get asset',JSON.stringify(err))
             reject(err);
           })
           
@@ -159,6 +160,7 @@ export class ApiProvider {
     // let _headers = new HttpHeaders({
     //   'Authorization': 'Basic YTc0OTllNTgtYTEyNi00ODgyLWEyZjMtNDk3NmIzMTFjZDI5'
     // })
+    
     return new Promise((resolve, reject) => {
       this.http.post(url, body)
         .subscribe(response => {
