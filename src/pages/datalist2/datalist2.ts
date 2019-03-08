@@ -101,8 +101,8 @@ export class Datalist2Page {
 
 
     this.storage.get('ASSETOWNINGLIST').then(data => {
-      let value: any = data;
-      this.assetowningList = JSON.parse(value);
+      let result: any = JSON.parse(data);;
+      this.assetowningList = result.Actuator.concat(result.AirReceiver, result.Chlorinator, result.Compressor, result.Crane, result.Gearbox, result.Grinder, result.Motor, result.Pump, result.SandFilter, result.SurgeVessel, result.Tank, result.Valve);
       console.log(this.assetowningList)
       let index = this.assetowningList.findIndex(asset => asset.assetID == this.data.id);
 

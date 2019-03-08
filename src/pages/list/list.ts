@@ -17,6 +17,7 @@ export interface Config {
 })
 export class ListPage {
   modalOpen: boolean;
+  asset_cat: string;
   data: any;
   inspectionCheckList: Array<any>;
   id: any = 0;
@@ -51,23 +52,20 @@ export class ListPage {
     ];
 
     this.assetcat = [
-      { id: "01", name: "BOARD" },
-      { id: "02", name: "PANELS" },
-      { id: "03", name: "ELECTRIC ACTUATOR" },
-      { id: "04", name: "VALVE" },
-      { id: "05", name: "PUMP" },
-      { id: "06", name: "MOTOR" },
-      { id: "07", name: "FLOWMETER" },
-      { id: "08", name: "TANKS" },
-      { id: "09", name: "FILTERS" },
-      { id: "10", name: "SLUDGE THICKENER" },
-      { id: "11", name: "DRIVE ASSEMBLY" },
-      { id: "12", name: "TRANSFORMERS" },
-      { id: "13", name: "GENERATORS" },
-      { id: "14", name: "ALTERNATORS" },
-      { id: "15", name: "AIR RECEIVERS" },
-      { id: "16", name: "ACCUMULATORS" },
-      { id: "17", name: "LIFTING" }
+      { id: "01", name: "Actuator" },
+      { id: "02", name: "AirReceiver" },
+      { id: "03", name: "Chlorinator" },
+      { id: "04", name: "Compressor" },
+      { id: "05", name: "Crane" },
+      { id: "06", name: "Gearbox" },
+      { id: "07", name: "Grinder" },
+      { id: "08", name: "Motor" },
+      { id: "09", name: "Pump" },
+      { id: "10", name: "SandFilter" },
+      { id: "11", name: "SurgeVessel" },
+      { id: "12", name: "Tank" },
+      { id: "13", name: "Valve" },
+
     ];
     this.modalOpen = true;
     this.assetowningList = [
@@ -109,7 +107,7 @@ export class ListPage {
         //insert data on all asset
       }
       this.inspectionCheckList.push(inspectionData);
-         
+
     } else {
       let index = this.inspectionCheckList.findIndex(inspection => inspection.asset_id == asset.assetID);
       //for remove data
@@ -117,18 +115,18 @@ export class ListPage {
         this.inspectionCheckList.splice(index, 1);
       }
     }
-    console.log(this.inspectionCheckList); 
+    console.log(this.inspectionCheckList);
     this.storage.set('INSPECTIONCHECKLIST', JSON.stringify(this.inspectionCheckList));
   }
 
   checkListExist(rowIndex) {
     // console.log('rowIndex',rowIndex);
     // console.log('length available',(rowIndex && (this.inspectionCheckList.length != 0)));
-    if((rowIndex > -1) && (this.inspectionCheckList.length != 0)){
+    if ((rowIndex > -1) && (this.inspectionCheckList.length != 0)) {
       let asset = this.assetowningList[rowIndex];
-      console.log('asset',asset)
+      console.log('asset', asset)
       let index = this.inspectionCheckList.findIndex(inspection => inspection.asset_id == asset.assetID);
-      console.log('index',index)
+      console.log('index', index)
       if (index > -1) {
         return 'secondary';
       } else {
@@ -149,13 +147,18 @@ export class ListPage {
     this.navCtrl.setRoot(InspectlistPage, { params: this.assetowning, type: 'inspect', index: this.assetowning })
   }
 
-  getSyncData(){
+  getSyncCat(assetCat) {
+    this.rows = this.assetSync[assetCat];
+    console.log("asset change", this.rows)
+  }
+
+  getSyncData() {
 
     let loading = this.loadingCtrl.create({
       cssClass: 'my-loading-class',
       spinner: 'circles',
       content: 'Initiate Ghost Protocol'
-      
+
     });
 
     loading.present();
@@ -163,9 +166,10 @@ export class ListPage {
       loading.dismiss();
 
       let result: any = res;
-      console.log('result',result);
-      this.assetSync = result;
-      this.assetowningList = result.Actuator.concat(result.AirReceiver, result.Chlorinator, result.Compressor, result.Crane, result.Gearbox, result.Grinder, result.Motor, result.Pump, result.SandFilter, result.SurgeVessel, result.Tank, result.Valve);
+      console.log('result', result);
+      this.combineData(result);
+      // this.assetSync = result;
+      // this.assetowningList = result.Actuator.concat(result.AirReceiver, result.Chlorinator, result.Compressor, result.Crane, result.Gearbox, result.Grinder, result.Motor, result.Pump, result.SandFilter, result.SurgeVessel, result.Tank, result.Valve);
       // this.assetSync = this.assetSync.concat(result.Actuator);
       // this.assetSync = this.assetSync.concat(result.AirReceiver);
       // this.assetSync = this.assetSync.concat(result.Chlorinator);
@@ -179,25 +183,29 @@ export class ListPage {
       // this.assetSync = this.assetSync.concat(result.SurgeVessel);
       // this.assetSync = this.assetSync.concat(result.Tank);
       // this.assetSync = this.assetSync.concat(result.Valve);
-      
-      // this.assetowningList = this.assetSync;
-      console.log(this.assetowningList);
 
-      this.rows = this.assetowningList;
+      // this.assetowningList = this.assetSync;
+      // console.log(this.assetowningList);
+
+      // this.rows = this.assetowningList;
       //console.log(this.assetowningList);
 
-      this.storage.set('ASSETOWNINGLIST', JSON.stringify(this.assetowningList)).then(res=>{
+      this.storage.set('ASSETOWNINGLIST', JSON.stringify(this.assetSync)).then(res => {
         this.ionViewDidLoad();
       });
 
-    }).catch (err => {
-      console.log('err',err)
+    }).catch(err => {
+      console.log('err', err)
       loading.dismiss();
 
     });
   }
 
-
+  combineData(result){
+    this.assetSync = result;
+    this.assetowningList = result.Actuator.concat(result.AirReceiver, result.Chlorinator, result.Compressor, result.Crane, result.Gearbox, result.Grinder, result.Motor, result.Pump, result.SandFilter, result.SurgeVessel, result.Tank, result.Valve);
+    this.rows = this.assetowningList;
+  }
 
   ionViewDidLoad(): void {
     // this._HTTP
@@ -209,15 +217,18 @@ export class ListPage {
     //   });
 
     this.storage.get('INSPECTIONCHECKLIST').then(data => {
-      if(data){
+      if (data) {
         this.inspectionCheckList = JSON.parse(data);
       }
     })
 
-    this.storage.get('ASSETOWNINGLIST').then(data =>{
+    this.storage.get('ASSETOWNINGLIST').then(data => {
 
-      this.assetowningList = JSON.parse(data)
-      this.rows = this.assetowningList;
+      let result: any = JSON.parse(data)
+      this.combineData(result);
+      // this.assetSync = result;
+      // this.assetowningList = result.Actuator.concat(result.AirReceiver, result.Chlorinator, result.Compressor, result.Crane, result.Gearbox, result.Grinder, result.Motor, result.Pump, result.SandFilter, result.SurgeVessel, result.Tank, result.Valve);
+      // this.rows = this.assetowningList;
       //console.log(this.rows); 
     })
   }

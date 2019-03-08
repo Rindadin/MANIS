@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-// import {GoogleMaps} from '@ionic-native/google-maps';
+import {GoogleMaps} from '@ionic-native/google-maps';
 import { MyApp } from './app.component';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { RegisterPage } from '../pages/register/register';
@@ -74,7 +74,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     ApiProvider,
     OneSignal,
     Geolocation,
-    // GoogleMaps
+    GoogleMaps,
     BarcodeScanner,
   
   ]

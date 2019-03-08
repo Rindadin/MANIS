@@ -1,19 +1,19 @@
-import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { Component, ViewChild  } from '@angular/core';
+import { NavController, LoadingController, Platform } from 'ionic-angular';
 // import{ Chart } from 'chart.js';
 import { ChartsModule } from 'ng2-charts';
 import { ApiProvider } from '../../providers/api/api';
 import { Storage } from '@ionic/storage';
-// import {
-//   GoogleMaps,
-//   GoogleMap,
-//   GoogleMapsEvent,
-//   GoogleMapOptions,
-//   CameraPosition,
-//   MarkerOptions,
-//   Marker,
-//   Environment
-// } from '@ionic-native/google-maps';
+import {
+  GoogleMaps,
+  GoogleMap,
+  GoogleMapsEvent,
+  GoogleMapOptions,
+  CameraPosition,
+  MarkerOptions,
+  Marker,
+  Environment
+} from '@ionic-native/google-maps';
 
 
 @Component({
@@ -21,6 +21,8 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'dashboard.html'
 })
 export class DashboardPage {
+  @ViewChild('map') element;
+  map: GoogleMap;
   public registered: number;
   public rejected: number;
   public validated: number;
@@ -40,7 +42,7 @@ export class DashboardPage {
   public chartHovere(e: any): void {
     console.log(e);
   }
-  constructor(public storage: Storage, public loadingCtrl: LoadingController, public api: ApiProvider, public navCtrl: NavController, public chart: ChartsModule) {
+  constructor(public plt: Platform, public nav: NavController, public googleMaps: GoogleMaps, public storage: Storage, public loadingCtrl: LoadingController, public api: ApiProvider, public navCtrl: NavController, public chart: ChartsModule) {
     this.registered = 0;
     this.rejected = 0;
     this.validated = 0;
@@ -66,6 +68,46 @@ export class DashboardPage {
 
   }
 
+  ngAfterViewInit() {
+    this.plt.ready().then(() => {
+      this.initMap();
+    });
+  }
+
+  initMap() {
+
+    // This code is necessary for browser
+    Environment.setEnv({
+      'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyB6uMyYkMCtqpw6_87hN84aVJ4oCHU-kN4',
+      'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyB6uMyYkMCtqpw6_87hN84aVJ4oCHU-kN4'
+    });
+
+    let mapOptions: GoogleMapOptions = {
+      camera: {
+         target: {
+           lat: 3.0792,
+           lng: 101.7896389
+         },
+         zoom: 20,
+         tilt: 30
+       }
+    };
+
+    this.map = GoogleMaps.create(this.element.nativeElement, mapOptions);
+
+    let marker: Marker = this.map.addMarkerSync({
+      title: 'Ionic',
+      icon: 'blue',
+      animation: 'DROP',
+      position: {
+        lat: 3.0792,
+        lng: 101.7896389
+      }
+    });
+    marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
+      alert('clicked');
+    });
+  }
 
   ionViewDidLoad() {
     this.getDashboardData()
