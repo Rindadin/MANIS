@@ -50,19 +50,19 @@ export class MyApp {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.oneSignal.startInit('14ab8625-efd9-4b39-b071-2e51809d5334', '1071403410139');
+      
       this.storage.get('HAS_LOGGED_IN').then(res=>{
         //let token: any = JSON.parse(_token);
         if(res){
           this.events.publish('user:login');
         }
       })
-      this.oneSignal.getIds().then((data) => {
-        //alert(JSON.stringify(data))
-      }, err => {
-        //alert(JSON.stringify(err))
-      });
-      this.oneSignal.endInit();
+      // this.oneSignal.startInit('14ab8625-efd9-4b39-b071-2e51809d5334', '1071403410139');
+      // this.oneSignal.getIds().then((data) => {
+        
+      // }, err => {
+      // });
+      // this.oneSignal.endInit();
 
     });
   }

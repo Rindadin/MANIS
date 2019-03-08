@@ -3,10 +3,6 @@ import { IonicPage, NavController, NavParams, LoadingController, Events } from '
 import { UserProvider } from '../../providers/user/user';
 import { HomePage } from '../home/home';
 
-
-
-
-
 @IonicPage()
 @Component({
   selector: 'page-login',
