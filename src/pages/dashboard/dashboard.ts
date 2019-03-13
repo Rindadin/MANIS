@@ -7,10 +7,7 @@ import { Storage } from '@ionic/storage';
 import {
   GoogleMaps,
   GoogleMap,
-  GoogleMapsEvent,
   GoogleMapOptions,
-  CameraPosition,
-  MarkerOptions,
   Marker,
   Environment
 } from '@ionic-native/google-maps';
@@ -70,11 +67,11 @@ export class DashboardPage {
 
   ngAfterViewInit() {
     this.plt.ready().then(() => {
-      this.initMap();
+      this.loadMap();
     });
   }
 
-  initMap() {
+  loadMap() {
 
     // This code is necessary for browser
     Environment.setEnv({
@@ -83,20 +80,20 @@ export class DashboardPage {
     });
 
     let mapOptions: GoogleMapOptions = {
+      
       camera: {
          target: {
            lat: 3.0792,
            lng: 101.7896389
          },
-         zoom: 20,
-         tilt: 30
+         zoom: 15,
        }
     };
 
     this.map = GoogleMaps.create(this.element.nativeElement, mapOptions);
-
+    this.map.setMapTypeId('SATELLITE');
     let marker: Marker = this.map.addMarkerSync({
-      title: 'Ionic',
+      title: 'Langat 2',
       icon: 'blue',
       animation: 'DROP',
       position: {
@@ -104,9 +101,9 @@ export class DashboardPage {
         lng: 101.7896389
       }
     });
-    marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-      alert('clicked');
-    });
+    // marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
+    //   alert('clicked');
+    // });
   }
 
   ionViewDidLoad() {

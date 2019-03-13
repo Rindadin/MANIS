@@ -36,6 +36,7 @@ export class InspectionPage {
   assetowningList: Array<any>;
   assetinspectList: Array<any>;
   assetinspectStatus: Array<any>;
+  inspectionCheckList: Array<any>;
   // ins_id: any = 0;
   id: any = 0;
   type: any;
@@ -84,15 +85,15 @@ export class InspectionPage {
       let year = _date.getFullYear();
 
       this.assetinspect = {
-        asset_id: data.assetID,
+        asset_id: data.asset_id,
         ins_id: this.id,
         rfid: data.RFID,
         ins_type: null,
         start_date: day + '/' + month + '/' + year,
         last_date: null,
-        process_loc: data.Name,
-        class: data.SoftTag,
-        asset_type: data.asset_type,
+        process_loc: data.asset_type,
+        class: null,
+        asset_type: null,
         routine: null,
         images: {
           imageBefore: [],
@@ -107,12 +108,12 @@ export class InspectionPage {
       { id: "02", name: "Repair" }
     ]
 
-    this.storage.get('ASSETINSPECT_LIST').then((val) => {
+    this.storage.get('INSPECTIONCHECKLIST').then((val) => {
       console.log(val);
       if (val) {
-        this.assetinspectList = JSON.parse(val);
+        this.inspectionCheckList = JSON.parse(val);
       } else {
-        this.assetinspectList = [];
+        this.inspectionCheckList = [];
       }
     })
   }
@@ -125,6 +126,7 @@ export class InspectionPage {
 
 
     } else {
+      this.assetinspect.routine = this.routine;
       this.assetinspectList.push(this.assetinspect);
       console.log(this.assetinspectList);
 

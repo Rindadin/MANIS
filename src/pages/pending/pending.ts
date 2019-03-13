@@ -35,6 +35,7 @@ export class PendingPage {
 
   gisList: Array<any>
   imageList: Array<any>
+  inspectionCheckList: Array<any>
   tablestyle = 'bootstrap';
   public config: Config;
   public columns1: any;

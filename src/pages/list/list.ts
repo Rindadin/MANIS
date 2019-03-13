@@ -22,8 +22,12 @@ export class ListPage {
   inspectionCheckList: Array<any>;
   id: any = 0;
   assetowning: {
-    id: number, owning_org: string, main_op: string, op: string, region: string, wtp: string,
-    process_loc: string, function: string, sub_system: string, sub_function: string, class: string, asset_type: string, sub_cat1: string, sub_cat2: string
+    Name: string, SoftTag: string, assetID: string, RFID: string, AssetTaggedNo: string, Model: string, SerialNo: string, Speed: string, Type: string, MakeBrand: string,
+    Flow: string, Head: string, Medium: string, ManufactureYear: string, manufacturer_no: string, Voltage: string, Frequency: string, CurrentA: string, kWHp: string, PressureRating: string,
+    WorkingPressure: string, DesignPressure: string, ShellThickness: string, Diameter: string, Weight: string, Capacity: string, LubricantGrease: string,
+    EquipmentName: string, Span: string, Size: string, OperatingVoltage: string, ConstructionYear: string, Ratio: string, Shape: string, Dimension: string,
+    InletPipeDia: string, OutletPipeDia: string, Material: string, SizeOfBed: string, RateOfFilteration: string, TypeOfFilterMedia: string, HydraulicTestPressure: string,
+    Ampere: string, Ph: string, Cycle: string, FilterMediaDepth: string, LastPreventive: string, LastCorrective: string
   };
   // assetgroup: {id: string, primary: string, sub1: string, rfid: string, aisid: string, sub2: string};
   // assetlocList: Array<any>
@@ -103,9 +107,14 @@ export class ListPage {
     //for add data
     if (this.checkListExist(rowIndex) == 'primary') {
       let inspectionData = {
-        asset_id: asset.assetID
+        asset_id: asset.assetID,
+        asset_type: asset.Name,
+        RFID: asset.RFID
+
+
         //insert data on all asset
       }
+      console.log('inspection data',inspectionData)
       this.inspectionCheckList.push(inspectionData);
 
     } else {
@@ -115,7 +124,7 @@ export class ListPage {
         this.inspectionCheckList.splice(index, 1);
       }
     }
-    console.log(this.inspectionCheckList);
+    console.log('checklist',this.inspectionCheckList);
     this.storage.set('INSPECTIONCHECKLIST', JSON.stringify(this.inspectionCheckList));
   }
 
@@ -205,6 +214,7 @@ export class ListPage {
     this.assetSync = result;
     this.assetowningList = result.Actuator.concat(result.AirReceiver, result.Chlorinator, result.Compressor, result.Crane, result.Gearbox, result.Grinder, result.Motor, result.Pump, result.SandFilter, result.SurgeVessel, result.Tank, result.Valve);
     this.rows = this.assetowningList;
+    console.log('row',this.rows);
   }
 
   ionViewDidLoad(): void {

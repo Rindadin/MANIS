@@ -29,7 +29,6 @@
           <ion-label stacked color="dark">Asset Category</ion-label>
           <ion-select placeholder="please select" [(ngModel)]="asset_cat" interface="popover" (ionChange)="getSyncCat(asset_cat)">
             <ion-option *ngFor="let asset of assetcat" [value]="asset.name">{{asset.name}}</ion-option>
-
           </ion-select>
         </ion-item>
       </ion-col>

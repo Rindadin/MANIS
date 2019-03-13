@@ -12,29 +12,24 @@
 
 <ion-content padding>
 
-  <button ion-button full icon-left (click)="scanCode()"> <ion-icon name="qr-scanner"></ion-icon>Scan Code</button>
+  <button ion-button full icon-left (click)="scanCode()" (activate)='openModal($event)'> <ion-icon name="qr-scanner"></ion-icon>Scan Code</button>
 
-  <ion-card *ngIf="scannedCode">
-    <ion-card-content>
-      Result from Scan: {{ scannedCode }}
+  <!-- <ion-card *ngIf="scannedCode">
+    <ion-card-content (activate)='openModal($event)'>
     </ion-card-content>
-  </ion-card>
+  </ion-card> -->
   <div>
     <ngx-datatable [sortType]="'multi'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50"
     [rows]="rows" [columns]="columns" [columnMode]="'force'" [limit]="10">
     <ngx-datatable-column prop="asset_id" name="asset ID"></ngx-datatable-column>
     <ngx-datatable-column prop="RFID" name="RFID"></ngx-datatable-column>
-    <ngx-datatable-column prop="Name" name="Asset"></ngx-datatable-column>
+    <ngx-datatable-column prop="asset_type" name="Asset"></ngx-datatable-column>
     <ngx-datatable-column name="Action">
       <ng-template let-value="assetID" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-        <button ion-button clear color="dark" (click)='openModal(row)'>
-          <ion-icon class="table" name="eye"></ion-icon>
-        </button>
-        <button ion-button clear color="dark" (click)='goToInspectionPage(rowIndex)'>
-          <ion-icon class="table" name="build"></ion-icon>
-        </button>
          
-       
+        <button  class="button-table" ion-button (click)='goToInspectionPage(rowIndex)'>
+        Inspection
+      </button>
       
       </ng-template>
     </ngx-datatable-column>

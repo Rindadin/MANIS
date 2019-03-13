@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { InspectionPage } from '../inspection/inspection';
 
 
 @IonicPage()
@@ -10,7 +11,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
   templateUrl: 'inspectlist.html',
 })
 export class InspectlistPage {
-
+  modalOpen: boolean;
   scannedCode = null;
 
   assetowning: {
@@ -26,7 +27,7 @@ export class InspectlistPage {
   // index: number;
 
 
-  constructor( private barcodeScanner: BarcodeScanner, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
+  constructor( public modal: ModalController, private barcodeScanner: BarcodeScanner, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
   
     this.columns = [
       { prop: 'asset_id', name: 'Asset ID' },
@@ -42,6 +43,41 @@ export class InspectlistPage {
     this.barcodeScanner.scan().then(barcodeData => {
       this.scannedCode = barcodeData.text;
     })
+
+  }
+
+  async openModal(e: any) {
+    console.log('trigger', e);
+
+    let params = {
+      id: this.scanCode()
+
+    }
+
+    const modal = this.modal.create('Datalist2Page', { params: params }, { cssClass: 'camera-modal' })
+
+    modal.onDidDismiss(response => {
+      this.modalOpen = true;
+      if (response) {
+        console.log(response)
+        if (response.type == 'inspect') {
+          this.navCtrl.setRoot(InspectionPage, { params: response.data });
+        }
+      }
+    })
+
+    if (this.modalOpen) {
+      this.modalOpen = false;
+      return await modal.present();
+    }
+  }
+
+  goToInspectionPage(row){
+    this.assetowning = this.inspectionCheckList[row];
+    console.log('data', this.inspectionCheckList)
+    console.log(row);
+
+    this.navCtrl.setRoot(InspectionPage, { params: this.assetowning, type: 'inspectList', index: this.assetowning })
 
   }
 
