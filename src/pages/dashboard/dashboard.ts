@@ -91,7 +91,7 @@ export class DashboardPage {
     };
 
     this.map = GoogleMaps.create(this.element.nativeElement, mapOptions);
-    this.map.setMapTypeId('SATELLITE');
+    this.map.setMapTypeId('SATELLITE')
     let marker: Marker = this.map.addMarkerSync({
       title: 'Langat 2',
       icon: 'blue',
