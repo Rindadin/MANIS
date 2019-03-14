@@ -4,14 +4,15 @@ import { NavController, LoadingController, Platform } from 'ionic-angular';
 import { ChartsModule } from 'ng2-charts';
 import { ApiProvider } from '../../providers/api/api';
 import { Storage } from '@ionic/storage';
-import {
-  GoogleMaps,
-  GoogleMap,
-  GoogleMapOptions,
-  Marker,
-  Environment
-} from '@ionic-native/google-maps';
+// import {
+//   GoogleMaps,
+//   GoogleMap,
+//   GoogleMapOptions,
+//   Marker,
+//   Environment
+// } from '@ionic-native/google-maps';
 
+declare var google: any;
 
 @Component({
   selector: 'page-dashboard',
@@ -19,14 +20,14 @@ import {
 })
 export class DashboardPage {
   @ViewChild('map') element;
-  map: GoogleMap;
+  // map: GoogleMap;
   public registered: number;
   public rejected: number;
   public validated: number;
   public verified: number;
 
   // map: GoogleMap;
-
+  public map: any;
   public doughnutChartLabels: string[] = ['registered', 'rejected', 'verified', 'validated'];
   public doughnutChartData: number[] = [null, null, null, null];
   public doughnutChartType: string = 'doughnut';
@@ -39,7 +40,7 @@ export class DashboardPage {
   public chartHovere(e: any): void {
     console.log(e);
   }
-  constructor(public plt: Platform, public nav: NavController, public googleMaps: GoogleMaps, public storage: Storage, public loadingCtrl: LoadingController, public api: ApiProvider, public navCtrl: NavController, public chart: ChartsModule) {
+  constructor(public plt: Platform, public nav: NavController, public storage: Storage, public loadingCtrl: LoadingController, public api: ApiProvider, public navCtrl: NavController, public chart: ChartsModule) {
     this.registered = 0;
     this.rejected = 0;
     this.validated = 0;
@@ -65,42 +66,60 @@ export class DashboardPage {
 
   }
 
-  ngAfterViewInit() {
-    this.plt.ready().then(() => {
-      this.loadMap();
-    });
-  }
+  // ngAfterViewInit() {
+  //   this.plt.ready().then(() => {
+  //     // this.loadMap()
+  //   });
+  // }
 
   loadMap() {
+    let latitude = 3.0792;
+    let longitude = 101.7896389;
 
+    let latlng = new google.maps.LatLng(latitude, longitude);
+
+    let mapOptions = {
+      center: latlng,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      disableDefaultUI: true
+    }
+    this.map = new google.maps.Map(this.element.nativeElement, mapOptions);
+
+    let marker = new google.maps.Marker({
+      map: this.map,
+      animation: google.maps.Animation.DROP,
+      position: this.map.getCenter()
+    })
+    
     // This code is necessary for browser
-    Environment.setEnv({
-      'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyB6uMyYkMCtqpw6_87hN84aVJ4oCHU-kN4',
-      'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyB6uMyYkMCtqpw6_87hN84aVJ4oCHU-kN4'
-    });
+    // Environment.setEnv({
+    //   'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyB6uMyYkMCtqpw6_87hN84aVJ4oCHU-kN4',
+    //   'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyB6uMyYkMCtqpw6_87hN84aVJ4oCHU-kN4'
+    // });
 
-    let mapOptions: GoogleMapOptions = {
+    // let mapOptions: GoogleMapOptions = {
       
-      camera: {
-         target: {
-           lat: 3.0792,
-           lng: 101.7896389
-         },
-         zoom: 15,
-       }
-    };
+    //   camera: {
+    //      target: {
+    //        lat: 3.0792,
+    //        lng: 101.7896389
+    //      },
+    //      zoom: 15,
+    //    }
+    // };
 
-    this.map = GoogleMaps.create(this.element.nativeElement, mapOptions);
-    this.map.setMapTypeId('SATELLITE')
-    let marker: Marker = this.map.addMarkerSync({
-      title: 'Langat 2',
-      icon: 'blue',
-      animation: 'DROP',
-      position: {
-        lat: 3.0792,
-        lng: 101.7896389
-      }
-    });
+    // this.map = GoogleMaps.create(this.element.nativeElement, mapOptions);
+    // this.map.setMapTypeId('SATELLITE')
+    // let marker: Marker = this.map.addMarkerSync({
+    //   title: 'Langat 2',
+    //   icon: 'blue',
+    //   animation: 'DROP',
+    //   position: {
+    //     lat: 3.0792,
+    //     lng: 101.7896389
+    //   }
+    // });
     // marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
     //   alert('clicked');
     // });
@@ -108,6 +127,7 @@ export class DashboardPage {
 
   ionViewDidLoad() {
     this.getDashboardData()
+    this.loadMap();
   }
 
   // loadMap() {

@@ -69,13 +69,11 @@
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
       },
       "cordova-plugin-nativestorage": {},
-      "phonegap-plugin-barcodescanner": {
-        "ANDROID_SUPPORT_V4_VERSION": "27.+"
-      },
       "cordova-plugin-googlemaps": {
         "API_KEY_FOR_ANDROID": "AIzaSyB6uMyYkMCtqpw6_87hN84aVJ4oCHU-kN4",
         "API_KEY_FOR_IOS": "AIzaSyB6uMyYkMCtqpw6_87hN84aVJ4oCHU-kN4"
-      }
+      },
+      "phonegap-plugin-barcodescanner": {}
     },
     "platforms": [
       "ios",
