@@ -80,8 +80,8 @@ export class DashboardPage {
 
     let mapOptions = {
       center: latlng,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      zoom: 18,
+      mapTypeId: google.maps.MapTypeId.SATELLITE,
       disableDefaultUI: true
     }
     this.map = new google.maps.Map(this.element.nativeElement, mapOptions);

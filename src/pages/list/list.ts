@@ -22,7 +22,7 @@ export class ListPage {
   inspectionCheckList: Array<any>;
   id: any = 0;
   assetowning: {
-    Name: string, SoftTag: string, assetID: string, RFID: string, AssetTaggedNo: string, Model: string, SerialNo: string, Speed: string, Type: string, MakeBrand: string,
+    ID: number, Name: string, SoftTag: string, assetID: string, RFID: string, AssetTaggedNo: string, Model: string, SerialNo: string, Speed: string, Type: string, MakeBrand: string,
     Flow: string, Head: string, Medium: string, ManufactureYear: string, manufacturer_no: string, Voltage: string, Frequency: string, CurrentA: string, kWHp: string, PressureRating: string,
     WorkingPressure: string, DesignPressure: string, ShellThickness: string, Diameter: string, Weight: string, Capacity: string, LubricantGrease: string,
     EquipmentName: string, Span: string, Size: string, OperatingVoltage: string, ConstructionYear: string, Ratio: string, Shape: string, Dimension: string,
@@ -72,9 +72,15 @@ export class ListPage {
 
     ];
     this.modalOpen = true;
-    this.assetowningList = [
-
-    ];
+    this.assetowningList = [];
+    this.storage.get("id").then(id =>{
+      if(id) {
+        this.id = parseInt(id) + 1;
+      }
+      else {
+        this.id =1;
+      }
+    })
   }
 
   async openModal(rows) {
@@ -107,6 +113,7 @@ export class ListPage {
     //for add data
     if (this.checkListExist(rowIndex) == 'primary') {
       let inspectionData = {
+        id:asset.ID,
         asset_id: asset.assetID,
         asset_type: asset.Name,
         RFID: asset.RFID
@@ -173,8 +180,8 @@ export class ListPage {
     loading.present();
     this.api.getAssetAll().then(res => {
       loading.dismiss();
-
       let result: any = res;
+      // result.push(this.id);
       console.log('result', result);
       this.combineData(result);
       // this.assetSync = result;

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, Config, ModalController, } from 'i
 import { Storage } from '@ionic/storage';
 import { RegisterPage } from '../register/register';
 import { InspectionPage } from '../inspection/inspection';
+import { ApiProvider } from '../../providers/api/api';
 
 @IonicPage()
 @Component({
@@ -44,7 +45,7 @@ export class PendingPage {
   users: any;
   //id: any;
 
-  constructor(public modalCtrl: ModalController, public modal: ModalController, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public api: ApiProvider, public modalCtrl: ModalController, public modal: ModalController, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
 
     this.pending = this.navParams.get('type');
     console.log(this.pending);
@@ -64,10 +65,10 @@ export class PendingPage {
 
     this.columns2 = [
       { prop: 'ins_id', name: 'Inspection no.' },
-      { prop: 'asset_id', name: 'Asset id' },
-      { prop: 'ins_type', name: 'Inspection type' },
-      { prop: 'start_date', name: 'Start' },
-      { prop: 'last_date', name: 'Finish' }
+      { prop: 'assetID', name: 'Asset id' },
+      // { prop: 'ins_type', name: 'Inspection type' },
+      { prop: 'RFID', name: 'RFID' },
+      { prop: 'start_date', name: 'Start' }
     ];
   }
 
@@ -116,6 +117,11 @@ export class PendingPage {
       return await modal.present();
     }
 
+  }
+
+  postData(){
+    this.api.postTheData(this.assetinspectList);
+    console.log
   }
 
   ionViewDidLoad() {

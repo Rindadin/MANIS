@@ -6,11 +6,30 @@ import { FormArray } from '@angular/forms';
 
 @Injectable()
 export class ApiProvider {
+  assetSync: { ID: number, assetID: string, RFID: string };
+  assetinspectList:Array<any>;
   baseURL: string = 'http://demo.amisapi.com.ngrok.io/api/v1';
   token: string;
 
   constructor(public storage: Storage, public http: HttpClient) {
     console.log('Hello ApiProvider Provider');
+
+    this.assetSync = {
+      ID: 8,
+      assetID: "WATR-0000200",
+      RFID: "123456"
+    };
+
+    this.storage.get('ASSETINSPECT_LIST').then((val) =>{
+
+      if (val) {
+        this.assetinspectList = JSON.parse(val);
+        console.log("value",val);
+      } else {
+        this.assetinspectList = [];
+      }
+    })
+
   }
 
   getNotification() {
@@ -122,33 +141,7 @@ export class ApiProvider {
 
 
   } 
-  // postSyncData(asset: any){
-  //   let url = this.baseURL + '/all';
-  //   let body = new FormData();
-
-  //   body.append('assetID', asset.assetID);
-  //   body.append('RFID', asset.RFID);
-
-
-  //   return new Promise((resolve, reject) => {
-  //     this.storage.get('TOKEN').then(data =>{
-  //     this.token = data
-  //     })
-  //      const httpOptions = {
-  //       headers: new HttpHeaders().append('Authorization', this.token)
-  //     };
-  //     this.http.post(url,body)
-  //     this.http.get(url,httpOptions)
-  //     // console.log(url)
-  //     // this.http.get(url)
-  //     .subscribe(response => {
-  //       // console.log(response)
-  //       resolve(response);
-  //     }, err => {
-  //       reject(err);
-  //     })
-  //   })
-  // }
+  
 
   doLogin(accountInfo: any) {
     let url = this.baseURL + '/login';
@@ -165,11 +158,35 @@ export class ApiProvider {
       this.http.post(url, body)
         .subscribe(response => {
           resolve(response)
-          console.log('Username', response)
         }, err => {
           reject(err);
         })
 
+    })
+  }
+
+  postData(assetInfo: any) {
+    let url = this.baseURL + 'regRFID';
+    let body = new FormData();
+
+    JSON.stringify(this.assetSync);
+    body.append('data', assetInfo.assetSync);
+    console.log("data", this.assetSync);
+
+    return new Promise((resolve, reject) =>{
+      this.http.post(url, body)
+      .subscribe(response =>{
+        resolve(response)
+      }, err =>{
+        reject(err);
+      })
+    })
+  }
+
+  postTheData(assetInfo:any){
+    this.postData(assetInfo).then(data =>{
+      let res:any = data
+      console.log(res);
     })
   }
 

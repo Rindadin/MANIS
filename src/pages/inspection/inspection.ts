@@ -13,10 +13,11 @@ export class InspectionPage {
   routine: { assetstatus: any, replace: boolean, plan: boolean, measurement: boolean, remark: string };
 
   assetinspect: {
+    ID: number,
     routine: any,
-    asset_id: number,
+    assetID: number,
     ins_id: number,
-    rfid: number,
+    RFID: number,
     ins_type: string,
     start_date: string,
     last_date: Date,
@@ -37,6 +38,7 @@ export class InspectionPage {
   assetinspectList: Array<any>;
   assetinspectStatus: Array<any>;
   inspectionCheckList: Array<any>;
+  typeInspection: Array<any>;
   // ins_id: any = 0;
   id: any = 0;
   type: any;
@@ -46,6 +48,7 @@ export class InspectionPage {
 
 
   constructor(public alertCtrl: AlertController, public storage: Storage, public modal: ModalController, public navCtrl: NavController, public navParams: NavParams) {
+    this.assetinspectList=[];
     this.routine = { assetstatus: null, replace: false, plan: false, measurement: false, remark: null }
     // this.assetinspect = {
     //   asset_id: null,
@@ -79,15 +82,16 @@ export class InspectionPage {
     } else {
       this.title = 'Asset Inspection';
       let _date = new Date();
-      this.id = String(_date.getTime()) + '-' + data.assetID;
+      this.id = String(_date.getTime()) + '-' + data.asset_id;
       let month = _date.getMonth() + 1;
       let day = _date.getDay();
       let year = _date.getFullYear();
 
       this.assetinspect = {
-        asset_id: data.asset_id,
+        ID: data.id,
+        assetID: data.asset_id,
         ins_id: this.id,
-        rfid: data.RFID,
+        RFID: data.RFID,
         ins_type: null,
         start_date: day + '/' + month + '/' + year,
         last_date: null,
@@ -103,6 +107,11 @@ export class InspectionPage {
       };
     }
 
+    this.typeInspection = [
+      { id: "01", name: "Priodic Inspection" },
+      { id: "02", name: "Annual Inspection" }
+    ]
+
     this.assetinspectStatus = [
       { id: "01", name: "Good" },
       { id: "02", name: "Repair" }
@@ -116,6 +125,17 @@ export class InspectionPage {
         this.inspectionCheckList = [];
       }
     })
+
+    this.storage.get('ASSETINSPECT_LIST').then((val) =>{
+
+      if (val) {
+        this.assetinspectList = JSON.parse(val);
+      } else {
+        this.assetinspectList = [];
+      }
+    })
+
+   
   }
 
   saveAsset() {
@@ -189,6 +209,7 @@ export class InspectionPage {
 
   ionViewDidLoad() {
     this.inspect = "general-info";
+    
   }
 
 }

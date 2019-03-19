@@ -4,10 +4,9 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { RegisterPage } from '../register/register';
 import { ProfilePage } from '../profile/profile';
 import { PendingPage } from '../pending/pending';
-// import { AssetPage } from '../asset/asset';
-// import { InspectionPage } from '../inspection/inspection';
 import { ListPage } from '../list/list';
 import { NotificationPage } from '../notification/notification';
+import { InspectlistPage } from '../inspectlist/inspectlist';
 
 
 /**
@@ -51,9 +50,9 @@ export class HomePage {
   //   this.navCtrl.setRoot(AssetPage, {}, {animate: true});
   // }
 
-  // goToInspection(){
-  //   this.navCtrl.setRoot(InspectionPage, {}, {animate: true});
-  // }
+  goToInspection(){
+    this.navCtrl.setRoot(InspectlistPage, {}, {animate: true});
+  }
 
   goToList(){
     this.navCtrl.setRoot(ListPage, {}, {animate: true})

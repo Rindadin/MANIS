@@ -45,7 +45,7 @@
 
             <ion-item>
               <ion-label stacked color="dark">Asset ID</ion-label>
-              <ion-input readonly="true" type="text" [(ngModel)]="assetinspect.asset_id"></ion-input>
+              <ion-input readonly="true" type="text" [(ngModel)]="assetinspect.assetID"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label stacked color="dark">Asset Name</ion-label>
@@ -79,8 +79,8 @@
           <ion-col col-6>
 
               <ion-item>
-                  <ion-label stacked color="dark">RFID ID</ion-label>
-                  <ion-input readonly="true" type="text" [(ngModel)]="assetinspect.rfid"></ion-input>
+                  <ion-label stacked color="dark">RFID</ion-label>
+                  <ion-input type="text" [(ngModel)]="assetinspect.RFID"></ion-input>
                 </ion-item>
 
             <!-- <ion-item>
@@ -90,7 +90,9 @@
 
             <ion-item>
               <ion-label stacked color="dark">Type of Inspection</ion-label>
-              <ion-input type="text" [(ngModel)]="assetinspect.ins_type"></ion-input>
+              <ion-select type="text" [(ngModel)]="assetinspect.ins_type" placeholder="please select" interface="popover">
+                <ion-option *ngFor = "let type of typeInspection" [value]="type.name">{{type.name}}</ion-option>
+              </ion-select>
             </ion-item>
 
             <ion-item>

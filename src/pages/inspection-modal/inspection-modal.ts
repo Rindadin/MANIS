@@ -16,9 +16,10 @@ export class InspectionModalPage {
   
 
   assetinspect: { 
-    asset_id: number, 
+    ID: number,
+    assetID: string, 
     ins_id: number, 
-    rfid: number, 
+    RFID: number, 
     ins_type: string, 
     start_date: string, 
     last_date: Date, 
@@ -40,9 +41,10 @@ export class InspectionModalPage {
 
     this.myphoto = 'assets/imgs/nod-home.jpg';
     this.assetinspect = {
-      asset_id: null,
+      ID: null,
+      assetID: null,
       ins_id: null,
-      rfid: null,
+      RFID: null,
       ins_type: null,
       start_date: null,
       last_date: null,
