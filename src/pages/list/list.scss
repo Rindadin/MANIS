@@ -78,9 +78,13 @@ page-list {
 
      ion-loading.my-loading-class {
         
-          background: transparent;
+          background: transparent;  
           box-shadow: none;
         
+      }
+
+      .number {
+          width: 1em;
       }
 
 }

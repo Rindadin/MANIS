@@ -108,55 +108,62 @@ export class ListPage {
     }
   }
 
-  addToInspection(rowIndex: number) {
-    let asset: any = this.assetowningList[rowIndex];
+  addToInspection(row: any) {
+    let asset: any = row;
+    console.log(asset)
     //for add data
-    if (this.checkListExist(rowIndex) == 'primary') {
+    if (this.checkListExist(asset) == 'primary') {
       let inspectionData = {
-        id:asset.ID,
-        asset_id: asset.assetID,
-        asset_type: asset.Name,
+        ID:asset.ID,
+        assetID: asset.assetID,
+        Name: asset.Name,
         RFID: asset.RFID
-
-
         //insert data on all asset
       }
-      console.log('inspection data',inspectionData)
+      
       this.inspectionCheckList.push(inspectionData);
-
+      console.log('inspection data',this.inspectionCheckList)
     } else {
       let index = this.inspectionCheckList.findIndex(inspection => inspection.asset_id == asset.assetID);
       //for remove data
       if (index >= 0) {
         this.inspectionCheckList.splice(index, 1);
       }
+      console.log("index",index)
     }
     console.log('checklist',this.inspectionCheckList);
     this.storage.set('INSPECTIONCHECKLIST', JSON.stringify(this.inspectionCheckList));
   }
 
-  checkListExist(rowIndex) {
+  checkListExist(row) {
     // console.log('rowIndex',rowIndex);
     // console.log('length available',(rowIndex && (this.inspectionCheckList.length != 0)));
-    if ((rowIndex > -1) && (this.inspectionCheckList.length != 0)) {
-      let asset = this.assetowningList[rowIndex];
-      console.log('asset', asset)
-      let index = this.inspectionCheckList.findIndex(inspection => inspection.asset_id == asset.assetID);
-      console.log('index', index)
-      if (index > -1) {
+    // if ((rowIndex > -1) && (this.inspectionCheckList.length != 0)) {
+    //   let asset = this.assetowningList[rowIndex];
+    //   console.log('asset', asset)
+    //   let index = this.inspectionCheckList.findIndex(inspection => inspection.asset_id == asset.assetID);
+    //   console.log('index', index)
+    //   if (index > -1) {
+    //     return 'secondary';
+    //   } else {
+    //     return 'primary';
+    //   }
+    // } else {
+    //   return 'primary';
+    // }
+    // console.log(row)
+    if (this.inspectionCheckList.length != 0) {
+      let asset = this.inspectionCheckList.find(inspection => inspection.asset_id == row.assetID);
+      if (asset) {
         return 'secondary';
       } else {
         return 'primary';
       }
-    } else {
-      return 'primary';
     }
+   
   }
 
   goToInspectionPage(row) {
-    // let params = {
-    //   id: row.assetID
-    // }
     this.assetowning = this.assetowningList[row];
     console.log(row);
 
@@ -236,7 +243,7 @@ export class ListPage {
     this.storage.get('INSPECTIONCHECKLIST').then(data => {
       if (data) {
         this.inspectionCheckList = JSON.parse(data);
-      }
+      } 
     })
 
     this.storage.get('ASSETOWNINGLIST').then(data => {

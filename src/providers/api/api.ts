@@ -13,22 +13,22 @@ export class ApiProvider {
 
   constructor(public storage: Storage, public http: HttpClient) {
     console.log('Hello ApiProvider Provider');
+   
+    // this.assetSync = {
+    //   ID: 8,
+    //   assetID: "WATR-0000200",
+    //   RFID: "123456"
+    // };
 
-    this.assetSync = {
-      ID: 8,
-      assetID: "WATR-0000200",
-      RFID: "123456"
-    };
+    // this.storage.get('ASSETINSPECT_LIST').then((val) =>{
 
-    this.storage.get('ASSETINSPECT_LIST').then((val) =>{
-
-      if (val) {
-        this.assetinspectList = JSON.parse(val);
-        console.log("value",val);
-      } else {
-        this.assetinspectList = [];
-      }
-    })
+    //   if (val) {
+    //     this.assetinspectList = JSON.parse(val);
+    //     console.log("value",val);
+    //   } else {
+    //     this.assetinspectList = [];
+    //   }
+    // })
 
   }
 
@@ -155,6 +155,7 @@ export class ApiProvider {
     // })
     
     return new Promise((resolve, reject) => {
+      
       this.http.post(url, body)
         .subscribe(response => {
           resolve(response)
@@ -166,28 +167,41 @@ export class ApiProvider {
   }
 
   postData(assetInfo: any) {
-    let url = this.baseURL + 'regRFID';
+    console.log(assetInfo);
+    let url = this.baseURL + '/regRFID';
     let body = new FormData();
 
-    JSON.stringify(this.assetSync);
-    body.append('data', assetInfo.assetSync);
-    console.log("data", this.assetSync);
+    let data = JSON.stringify(assetInfo);
+    console.log(data);
+    body.append('data', data);
 
     return new Promise((resolve, reject) =>{
-      this.http.post(url, body)
-      .subscribe(response =>{
-        resolve(response)
-      }, err =>{
-        reject(err);
+      this.storage.get('TOKEN').then(data => {
+        this.token = data;
+        console.log('token', this.token);
+
+        const httpOptions = {
+          headers: new HttpHeaders().append('Authorization', this.token)
+        };
+
+        this.http.post(url, body, httpOptions)
+        .subscribe(response =>{
+          resolve(response)
+        }, err =>{
+          reject(err);
+        })
+
       })
     })
   }
 
   postTheData(assetInfo:any){
-    this.postData(assetInfo).then(data =>{
-      let res:any = data
-      console.log(res);
-    })
+    console.log(assetInfo);
+
+    // this.postData(assetInfo).then(data =>{
+    //   let res:any = data
+    //   console.log(res);
+    // })
   }
 
 }

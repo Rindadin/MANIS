@@ -120,8 +120,16 @@ export class PendingPage {
   }
 
   postData(){
-    this.api.postTheData(this.assetinspectList);
-    console.log
+    // show loading ctrl
+    this.api.postData(this.assetinspectList).then((res)=>{
+      // hide loading ctrl
+      console.log(res);
+      this.assetinspectList = [];
+      this.storage.remove('ASSETINSPECT_LIST');
+    }).catch(err => {
+       // hide loading ctrl
+      console.log('error: ', err)
+    });
   }
 
   ionViewDidLoad() {

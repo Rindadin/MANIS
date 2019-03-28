@@ -42,16 +42,16 @@ export class InspectlistPage {
   scanCode() {
     this.barcodeScanner.scan().then(barcodeData => {
       this.scannedCode = barcodeData.text;
+      this.openModal(this.scannedCode);
     })
-
+    // this.openModal('WATR-0000200');
   }
 
-  async openModal(e: any) {
+  public openModal(e: any) {
     console.log('trigger', e);
 
     let params = {
-      id: this.scanCode()
-
+      id: e
     }
 
     const modal = this.modal.create('Datalist2Page', { params: params }, { cssClass: 'camera-modal' })
@@ -64,12 +64,15 @@ export class InspectlistPage {
           this.navCtrl.setRoot(InspectionPage, { params: response.data });
         }
       }
-    })
+    });
 
-    if (this.modalOpen) {
-      this.modalOpen = false;
-      return await modal.present();
-    }
+    modal.present();
+
+    // console.log(this.modalOpen);
+    // if (this.modalOpen) {
+    //   this.modalOpen = false;
+    //   modal.present();
+    // }
   }
 
   goToInspectionPage(row){
