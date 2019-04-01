@@ -98,15 +98,14 @@ export class Datalist2Page {
 
 
   ionViewDidLoad(): void {
-
-
     this.storage.get('ASSETOWNINGLIST').then(data => {
-      let result: any = JSON.parse(data);;
+      let result: any = JSON.parse(data); 
       this.assetowningList = result.Actuator.concat(result.AirReceiver, result.Chlorinator, result.Compressor, result.Crane, result.Gearbox, result.Grinder, result.Motor, result.Pump, result.SandFilter, result.SurgeVessel, result.Tank, result.Valve);
       console.log(this.assetowningList)
       let index = this.assetowningList.findIndex(asset => asset.assetID == this.data.id);
 
       if (index >= 0) {
+        console.log(this.assetowning)
         this.assetowning = this.assetowningList[index];
       } else {
         console.log('asset not found')

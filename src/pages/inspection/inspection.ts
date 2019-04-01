@@ -30,10 +30,6 @@ export class InspectionPage {
       imageAfter: Array<any>
     }
   };
-
-  // imageBefore: Array<any>;
-  // imageDuring: Array<any>;
-  // imageAfter: Array<any>;
   assetowningList: Array<any>;
   assetinspectList: Array<any>;
   assetinspectStatus: Array<any>;
@@ -50,30 +46,11 @@ export class InspectionPage {
   constructor(public alertCtrl: AlertController, public storage: Storage, public modal: ModalController, public navCtrl: NavController, public navParams: NavParams) {
     this.assetinspectList=[];
     this.routine = { assetstatus: null, replace: false, plan: false, measurement: false, remark: null }
-    // this.assetinspect = {
-    //   asset_id: null,
-    //   ins_id: null,
-    //   rfid: null,
-    //   ins_type: null,
-    //   start_date: null,
-    //   last_date: null,
-    //   process_loc: null,
-    //   class: null,
-    //   asset_type: null,
-    //   routine: null,
-    //   images: {
-    //     imageBefore: [],
-    //     imageDuring: [],
-    //     imageAfter: []
-    //   }
-    // };
-    // this.imageList = [];
 
     let data = this.navParams.get('params');
     this.type = this.navParams.get('type');
     this.index = this.navParams.get('index');
-    console.log('data');
-    console.log(data);
+    // console.log('data', data);
 
     if (this.type == 'edit') {
       this.assetinspect = data;
@@ -87,15 +64,22 @@ export class InspectionPage {
       let day = _date.getDay();
       let year = _date.getFullYear();
 
+      let asset_id: any;
+      if(data['asset_id']){
+        asset_id = data.asset_id
+      } else {
+        asset_id = data.assetID;
+      }
+
       this.assetinspect = {
         ID: data.id,
-        assetID: data.asset_id,
+        assetID: asset_id,
         ins_id: this.id,
         RFID: data.RFID,
         ins_type: null,
         start_date: day + '/' + month + '/' + year,
         last_date: null,
-        process_loc: data.asset_type,
+        process_loc: data.Name,
         class: null,
         asset_type: null,
         routine: null,
@@ -105,6 +89,8 @@ export class InspectionPage {
           imageAfter: []
         }
       };
+
+      
     }
 
     this.typeInspection = [
@@ -118,7 +104,7 @@ export class InspectionPage {
     ]
 
     this.storage.get('INSPECTIONCHECKLIST').then((val) => {
-      console.log(val);
+      // console.log(val);
       if (val) {
         this.inspectionCheckList = JSON.parse(val);
       } else {
@@ -148,7 +134,7 @@ export class InspectionPage {
     } else {
       this.assetinspect.routine = this.routine;
       this.assetinspectList.push(this.assetinspect);
-      console.log(this.assetinspectList);
+      // console.log(this.assetinspectList);
 
     }
     this.storage.set('ASSETINSPECT_LIST', JSON.stringify(this.assetinspectList));
