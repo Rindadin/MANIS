@@ -38,7 +38,7 @@
   <div>
     <ngx-datatable [sortType]="'multi'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50"
       [rows]="rows" [columns]="columns" [columnMode]="'force'" [limit]="10">
-      <ngx-datatable-column name="No." class="number">
+      <ngx-datatable-column name="No."  [width]="10">
         <ng-template let-value="assetID" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
           {{ rowIndex+1 }}.
         </ng-template>
