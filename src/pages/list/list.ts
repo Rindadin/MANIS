@@ -84,7 +84,7 @@ export class ListPage {
   }
 
   async openModal(rows) {
-    console.log('row', rows);
+    // console.log('row', rows);
 
     let params = {
       id: rows.assetID
@@ -95,7 +95,7 @@ export class ListPage {
     modal.onDidDismiss(response => {
       this.modalOpen = true;
       if (response) {
-        console.log(response)
+        // console.log(response)
         if (response.type == 'inspect') {
           this.navCtrl.setRoot(InspectionPage, { params: response.data });
         }
@@ -110,7 +110,7 @@ export class ListPage {
 
   addToInspection(row: any) {
     let asset: any = row;
-    console.log(asset)
+    // console.log(asset)
     //for add data
     if (this.checkListExist(asset) == 'primary') {
       let inspectionData = {
@@ -122,66 +122,50 @@ export class ListPage {
       }
 
       this.inspectionCheckList.push(inspectionData);
-      console.log('inspection data',inspectionData);
+      // console.log('inspection data',inspectionData);
     } else {
       let index = this.inspectionCheckList.findIndex(inspection => inspection.assetID == asset.assetID);
       //for remove data
       if (index >= 0) {
         this.inspectionCheckList.splice(index, 1);
       }
-      console.log("index",index)
+      // console.log("index",index)
     }
-    console.log('checklist',this.inspectionCheckList);
+    // console.log('checklist',this.inspectionCheckList);
     this.storage.set('INSPECTIONCHECKLIST', JSON.stringify(this.inspectionCheckList));
   }
 
   checkListExist(row) {
-    // console.log('rowIndex',rowIndex);
-    // console.log('length available',(rowIndex && (this.inspectionCheckList.length != 0)));
-    // if ((rowIndex > -1) && (this.inspectionCheckList.length != 0)) {
-    //   let asset = this.assetowningList[rowIndex];
-    //   console.log('asset', asset)
-    //   let index = this.inspectionCheckList.findIndex(inspection => inspection.asset_id == asset.assetID);
-    //   console.log('index', index)
-    //   if (index > -1) {
-    //     return 'secondary';
-    //   } else {
-    //     return 'primary';
-    //   }
-    // } else {
-    //   return 'primary';
-    // }
-    // console.log(row)
-    if (this.inspectionCheckList.length != 0) {
-      let asset = this.inspectionCheckList.find(inspection => inspection.assetID == row.assetID);
+    //must check if the data of inspection checklist is not empty array
+    if (this.isNotEmpty(this.inspectionCheckList)){
+      let asset = this.inspectionCheckList.find(inspection => inspection.asset_id == row.assetID);
       if (asset) {
         return 'secondary';
       } else {
         return 'secondary';
       }
+    } else {
+      return 'primary';
     }
-   
   }
 
   goToInspectionPage(row) {
     this.assetowning = this.assetowningList[row];
-    console.log(row);
+    // console.log(row);
 
     this.navCtrl.setRoot(InspectlistPage, { params: this.assetowning, type: 'inspect', index: this.assetowning })
   }
 
   getSyncCat(assetCat) {
     this.rows = this.assetSync[assetCat];
-    console.log("asset change", this.rows)
+    // console.log("asset change", this.rows)
   }
 
   getSyncData() {
-
     let loading = this.loadingCtrl.create({
       cssClass: 'my-loading-class',
       spinner: 'circles',
       content: 'Initiate Ghost Protocol'
-
     });
 
     loading.present();
@@ -189,29 +173,8 @@ export class ListPage {
       loading.dismiss();
       let result: any = res;
       // result.push(this.id);
-      console.log('result', result);
+      // console.log('result', result);
       this.combineData(result);
-      // this.assetSync = result;
-      // this.assetowningList = result.Actuator.concat(result.AirReceiver, result.Chlorinator, result.Compressor, result.Crane, result.Gearbox, result.Grinder, result.Motor, result.Pump, result.SandFilter, result.SurgeVessel, result.Tank, result.Valve);
-      // this.assetSync = this.assetSync.concat(result.Actuator);
-      // this.assetSync = this.assetSync.concat(result.AirReceiver);
-      // this.assetSync = this.assetSync.concat(result.Chlorinator);
-      // this.assetSync = this.assetSync.concat(result.Compressor);
-      // this.assetSync = this.assetSync.concat(result.Crane);
-      // this.assetSync = this.assetSync.concat(result.Gearbox);
-      // this.assetSync = this.assetSync.concat(result.Grinder);
-      // this.assetSync = this.assetSync.concat(result.Motor);
-      // this.assetSync = this.assetSync.concat(result.Pump);
-      // this.assetSync = this.assetSync.concat(result.SandFilter);
-      // this.assetSync = this.assetSync.concat(result.SurgeVessel);
-      // this.assetSync = this.assetSync.concat(result.Tank);
-      // this.assetSync = this.assetSync.concat(result.Valve);
-
-      // this.assetowningList = this.assetSync;
-      // console.log(this.assetowningList);
-
-      // this.rows = this.assetowningList;
-      //console.log(this.assetowningList);
 
       this.storage.set('ASSETOWNINGLIST', JSON.stringify(this.assetSync)).then(res => {
         this.ionViewDidLoad();
@@ -224,11 +187,15 @@ export class ListPage {
     });
   }
 
+  isNotEmpty(list){
+    return !this.api.isEmpty(list);
+  }
+
   combineData(result){
     this.assetSync = result;
     this.assetowningList = result.Actuator.concat(result.AirReceiver, result.Chlorinator, result.Compressor, result.Crane, result.Gearbox, result.Grinder, result.Motor, result.Pump, result.SandFilter, result.SurgeVessel, result.Tank, result.Valve);
     this.rows = this.assetowningList;
-    console.log('row',this.rows);
+    //console.log('row',this.rows);
   }
 
   ionViewDidLoad(): void {
@@ -247,9 +214,12 @@ export class ListPage {
     })
 
     this.storage.get('ASSETOWNINGLIST').then(data => {
-
-      let result: any = JSON.parse(data)
-      this.combineData(result);
+      if(data){
+        let result: any = JSON.parse(data)
+        this.combineData(result);
+      } else {
+        this.assetowningList = [];
+      }
       // this.assetSync = result;
       // this.assetowningList = result.Actuator.concat(result.AirReceiver, result.Chlorinator, result.Compressor, result.Crane, result.Gearbox, result.Grinder, result.Motor, result.Pump, result.SandFilter, result.SurgeVessel, result.Tank, result.Valve);
       // this.rows = this.assetowningList;

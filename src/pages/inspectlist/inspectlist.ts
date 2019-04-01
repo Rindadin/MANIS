@@ -77,8 +77,8 @@ export class InspectlistPage {
 
   goToInspectionPage(row){
     this.assetowning = this.inspectionCheckList[row];
-    console.log('data', this.inspectionCheckList)
-    console.log(row);
+    // console.log('data', this.inspectionCheckList)
+    // console.log(row);
 
     this.navCtrl.setRoot(InspectionPage, { params: this.assetowning, type: 'inspectList', index: this.assetowning })
 
@@ -88,9 +88,7 @@ export class InspectlistPage {
     this.storage.get('INSPECTIONCHECKLIST').then(data =>{
       this.inspectionCheckList = JSON.parse(data)
       this.rows = this.inspectionCheckList;
-      console.log(this.rows);
-
-    
+      // console.log(this.rows);
     })
     this.rows = this.assetowningList;
     

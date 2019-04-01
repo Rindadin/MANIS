@@ -48,7 +48,7 @@ export class PendingPage {
   constructor(public api: ApiProvider, public modalCtrl: ModalController, public modal: ModalController, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
 
     this.pending = this.navParams.get('type');
-    console.log(this.pending);
+    // console.log(this.pending);
     if (!this.pending) {
       this.pending = 'register';
     }
@@ -73,7 +73,7 @@ export class PendingPage {
   }
 
   async openModal(e: any) {
-    console.log('trigger', e);
+    // console.log('trigger', e);
 
     let params = {
       id: e.row.id
@@ -84,7 +84,7 @@ export class PendingPage {
     modal.onDidDismiss(response => {
       this.modalOpen = true;
       if (response) {
-        console.log(response)
+        // console.log(response)
         if (response.type == 'edit') {
           this.navCtrl.setRoot(RegisterPage, { params: response.data, index: response.index });
         }
@@ -105,7 +105,7 @@ export class PendingPage {
     modal.onDidDismiss(response => {
       this.modalOpen = true;
       if (response) {
-        console.log(response)
+        // console.log(response)
         if (response.type == 'edit') {
           this.navCtrl.setRoot(InspectionPage, { params: response.data, index: response.index, type: response.type });
         }
@@ -123,7 +123,7 @@ export class PendingPage {
     // show loading ctrl
     this.api.postData(this.assetinspectList).then((res)=>{
       // hide loading ctrl
-      console.log(res);
+      // console.log(res);
       this.assetinspectList = [];
       this.storage.remove('ASSETINSPECT_LIST');
     }).catch(err => {
@@ -140,7 +140,7 @@ export class PendingPage {
       } else {
         this.assetowningList = [];
       }
-      console.log('asset owning',JSON.stringify(this.assetowningList))
+      // console.log('asset owning',JSON.stringify(this.assetowningList))
     })
 
     this.storage.get('ASSETINSPECT_LIST').then((val) => {
@@ -148,9 +148,9 @@ export class PendingPage {
         this.assetinspectList = JSON.parse(val);
       } else {
         this.assetinspectList = [];
-        console.log(JSON.stringify("no val"));
+        // console.log(JSON.stringify("no val"));
       }
-      console.log('asset inspection',JSON.stringify(this.assetinspectList));
+      // console.log('asset inspection',JSON.stringify(this.assetinspectList));
     })
 
   }
