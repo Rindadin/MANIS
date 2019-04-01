@@ -115,16 +115,16 @@ export class ListPage {
     if (this.checkListExist(asset) == 'primary') {
       let inspectionData = {
         ID:asset.ID,
-        asset_id: asset.assetID,
+        assetID: asset.assetID,
         Name: asset.Name,
         RFID: asset.RFID
         //insert data on all asset
       }
-      
+
       this.inspectionCheckList.push(inspectionData);
       console.log('inspection data',inspectionData);
     } else {
-      let index = this.inspectionCheckList.findIndex(inspection => inspection.asset_id == asset.assetID);
+      let index = this.inspectionCheckList.findIndex(inspection => inspection.assetID == asset.assetID);
       //for remove data
       if (index >= 0) {
         this.inspectionCheckList.splice(index, 1);
@@ -157,7 +157,7 @@ export class ListPage {
       if (asset) {
         return 'secondary';
       } else {
-        return 'primary';
+        return 'secondary';
       }
     }
    
