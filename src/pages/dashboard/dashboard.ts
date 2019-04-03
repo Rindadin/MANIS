@@ -80,7 +80,7 @@ export class DashboardPage {
 
     let mapOptions = {
       center: latlng,
-      zoom: 18,
+      zoom: 20,
       mapTypeId: google.maps.MapTypeId.SATELLITE,
       disableDefaultUI: true
     }

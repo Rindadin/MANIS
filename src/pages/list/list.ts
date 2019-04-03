@@ -73,12 +73,12 @@ export class ListPage {
     ];
     this.modalOpen = true;
     this.assetowningList = [];
-    this.storage.get("id").then(id =>{
-      if(id) {
+    this.storage.get("id").then(id => {
+      if (id) {
         this.id = parseInt(id) + 1;
       }
       else {
-        this.id =1;
+        this.id = 1;
       }
     })
   }
@@ -114,7 +114,7 @@ export class ListPage {
     //for add data
     if (this.checkListExist(asset) == 'primary') {
       let inspectionData = {
-        ID:asset.ID,
+        ID: asset.ID,
         assetID: asset.assetID,
         Name: asset.Name,
         RFID: asset.RFID
@@ -122,7 +122,7 @@ export class ListPage {
       }
 
       this.inspectionCheckList.push(inspectionData);
-      // console.log('inspection data',inspectionData);
+      console.log('inspection data', inspectionData);
     } else {
       let index = this.inspectionCheckList.findIndex(inspection => inspection.assetID == asset.assetID);
       //for remove data
@@ -137,14 +137,16 @@ export class ListPage {
 
   checkListExist(row) {
     //must check if the data of inspection checklist is not empty array
-    if (this.isNotEmpty(this.inspectionCheckList)){
-      let asset = this.inspectionCheckList.find(inspection => inspection.asset_id == row.assetID);
+    if (this.isNotEmpty(this.inspectionCheckList)) {
+      let asset = this.inspectionCheckList.find(inspection => inspection.assetID == row.assetID);
       if (asset) {
         return 'secondary';
       } else {
-        return 'secondary';
+        return 'primary';
       }
-    } else {
+
+    }
+    else {
       return 'primary';
     }
   }
@@ -187,11 +189,11 @@ export class ListPage {
     });
   }
 
-  isNotEmpty(list){
+  isNotEmpty(list) {
     return !this.api.isEmpty(list);
   }
 
-  combineData(result){
+  combineData(result) {
     this.assetSync = result;
     this.assetowningList = result.Actuator.concat(result.AirReceiver, result.Chlorinator, result.Compressor, result.Crane, result.Gearbox, result.Grinder, result.Motor, result.Pump, result.SandFilter, result.SurgeVessel, result.Tank, result.Valve);
     this.rows = this.assetowningList;
@@ -210,11 +212,11 @@ export class ListPage {
     this.storage.get('INSPECTIONCHECKLIST').then(data => {
       if (data) {
         this.inspectionCheckList = JSON.parse(data);
-      } 
+      }
     })
 
     this.storage.get('ASSETOWNINGLIST').then(data => {
-      if(data){
+      if (data) {
         let result: any = JSON.parse(data)
         this.combineData(result);
       } else {

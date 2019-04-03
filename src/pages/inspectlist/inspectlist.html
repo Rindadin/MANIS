@@ -21,9 +21,9 @@
   <div>
     <ngx-datatable [sortType]="'multi'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50"
     [rows]="rows" [columns]="columns" [columnMode]="'force'" [limit]="10">
-    <ngx-datatable-column prop="asset_id" name="asset ID"></ngx-datatable-column>
+    <ngx-datatable-column prop="assetID" name="asset ID"></ngx-datatable-column>
     <ngx-datatable-column prop="RFID" name="RFID"></ngx-datatable-column>
-    <ngx-datatable-column prop="asset_type" name="Asset"></ngx-datatable-column>
+    <ngx-datatable-column prop="Name" name="Asset"></ngx-datatable-column>
     <ngx-datatable-column name="Action">
       <ng-template let-value="assetID" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
          

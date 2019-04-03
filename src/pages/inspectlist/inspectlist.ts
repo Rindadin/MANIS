@@ -30,7 +30,7 @@ export class InspectlistPage {
   constructor( public modal: ModalController, private barcodeScanner: BarcodeScanner, public storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
   
     this.columns = [
-      { prop: 'asset_id', name: 'Asset ID' },
+      { prop: 'assetID', name: 'Asset ID' },
       { prop: 'RFID', name: 'RFID ' },
       { prop: '', name: 'Soft Tag' },
       { prop: '', name: 'Name' }
