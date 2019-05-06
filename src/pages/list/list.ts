@@ -218,6 +218,7 @@ export class ListPage {
     this.storage.get('ASSETOWNINGLIST').then(data => {
       if (data) {
         let result: any = JSON.parse(data)
+        console.log(result);
         this.combineData(result);
       } else {
         this.assetowningList = [];

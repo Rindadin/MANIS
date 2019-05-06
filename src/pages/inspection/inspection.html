@@ -1,20 +1,19 @@
 <ion-header>
-    <ion-navbar>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{this.title}}</ion-title>
+    <ion-buttons end>
+      <button icon-end color="orange" solid ion-button (click)="saveAsset()">Save Asset
+        <ion-icon ios="ios-bookmark-outline" md="md-bookmark"></ion-icon>
       </button>
-      <ion-title>{{this.title}}</ion-title>
-      <ion-buttons end>
-        <button icon-end color="orange" solid ion-button (click)="saveAsset()">Save Asset
-          <ion-icon ios="ios-bookmark-outline" md="md-bookmark"></ion-icon>
-        </button>
-      </ion-buttons>
-    </ion-navbar>
-  </ion-header>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
 <ion-content>
   <div padding>
 
-  
     <ion-segment color="light" [(ngModel)]="inspect">
       <ion-segment-button value="general-info">
         General Info
@@ -48,16 +47,16 @@
               <ion-input readonly="true" type="text" [(ngModel)]="assetinspect.assetID"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label stacked color="dark">Asset Name</ion-label>
-                <ion-input readonly="true" type="text" [(ngModel)]="assetinspect.process_loc"></ion-input>
-              </ion-item>
-            
-            
+              <ion-label stacked color="dark">Asset Name</ion-label>
+              <ion-input readonly="true" type="text" [(ngModel)]="assetinspect.process_loc"></ion-input>
+            </ion-item>
+
+
 
             <ion-item>
               <ion-label stacked color="dark">Start Inspection Date</ion-label>
               <ion-input readonly="true" [(ngModel)]="assetinspect.start_date"></ion-input>
-             
+
             </ion-item>
 
             <!-- <ion-item>
@@ -78,10 +77,10 @@
 
           <ion-col col-6>
 
-              <ion-item>
-                  <ion-label stacked color="dark">RFID</ion-label>
-                  <ion-input type="text" [(ngModel)]="assetinspect.RFID"></ion-input>
-                </ion-item>
+            <ion-item>
+              <ion-label stacked color="dark">RFID</ion-label>
+              <ion-input type="text" [(ngModel)]="assetinspect.RFID"></ion-input>
+            </ion-item>
 
             <!-- <ion-item>
               <ion-label stacked color="dark">Soft Tag</ion-label>
@@ -90,8 +89,9 @@
 
             <ion-item>
               <ion-label stacked color="dark">Type of Inspection</ion-label>
-              <ion-select type="text" [(ngModel)]="assetinspect.ins_type" placeholder="please select" interface="popover">
-                <ion-option *ngFor = "let type of typeInspection" [value]="type.name">{{type.name}}</ion-option>
+              <ion-select type="text" [(ngModel)]="assetinspect.ins_type" placeholder="please select"
+                interface="popover">
+                <ion-option *ngFor="let type of typeInspection" [value]="type.name">{{type.name}}</ion-option>
               </ion-select>
             </ion-item>
 
@@ -109,7 +109,7 @@
 
   <div [ngSwitch]="inspect">
     <div *ngSwitchCase="'routine'">
-      
+
 
       <ion-grid>
         <ion-row>
@@ -123,26 +123,27 @@
             <ion-item>
               <ion-label stacked color="dark">Asset Status</ion-label>
               <ion-select [(ngModel)]="routine.assetstatus" placeholder="please select" interface="popover">
-                <ion-option *ngFor="let assetstatus of assetinspectStatus" [value]="assetstatus.name">{{assetstatus.name}}</ion-option>
+                <ion-option *ngFor="let assetstatus of assetinspectStatus" [value]="assetstatus.name">
+                  {{assetstatus.name}}</ion-option>
               </ion-select>
             </ion-item>
 
             <div [ngSwitch]="routine.as-us">
-            <ion-item *ngSwitchCase="'Repair'">
-              <ion-label>Replace</ion-label>
-              <ion-checkbox [(ngModel)]="routine.replace" color="dark"></ion-checkbox>
-            </ion-item>
+              <ion-item *ngSwitchCase="'Repair'">
+                <ion-label>Replace</ion-label>
+                <ion-checkbox [(ngModel)]="routine.replace" color="dark"></ion-checkbox>
+              </ion-item>
 
-            <ion-item *ngSwitchCase="'Repair'">
-              <ion-label>PLAN Replace</ion-label>
-              <ion-checkbox [(ngModel)]="routine.plan" color="dark"></ion-checkbox>
-            </ion-item>
+              <ion-item *ngSwitchCase="'Repair'">
+                <ion-label>PLAN Replace</ion-label>
+                <ion-checkbox [(ngModel)]="routine.plan" color="dark"></ion-checkbox>
+              </ion-item>
 
-            <ion-item *ngSwitchCase="'Repair'">
-              <ion-label>Measurement</ion-label>
-              <ion-checkbox [(ngModel)]="routine.measurement" color="dark"></ion-checkbox>
-            </ion-item>
-          </div>
+              <ion-item *ngSwitchCase="'Repair'">
+                <ion-label>Measurement</ion-label>
+                <ion-checkbox [(ngModel)]="routine.measurement" color="dark"></ion-checkbox>
+              </ion-item>
+            </div>
             <ion-item>
               <ion-label>Remark</ion-label>
               <ion-textarea [(ngModel)]="routine.remark"></ion-textarea>
@@ -154,55 +155,55 @@
     </div>
   </div>
 
-  <div [ngSwitch]="inspect" >
+  <div [ngSwitch]="inspect">
     <div *ngSwitchCase="'hazard'">
-        <div [ngSwitch]="routine.assetstatus">
-            <div *ngSwitchCase="'Repair'">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-12>
-            <ion-list>
+      <div [ngSwitch]="routine.assetstatus">
+        <div *ngSwitchCase="'Repair'">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-12>
+                <ion-list>
 
-              <ion-list-header color="list-grey">Repair</ion-list-header>
+                  <ion-list-header color="list-grey">Repair</ion-list-header>
 
-            </ion-list>
-          </ion-col>
-          <ion-col col-6>
+                </ion-list>
+              </ion-col>
+              <ion-col col-6>
 
-            <ion-item>
-              <ion-label>Soldering</ion-label>
-              <ion-checkbox color="dark"></ion-checkbox>
-            </ion-item>
+                <ion-item>
+                  <ion-label>Soldering</ion-label>
+                  <ion-checkbox color="dark"></ion-checkbox>
+                </ion-item>
 
-            <ion-item>
-              <ion-label>Rewiring</ion-label>
-              <ion-checkbox color="dark"></ion-checkbox>
-            </ion-item>
+                <ion-item>
+                  <ion-label>Rewiring</ion-label>
+                  <ion-checkbox color="dark"></ion-checkbox>
+                </ion-item>
 
-            <ion-item>
-              <ion-label>Returning</ion-label>
-              <ion-checkbox color="dark"></ion-checkbox>
-            </ion-item>
+                <ion-item>
+                  <ion-label>Returning</ion-label>
+                  <ion-checkbox color="dark"></ion-checkbox>
+                </ion-item>
 
-            <ion-item>
-              <ion-label>Adjusting</ion-label>
-              <ion-checkbox color="dark"></ion-checkbox>
-            </ion-item>
+                <ion-item>
+                  <ion-label>Adjusting</ion-label>
+                  <ion-checkbox color="dark"></ion-checkbox>
+                </ion-item>
 
-            <ion-item>
-              <ion-label>Tighten</ion-label>
-              <ion-checkbox color="dark"></ion-checkbox>
-            </ion-item>
+                <ion-item>
+                  <ion-label>Tighten</ion-label>
+                  <ion-checkbox color="dark"></ion-checkbox>
+                </ion-item>
 
-            <ion-item>
-              <ion-label>Remark</ion-label>
-              <ion-textarea></ion-textarea>
-            </ion-item>
+                <ion-item>
+                  <ion-label>Remark</ion-label>
+                  <ion-textarea></ion-textarea>
+                </ion-item>
 
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
       </div>
     </div>
   </div>
@@ -235,7 +236,7 @@
               </div>
             </ion-col>
 
-            <ion-col  col-3 style="bottom: 30px" *ngFor="let image of assetinspect.images.imageDuring">
+            <ion-col col-3 style="bottom: 30px" *ngFor="let image of assetinspect.images.imageDuring">
               <ion-card>
                 <img [src]="showImage2(image.photo)" />
                 <ion-card-content>
@@ -251,7 +252,7 @@
               </div>
             </ion-col>
 
-            <ion-col col-3 style="bottom: 30px"  *ngFor="let image of assetinspect.images.imageAfter">
+            <ion-col col-3 style="bottom: 30px" *ngFor="let image of assetinspect.images.imageAfter">
               <ion-card>
                 <img [src]="showImage2(image.photo)" />
                 <ion-card-content>
@@ -259,7 +260,7 @@
                 </ion-card-content>
               </ion-card>
             </ion-col>
-            
+
 
           </ion-row>
         </ion-grid>
