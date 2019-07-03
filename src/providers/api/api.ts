@@ -9,6 +9,8 @@ export class ApiProvider {
   assetSync: { ID: number, assetID: string, RFID: string };
   assetinspectList:Array<any>;
   baseURL: string = 'http://demo.amisapi.com.ngrok.io/api/v1';
+  // baseURL: string = 'http://wams.airb.ngrok.io/api/v1';
+
   token: string;
 
   constructor(public storage: Storage, public http: HttpClient) {

@@ -91,12 +91,11 @@
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
     </plugin>
-    <plugin name="cordova-plugin-googlemaps" spec="~2.4.6">
-        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyB6uMyYkMCtqpw6_87hN84aVJ4oCHU-kN4" />
-        <variable name="API_KEY_FOR_IOS" value="AIzaSyB6uMyYkMCtqpw6_87hN84aVJ4oCHU-kN4" />
-    </plugin>
     <plugin name="phonegap-plugin-barcodescanner" spec="8.0.1" />
+    <plugin name="cordova-plugin-ionic-webview" spec="4.1.1">
+        <variable name="ANDROID_SUPPORT_ANNOTATIONS_VERSION" value="27.+" />
+    </plugin>
     <engine name="ios" spec="4.5.5" />
-    <engine name="android" spec="7.0.0" />
     <engine name="browser" spec="5.0.4" />
+    <engine name="android" spec="7.1.4" />
 </widget>

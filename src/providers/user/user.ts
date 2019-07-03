@@ -32,7 +32,9 @@ export class UserProvider {
   _type: string;
   token: string = null;
   baseURL: string = 'http://demo.amisapi.com.ngrok.io/api/v1';
-    constructor(public loadingController: LoadingController, public api: ApiProvider, protected events: Events, public alertCtrl: AlertController, public http: HttpClient, public storage: Storage) {
+  // baseURL: string = 'http://wams.airb.ngrok.io/api/v1';
+
+  constructor(public loadingController: LoadingController, public api: ApiProvider, protected events: Events, public alertCtrl: AlertController, public http: HttpClient, public storage: Storage) {
     this._type = 'normal';
 
   }
@@ -55,7 +57,7 @@ export class UserProvider {
           this.getProfile(res.id).then(res => {
             let response: any = res;
             let user = response.feedData[0];
-            console.log('user: ',user);
+            console.log('user: ', user);
             this.storage.set('USER', JSON.stringify(user));
             this.api.getDashboard().then(res2 => {
               loading.dismiss();
@@ -67,7 +69,6 @@ export class UserProvider {
             }), err => {
               console.log(JSON.stringify(err))
             }
-  
           }, err => {
             console.log(JSON.stringify(err))
             loading.dismiss();
@@ -85,21 +86,18 @@ export class UserProvider {
     }, err => {
       loading.dismiss();
       const alert = this.alertCtrl.create({
-        title: 'Invalid username or password!',
+        title: 'Invalid username or password! '+ JSON.stringify(err),
         buttons: ['OK']
       });
       alert.present();
       //alert(JSON.stringify(err));
     })
-
   }
 
   hasLoggedIn() {
-
     // return this.storage.get(this.HAS_LOGGED_IN).then((value) => {
     //   return value === true;
     // });
-
   }
 
   getProfile(id: any) {

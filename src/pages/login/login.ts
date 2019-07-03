@@ -19,7 +19,6 @@ export class LoginPage {
   }
 
   doLogin() {
-    console.log('test');
     this.user.login(this.userInfo);
     // this.navCtrl.setRoot(HomePage, {}, {animate: true});
     // this.events.publish('user:login'); 
